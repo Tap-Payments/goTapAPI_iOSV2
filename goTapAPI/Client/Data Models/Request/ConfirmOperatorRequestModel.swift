@@ -7,13 +7,13 @@
 //
 
 /// Request model for confirm operator request.
-internal class ConfirmOperatorRequestModel: goTapAPI.RequestModel {
+internal class ConfirmOperatorRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Operator.
-	internal private(set) var mobileOperator: goTapAPI.ItemID = goTapAPI.ItemID()
+	internal private(set) var mobileOperator: ItemID = ItemID()
 	
 	internal override var serializedModel: AnyObject? {
 		
@@ -29,7 +29,7 @@ internal class ConfirmOperatorRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPIConfirmOperatorRequestModel
 	 */
-	internal init(mobileOperator: goTapAPI.ItemID) {
+	internal init(mobileOperator: ItemID) {
 		
 		super.init()
 		self.mobileOperator = mobileOperator

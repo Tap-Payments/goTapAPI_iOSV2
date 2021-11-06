@@ -7,7 +7,7 @@
 //
 
 /// Business field data model.
-internal class BusinessField: goTapAPI.DataModel {
+internal class BusinessField: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -22,8 +22,8 @@ internal class BusinessField: goTapAPI.DataModel {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.FieldName: fieldName,
-			goTapAPI.Constants.Key.FieldVal: fieldValue
+			Constants.Key.FieldName: fieldName,
+			Constants.Key.FieldVal: fieldValue
 		]
 
 		return result as AnyObject
@@ -34,10 +34,10 @@ internal class BusinessField: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.BusinessField else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? BusinessField else { return nil }
 
-		guard let fieldNameString = dictionary.parseString(forKey: goTapAPI.Constants.Key.FieldName) else { return nil }
-		guard let fieldValueString = dictionary.parseString(forKey: goTapAPI.Constants.Key.FieldVal) else { return nil }
+		guard let fieldNameString = dictionary.parseString(forKey: Constants.Key.FieldName) else { return nil }
+		guard let fieldValueString = dictionary.parseString(forKey: Constants.Key.FieldVal) else { return nil }
 
 		model.fieldName = fieldNameString
 		model.fieldValue = fieldValueString

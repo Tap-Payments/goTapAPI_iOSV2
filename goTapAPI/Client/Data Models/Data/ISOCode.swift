@@ -7,7 +7,7 @@
 //
 
 /// ISO code data model.
-public class ISOCode: goTapAPI.DataModel {
+public class ISOCode: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -24,8 +24,8 @@ public class ISOCode: goTapAPI.DataModel {
 
 			var result: [String: Any] = [:]
 
-			result[goTapAPI.Constants.Key.twoLetters] = twoLetters
-			result[goTapAPI.Constants.Key.threeLetters] = threeLetters
+			result[Constants.Key.twoLetters] = twoLetters
+			result[Constants.Key.threeLetters] = threeLetters
 
 			return result as AnyObject
 		}
@@ -36,10 +36,10 @@ public class ISOCode: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ISOCode else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ISOCode else { return nil }
 
-		guard let twoLettersCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.twoLetters) else { return nil }
-		guard let threeLettersCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.threeLetters) else { return nil }
+		guard let twoLettersCode = dictionary.parseString(forKey: Constants.Key.twoLetters) else { return nil }
+		guard let threeLettersCode = dictionary.parseString(forKey: Constants.Key.threeLetters) else { return nil }
 
 		model.twoLetters = twoLettersCode
 		model.threeLetters = threeLettersCode
@@ -47,14 +47,14 @@ public class ISOCode: goTapAPI.DataModel {
 		return model.tap_asSelf()
 	}
 
-	internal static func dataModelWith(plist: [String: AnyObject]?) -> goTapAPI.ISOCode? {
+	internal static func dataModelWith(plist: [String: AnyObject]?) -> ISOCode? {
 
 		guard let dictionary = plist else { return nil }
 
-		guard let twoLettersCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.ISOCodePlist.TwoLetters) ?? dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesJSON.Two_Letter_ISO_Code) else { return nil }
-		guard let threeLettersCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.ISOCodePlist.ThreeLetters) ?? dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesJSON.Three_Letter_ISO_Code) else { return nil }
+		guard let twoLettersCode = dictionary.parseString(forKey: Constants.Key.ISOCodePlist.TwoLetters) ?? dictionary.parseString(forKey: Constants.Key.CountriesJSON.Two_Letter_ISO_Code) else { return nil }
+		guard let threeLettersCode = dictionary.parseString(forKey: Constants.Key.ISOCodePlist.ThreeLetters) ?? dictionary.parseString(forKey: Constants.Key.CountriesJSON.Three_Letter_ISO_Code) else { return nil }
 
-		return goTapAPI.ISOCode(twoLetters: twoLettersCode, threeLetters: threeLettersCode)
+		return ISOCode(twoLetters: twoLettersCode, threeLetters: threeLettersCode)
 	}
 
 	/**

@@ -12,25 +12,25 @@
  - Default: Default font.
  - Arabic:  Font for arabic languages.
  */
-public class LanguageFont: goTapAPI.Enum {
+public class LanguageFont: Enum {
 	
-	public static let Default = goTapAPI.LanguageFont(rawValue: 0)
-	public static let Arabic = goTapAPI.LanguageFont(rawValue: 1)
+	public static let Default = LanguageFont(rawValue: 0)
+	public static let Arabic = LanguageFont(rawValue: 1)
 	
-	static func with(intValue: Int64?) -> goTapAPI.LanguageFont {
+	static func with(intValue: Int64?) -> LanguageFont {
 	
 		guard let value = intValue else {
 		 
-			return goTapAPI.LanguageFont.Default
+			return LanguageFont.Default
 		}
 	
 		if value == 1 {
 		 
-			return goTapAPI.LanguageFont.Arabic
+			return LanguageFont.Arabic
 		}
 		else {
 		 
-			return goTapAPI.LanguageFont.Default
+			return LanguageFont.Default
 		}
 	}
 }

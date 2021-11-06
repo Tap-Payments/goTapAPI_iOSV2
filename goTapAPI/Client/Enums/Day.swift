@@ -1,29 +1,29 @@
 /// Enum to represent the day of the week.
-public class Day: goTapAPI.Enum {
+public class Day: Enum {
 
 	// MARK: - Public -
 	// MARK: Properties
 
 	/// Sunday.
-	public static let sunday = goTapAPI.Day(rawValue: 1)
+	public static let sunday = Day(rawValue: 1)
 
 	/// Monday.
-	public static let monday = goTapAPI.Day(rawValue: 2)
+	public static let monday = Day(rawValue: 2)
 
 	/// Tuesday.
-	public static let tuesday = goTapAPI.Day(rawValue: 3)
+	public static let tuesday = Day(rawValue: 3)
 
 	/// Wednesday.
-	public static let wednesday = goTapAPI.Day(rawValue: 4)
+	public static let wednesday = Day(rawValue: 4)
 
 	/// Thursday.
-	public static let thursday = goTapAPI.Day(rawValue: 5)
+	public static let thursday = Day(rawValue: 5)
 
 	/// Friday
-	public static let friday = goTapAPI.Day(rawValue: 6)
+	public static let friday = Day(rawValue: 6)
 
 	/// Saturday
-	public static let saturday = goTapAPI.Day(rawValue: 7)
+	public static let saturday = Day(rawValue: 7)
 
 	// MARK: - Internal -
 	// MARK: Properties
@@ -33,67 +33,67 @@ public class Day: goTapAPI.Enum {
 
 			if self == Day.sunday {
 
-			return goTapAPI.Constants.Value.SUN
+			return Constants.Value.SUN
 		}
 		else  if self == Day.monday {
 
-			return goTapAPI.Constants.Value.MON
+			return Constants.Value.MON
 		}
 		else  if self == Day.tuesday {
 
-			return goTapAPI.Constants.Value.TUE
+			return Constants.Value.TUE
 		}
 		else  if self == Day.wednesday {
 
-			return goTapAPI.Constants.Value.WED
+			return Constants.Value.WED
 		}
 		else  if self == Day.thursday {
 
-			return goTapAPI.Constants.Value.THU
+			return Constants.Value.THU
 		}
 		else  if self == Day.friday {
 
-			return goTapAPI.Constants.Value.FRI
+			return Constants.Value.FRI
 		}
 		else {
 
-			return goTapAPI.Constants.Value.SAT
+			return Constants.Value.SAT
 		}
 	}
 
 	// MARK: Methods
 
-	internal static func with(integerValue intValue: Int64?) -> goTapAPI.Day? {
+	internal static func with(integerValue intValue: Int64?) -> Day? {
 
 		guard let value = intValue else { return nil }
 
 		if value == 1 {
 
-			return goTapAPI.Day.sunday
+			return Day.sunday
 		}
 		else if value == 2 {
 
-			return goTapAPI.Day.monday
+			return Day.monday
 		}
 		else if value == 3 {
 
-			return goTapAPI.Day.tuesday
+			return Day.tuesday
 		}
 		else if value == 4 {
 
-			return goTapAPI.Day.wednesday
+			return Day.wednesday
 		}
 		else if value == 5 {
 
-			return goTapAPI.Day.thursday
+			return Day.thursday
 		}
 		else if value == 6 {
 
-			return goTapAPI.Day.friday
+			return Day.friday
 		}
 		else if value == 7 {
 
-			return goTapAPI.Day.saturday
+			return Day.saturday
 		}
 		else {
 

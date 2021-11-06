@@ -13,10 +13,10 @@ internal class ParseHelper {
 	//MARK: Properties
 	
 	/// Date formatters.
-	static let dateFormatters: [goTapAPI.DateFormatter] = [
+	static let dateFormatters: [DateFormatter] = [
 	
-		goTapAPI.DateFormatter.dateFormatterWith(localeIdentifier: goTapAPI.Constants.Default.LocaleIdentifier, dateFormat: goTapAPI.Constants.DateFormat.Format1),
-		goTapAPI.DateFormatter.dateFormatterWith(localeIdentifier: goTapAPI.Constants.Default.LocaleIdentifier, dateFormat: goTapAPI.Constants.DateFormat.Format2)
+		DateFormatter.dateFormatterWith(localeIdentifier: Constants.Default.LocaleIdentifier, dateFormat: Constants.DateFormat.Format1),
+		DateFormatter.dateFormatterWith(localeIdentifier: Constants.Default.LocaleIdentifier, dateFormat: Constants.DateFormat.Format2)
 	]
 	
 	//MARK: Methods
@@ -29,7 +29,7 @@ internal class ParseHelper {
 	 
 	 - returns: Deserialized array of objects.
 	 */
-	static func parse<T>(array serializedArray: [AnyObject]?, usingClosure closure: (AnyObject) -> T?) -> [T]? where T: goTapAPI.DataModel {
+	static func parse<T>(array serializedArray: [AnyObject]?, usingClosure closure: (AnyObject) -> T?) -> [T]? where T: DataModel {
 	 
 		guard let array = serializedArray else { return nil }
 		
@@ -52,7 +52,7 @@ internal class ParseHelper {
 	 
 	 - returns: Serialized array.
 	 */
-	static func serialize(array unserializedArray: Array<goTapAPI.DataModel>?) -> [AnyObject]? {
+	static func serialize(array unserializedArray: Array<DataModel>?) -> [AnyObject]? {
 		
 		return serialize(array: unserializedArray, usingClosure: { (object) -> AnyObject? in
 			

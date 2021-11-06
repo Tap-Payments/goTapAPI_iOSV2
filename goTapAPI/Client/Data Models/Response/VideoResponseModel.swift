@@ -7,7 +7,7 @@
 //
 
 /// Response model for video request operation.
-public class VideoResponseModel: goTapAPI.ResponseModel {
+public class VideoResponseModel: ResponseModel {
 	
 	//MARK: - Public -
 	//MARK: Properties
@@ -20,7 +20,7 @@ public class VideoResponseModel: goTapAPI.ResponseModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 	 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.VideoResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? VideoResponseModel else { return nil }
 		
 		model.videoURLs = [:]
 		

@@ -7,7 +7,7 @@
 //
 
 /// Address format details model.
-public class AddressFormatDetail: goTapAPI.DataModel {
+public class AddressFormatDetail: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -30,12 +30,12 @@ public class AddressFormatDetail: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.AddressFormatDetail else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? AddressFormatDetail else { return nil }
 
-		model.fieldID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.FldID) ?? 0
-		model.detailID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.DtlID) ?? 0
-		model.detailDisplayValue = dictionary.parseString(forKey: goTapAPI.Constants.Key.DtlDispValue) ?? String.tap_empty
-		model.displayOrder = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.DispOrder) ?? 0
+		model.fieldID = dictionary.parseInteger(forKey: Constants.Key.FldID) ?? 0
+		model.detailID = dictionary.parseInteger(forKey: Constants.Key.DtlID) ?? 0
+		model.detailDisplayValue = dictionary.parseString(forKey: Constants.Key.DtlDispValue) ?? String.tap_empty
+		model.displayOrder = dictionary.parseInteger(forKey: Constants.Key.DispOrder) ?? 0
 
 		return model.tap_asSelf()
 	}

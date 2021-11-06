@@ -7,7 +7,7 @@
 //
 
 /// Payment details data model.
-public class PaymentDetail: goTapAPI.DataModel {
+public class PaymentDetail: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -26,11 +26,11 @@ public class PaymentDetail: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.PaymentDetail else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? PaymentDetail else { return nil }
 
-		guard let parsedName = dictionary.parseString(forKey: goTapAPI.Constants.Key.Name) else { return nil }
-		guard let parsedDisplay = dictionary.parseString(forKey: goTapAPI.Constants.Key.Display) else { return nil }
-		guard let parsedValue = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.Value) else { return nil }
+		guard let parsedName = dictionary.parseString(forKey: Constants.Key.Name) else { return nil }
+		guard let parsedDisplay = dictionary.parseString(forKey: Constants.Key.Display) else { return nil }
+		guard let parsedValue = dictionary.parseAmount(forKey: Constants.Key.Value) else { return nil }
 
 		model.name = parsedName
 		model.display = parsedDisplay

@@ -9,7 +9,7 @@
 /** Additions Extends Error
 
 */
-public extension goTapAPI.APIError {
+public extension APIError {
     
     public override var debugDescription: String {
         
@@ -25,15 +25,15 @@ public extension goTapAPI.APIError {
         
         guard let validUserInfo = JSONParseHelper.makeValidJSONObject(object: self.userInfo) as? [String: Any] else { fatalError("User info is not valid.") }
         
-        return NSError(domain: self.userInfo[NSURLErrorDomain] as? String ?? goTapAPI.Constants.Error.domain, code: Int(self.code), userInfo: validUserInfo)
+        return NSError(domain: self.userInfo[NSURLErrorDomain] as? String ?? Constants.Error.domain, code: Int(self.code), userInfo: validUserInfo)
     }
     
-    public static func ==(lhs: goTapAPI.APIError, rhs: goTapAPI.APIError) -> Bool {
+    public static func ==(lhs: APIError, rhs: APIError) -> Bool {
         
         return lhs.code == rhs.code
     }
     
-    public static func !=(lhs: goTapAPI.APIError, rhs: goTapAPI.APIError) -> Bool {
+    public static func !=(lhs: APIError, rhs: APIError) -> Bool {
         
         return !(lhs == rhs)
     }

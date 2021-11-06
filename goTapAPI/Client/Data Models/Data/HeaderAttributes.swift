@@ -7,19 +7,19 @@
 //
 
 /// Header attributes data model.
-public class HeaderAttributes: goTapAPI.DataModel {
+public class HeaderAttributes: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 
 	/// Header background attributes.
-	public private(set) var background: goTapAPI.ColorModel = goTapAPI.ColorModel.clearColor
+	public private(set) var background: ColorModel = ColorModel.clearColor
 
 	/// Header border attributes.
-	public private(set) var border: goTapAPI.ColorModel = goTapAPI.ColorModel.clearColor
+	public private(set) var border: ColorModel = ColorModel.clearColor
 
 	/// Header text attributes.
-	public private(set) var text: goTapAPI.ColorModel = goTapAPI.ColorModel.clearColor
+	public private(set) var text: ColorModel = ColorModel.clearColor
 
 	//MARK: Methods
 
@@ -28,11 +28,11 @@ public class HeaderAttributes: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.HeaderAttributes else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? HeaderAttributes else { return nil }
 
-		model.background = goTapAPI.ColorModel().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.background) as AnyObject) ?? goTapAPI.ColorModel.clearColor
-		model.border = goTapAPI.ColorModel().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.border) as AnyObject) ?? goTapAPI.ColorModel.clearColor
-		model.text = goTapAPI.ColorModel().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.text) as AnyObject) ?? goTapAPI.ColorModel.clearColor
+		model.background = ColorModel().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.background) as AnyObject) ?? ColorModel.clearColor
+		model.border = ColorModel().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.border) as AnyObject) ?? ColorModel.clearColor
+		model.text = ColorModel().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.text) as AnyObject) ?? ColorModel.clearColor
 
 		return model.tap_asSelf()
 	}
@@ -73,7 +73,7 @@ public class HeaderAttributes: goTapAPI.DataModel {
 
 	public override func isEqual(_ object: Any?) -> Bool {
 
-		guard let otherObject = object as? goTapAPI.HeaderAttributes else { return false }
+		guard let otherObject = object as? HeaderAttributes else { return false }
 
 		return ( background.isEqual(otherObject.background) &&
 				 border.isEqual(otherObject.border) &&
@@ -89,7 +89,7 @@ public class HeaderAttributes: goTapAPI.DataModel {
 	//MARK: - Private -
 	//MARK: Methods
 
-	private init(backgroundColor: goTapAPI.ColorModel, borderColor: goTapAPI.ColorModel, textColor: goTapAPI.ColorModel) {
+	private init(backgroundColor: ColorModel, borderColor: ColorModel, textColor: ColorModel) {
 
 		super.init()
 

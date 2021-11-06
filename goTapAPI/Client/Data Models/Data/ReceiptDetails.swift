@@ -7,7 +7,7 @@
 //
 
 /// Receipt details data model.
-public class ReceiptDetails: goTapAPI.DataModel {
+public class ReceiptDetails: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -25,10 +25,10 @@ public class ReceiptDetails: goTapAPI.DataModel {
 	public private(set) var isCollectionAvailable: Swift.Bool = false
 
 	/// Transaction card.
-	public private(set) var transactionCard: goTapAPI.TransactionCard?
+	public private(set) var transactionCard: TransactionCard?
 
 	/// Businesses.
-	public private(set) var businesses: [goTapAPI.TransactionBusiness] = []
+	public private(set) var businesses: [TransactionBusiness] = []
 
 	//MARK: Methods
 
@@ -42,32 +42,32 @@ public class ReceiptDetails: goTapAPI.DataModel {
 		self.paymentReferenceNumber = referenceNumber
 	}
 
-	public static func instantiate(with serializedObject: AnyObject?) -> goTapAPI.ReceiptDetails? {
+	public static func instantiate(with serializedObject: AnyObject?) -> ReceiptDetails? {
 
-		return goTapAPI.ReceiptDetails().dataModelWith(serializedObject: serializedObject)
+		return ReceiptDetails().dataModelWith(serializedObject: serializedObject)
 	}
 
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ReceiptDetails else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ReceiptDetails else { return nil }
 
-		guard let paymentReferenceNumberString = dictionary.parseString(forKey: goTapAPI.Constants.Key.PayRefNumber) else { return nil }
-		guard let receiptDate = dictionary.parseDate(forKey: goTapAPI.Constants.Key.Date) else { return nil }
-		guard let isCollectionAvailableNumber = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.IsCollectionAvl) else { return nil }
+		guard let paymentReferenceNumberString = dictionary.parseString(forKey: Constants.Key.PayRefNumber) else { return nil }
+		guard let receiptDate = dictionary.parseDate(forKey: Constants.Key.Date) else { return nil }
+		guard let isCollectionAvailableNumber = dictionary.parseBoolean(forKey: Constants.Key.IsCollectionAvl) else { return nil }
 
-		let businessParsingClosure: (AnyObject) -> goTapAPI.TransactionBusiness? = { object in
+		let businessParsingClosure: (AnyObject) -> TransactionBusiness? = { object in
 
-			return goTapAPI.TransactionBusiness().dataModelWith(serializedObject: object)
+			return TransactionBusiness().dataModelWith(serializedObject: object)
 		}
 
-		guard let parsedBusinesses = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.Businesses), usingClosure: businessParsingClosure) else { return nil }
+		guard let parsedBusinesses = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.Businesses), usingClosure: businessParsingClosure) else { return nil }
 
-		model.number = dictionary.parseString(forKey: goTapAPI.Constants.Key.Number)
+		model.number = dictionary.parseString(forKey: Constants.Key.Number)
 		model.paymentReferenceNumber = paymentReferenceNumberString
 		model.date = receiptDate
 		model.isCollectionAvailable = isCollectionAvailableNumber
-		model.transactionCard = goTapAPI.TransactionCard().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.TxnCard) as AnyObject)
+		model.transactionCard = TransactionCard().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.TxnCard) as AnyObject)
 		model.businesses = parsedBusinesses
 
 		return model.tap_asSelf()

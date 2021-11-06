@@ -7,7 +7,7 @@
 //
 
 /// Detailed item header model.
-public class DetailedItemHeader: goTapAPI.ItemHeader {
+public class DetailedItemHeader: ItemHeader {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -43,12 +43,12 @@ public class DetailedItemHeader: goTapAPI.ItemHeader {
 
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
 
-		result[goTapAPI.Constants.Key.Amount] = self.amount
-		result[goTapAPI.Constants.Key.IsDefault] = self.isDefaultHeader
-		result[goTapAPI.Constants.Key.HdrDtlID] = self.headerDetailsID ?? NSNull()
-		result[goTapAPI.Constants.Key.LinkID] = self.linkID ?? NSNull()
-		result[goTapAPI.Constants.Key.Display] = self.displayValue ?? NSNull()
-		result[goTapAPI.Constants.Key.Description] = self.headerDescription ?? NSNull()
+		result[Constants.Key.Amount] = self.amount
+		result[Constants.Key.IsDefault] = self.isDefaultHeader
+		result[Constants.Key.HdrDtlID] = self.headerDetailsID ?? NSNull()
+		result[Constants.Key.LinkID] = self.linkID ?? NSNull()
+		result[Constants.Key.Display] = self.displayValue ?? NSNull()
+		result[Constants.Key.Description] = self.headerDescription ?? NSNull()
 
 		return result as AnyObject
 	}
@@ -58,15 +58,15 @@ public class DetailedItemHeader: goTapAPI.ItemHeader {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.DetailedItemHeader else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? DetailedItemHeader else { return nil }
 
-		model.headerDetailsID = dictionary.parseString(forKey: goTapAPI.Constants.Key.HdrDtlID)
-		model.amount = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.Amount) ?? Foundation.Decimal.zero
-		model.hasCustomAmount = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.HasCustomAmount) ?? false
-		model.shouldShowDescription = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.IsDtldItem) ?? false
-		model.linkID = dictionary.parseString(forKey: goTapAPI.Constants.Key.LinkID)
-		model.displayValue = dictionary.parseString(forKey: goTapAPI.Constants.Key.Display)
-		model.isDefaultHeader = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.IsDefault) ?? false
+		model.headerDetailsID = dictionary.parseString(forKey: Constants.Key.HdrDtlID)
+		model.amount = dictionary.parseAmount(forKey: Constants.Key.Amount) ?? Foundation.Decimal.zero
+		model.hasCustomAmount = dictionary.parseBoolean(forKey: Constants.Key.HasCustomAmount) ?? false
+		model.shouldShowDescription = dictionary.parseBoolean(forKey: Constants.Key.IsDtldItem) ?? false
+		model.linkID = dictionary.parseString(forKey: Constants.Key.LinkID)
+		model.displayValue = dictionary.parseString(forKey: Constants.Key.Display)
+		model.isDefaultHeader = dictionary.parseBoolean(forKey: Constants.Key.IsDefault) ?? false
 
 		return model.tap_asSelf()
 	}
@@ -89,14 +89,14 @@ public class DetailedItemHeader: goTapAPI.ItemHeader {
 
 		guard super.isEqual(object) else { return false }
 
-		guard let headerObject = object as? goTapAPI.DetailedItemHeader else { return false }
+		guard let headerObject = object as? DetailedItemHeader else { return false }
 
 		if amount != headerObject.amount { return false }
 		if hasCustomAmount != headerObject.hasCustomAmount { return false }
-		if !goTapAPI.StringExtension.equal(string1: headerDetailsID, string2: headerObject.headerDetailsID) { return false }
-		if !goTapAPI.StringExtension.equal(string1: linkID, string2: headerObject.linkID) { return false }
-		if !goTapAPI.StringExtension.equal(string1: displayValue, string2: headerObject.displayValue) { return false }
-		if !goTapAPI.StringExtension.equal(string1: headerDescription, string2: headerObject.headerDescription) { return false }
+		if !StringExtension.equal(string1: headerDetailsID, string2: headerObject.headerDetailsID) { return false }
+		if !StringExtension.equal(string1: linkID, string2: headerObject.linkID) { return false }
+		if !StringExtension.equal(string1: displayValue, string2: headerObject.displayValue) { return false }
+		if !StringExtension.equal(string1: headerDescription, string2: headerObject.headerDescription) { return false }
 		if customAmount != headerObject.customAmount { return false }
 		if isDefaultHeader != headerObject.isDefaultHeader { return false }
 		if shouldShowDescription != headerObject.shouldShowDescription { return false }

@@ -35,7 +35,7 @@ public class DataModel: NSObject {
 
 	//MARK: Methods
 
-	public func with(jString: String) -> goTapAPI.DataModel? {
+	public func with(jString: String) -> DataModel? {
 
 		var serObject: AnyObject? = nil
 

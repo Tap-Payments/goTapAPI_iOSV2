@@ -7,7 +7,7 @@
 //
 
 /// Response model for link email request.
-public class LinkEmailResponseModel: goTapAPI.ResponseModel {
+public class LinkEmailResponseModel: ResponseModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -20,9 +20,9 @@ public class LinkEmailResponseModel: goTapAPI.ResponseModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.LinkEmailResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? LinkEmailResponseModel else { return nil }
 
-		if let dataString = dictionary.parseString(forKey: goTapAPI.Constants.Key.Data) {
+		if let dataString = dictionary.parseString(forKey: Constants.Key.Data) {
 
 			model.data = dataString
 		}

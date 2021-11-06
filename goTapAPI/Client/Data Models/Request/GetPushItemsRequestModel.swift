@@ -7,7 +7,7 @@
 //
 
 /// Request model for getting push items.
-internal class GetPushItemsRequestModel: goTapAPI.RequestModel {
+internal class GetPushItemsRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -22,8 +22,8 @@ internal class GetPushItemsRequestModel: goTapAPI.RequestModel {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.sessID: sessionID,
-			goTapAPI.Constants.Key.Action: actionButtonWasPressed ? goTapAPI.Constants.Value.PAY : goTapAPI.Constants.Value.VIEW
+			Constants.Key.sessID: sessionID,
+			Constants.Key.Action: actionButtonWasPressed ? Constants.Value.PAY : Constants.Value.VIEW
 		]
 
 		return result as AnyObject

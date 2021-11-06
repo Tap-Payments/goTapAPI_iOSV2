@@ -6,12 +6,12 @@
 //  Copyright © 2016 Tap Payments. All rights reserved.
 //
 
-public class YoutubeVideo: goTapAPI.DataModel {
+public class YoutubeVideo: DataModel {
     
     //MARK: - Public -
     //MARK: Properties
     
-    public private(set) var videoURLs: [goTapAPI.VideoQuality: URL] = [:]
+    public private(set) var videoURLs: [VideoQuality: URL] = [:]
     
     public private(set) var previewURL: URL?
     
@@ -21,17 +21,17 @@ public class YoutubeVideo: goTapAPI.DataModel {
     
     public var bestQualityURL: URL? {
         
-        if let hd720URL = videoURLs[goTapAPI.VideoQuality.HD720] {
+        if let hd720URL = videoURLs[VideoQuality.HD720] {
             
             return hd720URL
         }
-        else if let mediumURL = videoURLs[goTapAPI.VideoQuality.Medium] {
+        else if let mediumURL = videoURLs[VideoQuality.Medium] {
             
             return mediumURL
         }
         else {
             
-            return videoURLs[goTapAPI.VideoQuality.Small]
+            return videoURLs[VideoQuality.Small]
         }
     }
     
@@ -41,26 +41,26 @@ public class YoutubeVideo: goTapAPI.DataModel {
         
         guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
         
-        if let smallURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.small) {
+        if let smallURL = dictionary.parseURL(forKey: Constants.Key.small) {
             
-            self.videoURLs[goTapAPI.VideoQuality.Small] = smallURL
+            self.videoURLs[VideoQuality.Small] = smallURL
         }
         
-        if let mediumURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.medium) {
+        if let mediumURL = dictionary.parseURL(forKey: Constants.Key.medium) {
             
-            self.videoURLs[goTapAPI.VideoQuality.Medium] = mediumURL
+            self.videoURLs[VideoQuality.Medium] = mediumURL
         }
         
-        if let hd720URL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.hd720) {
+        if let hd720URL = dictionary.parseURL(forKey: Constants.Key.hd720) {
             
-            self.videoURLs[goTapAPI.VideoQuality.HD720] = hd720URL
+            self.videoURLs[VideoQuality.HD720] = hd720URL
         }
         
-        guard let moreInfoDictionary = dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.moreInfo) else { return self }
+        guard let moreInfoDictionary = dictionary.parseDictionary(forKey: Constants.Key.moreInfo) else { return self }
         
-        self.previewURL = moreInfoDictionary.parseURL(forKey: goTapAPI.Constants.Key.thumbnail_url)
-        self.length = UInt(moreInfoDictionary.parseInteger(forKey: goTapAPI.Constants.Key.length_seconds) ?? 0)
-        self.title = moreInfoDictionary.parseString(forKey: goTapAPI.Constants.Key.title) ?? ""
+        self.previewURL = moreInfoDictionary.parseURL(forKey: Constants.Key.thumbnail_url)
+        self.length = UInt(moreInfoDictionary.parseInteger(forKey: Constants.Key.length_seconds) ?? 0)
+        self.title = moreInfoDictionary.parseString(forKey: Constants.Key.title) ?? ""
         
         return self
     }

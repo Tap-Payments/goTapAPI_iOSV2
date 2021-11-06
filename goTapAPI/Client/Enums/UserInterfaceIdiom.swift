@@ -1,24 +1,24 @@
-public class UserInterfaceIdiom: goTapAPI.Enum {
+public class UserInterfaceIdiom: Enum {
 
-	public static let Phone = goTapAPI.UserInterfaceIdiom(rawValue: 0)
-	public static let Tablet = goTapAPI.UserInterfaceIdiom(rawValue: 1)
-	public static let Other = goTapAPI.UserInterfaceIdiom(rawValue: 2)
+	public static let Phone = UserInterfaceIdiom(rawValue: 0)
+	public static let Tablet = UserInterfaceIdiom(rawValue: 1)
+	public static let Other = UserInterfaceIdiom(rawValue: 2)
 	
 	internal var stringRepresentation: String {
 	 
 			if self == UserInterfaceIdiom.Phone {
 				
-			return goTapAPI.Constants.Value.Phone
+			return Constants.Value.Phone
 		}
 		else  if self == UserInterfaceIdiom.Tablet {
 				
-			return goTapAPI.Constants.Value.Tablet
+			return Constants.Value.Tablet
 		}
 		else  if self == UserInterfaceIdiom.Other {
 				
-			return goTapAPI.Constants.Value.Unspecified
+			return Constants.Value.Unspecified
 		}
 		
-		return goTapAPI.Constants.Value.Unspecified
+		return Constants.Value.Unspecified
 	}
 }

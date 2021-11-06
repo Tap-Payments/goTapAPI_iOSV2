@@ -7,7 +7,7 @@
 //
 
 /// Transaction business data model.
-public class TransactionBusiness: goTapAPI.DataModel {
+public class TransactionBusiness: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -38,19 +38,19 @@ public class TransactionBusiness: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.TransactionBusiness else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? TransactionBusiness else { return nil }
 
-		guard let parsedVendorID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.VndID) else { return nil }
-		guard let parsedVendorName = dictionary.parseString(forKey: goTapAPI.Constants.Key.VndName) else { return nil }
-		guard let parsedCurrencyCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.CurrencyCD) else { return nil }
+		guard let parsedVendorID = dictionary.parseInteger(forKey: Constants.Key.VndID) else { return nil }
+		guard let parsedVendorName = dictionary.parseString(forKey: Constants.Key.VndName) else { return nil }
+		guard let parsedCurrencyCode = dictionary.parseString(forKey: Constants.Key.CurrencyCD) else { return nil }
 
 		model.vendorID = parsedVendorID
 		model.vendorName = parsedVendorName
-		model.vendorImageURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.VndImage)
+		model.vendorImageURL = dictionary.parseURL(forKey: Constants.Key.VndImage)
 		model.currencyCode = parsedCurrencyCode
-		model.isTipAvailable = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.TipAvail) ?? false
-		model.discountPercent = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.DiscPer) ?? Foundation.Decimal.zero
-		model.discountAmount = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.DiscAmount) ?? Foundation.Decimal.zero
+		model.isTipAvailable = dictionary.parseBoolean(forKey: Constants.Key.TipAvail) ?? false
+		model.discountPercent = dictionary.parseAmount(forKey: Constants.Key.DiscPer) ?? Foundation.Decimal.zero
+		model.discountAmount = dictionary.parseAmount(forKey: Constants.Key.DiscAmount) ?? Foundation.Decimal.zero
 
 		return model.tap_asSelf()
 	}

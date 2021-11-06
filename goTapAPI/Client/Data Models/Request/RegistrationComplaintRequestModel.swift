@@ -7,7 +7,7 @@
 //
 
 /// Request model for register compliant request.
-internal class RegistrationComplaintRequestModel: goTapAPI.RequestModel {
+internal class RegistrationComplaintRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -19,9 +19,9 @@ internal class RegistrationComplaintRequestModel: goTapAPI.RequestModel {
 
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
 
-		result[goTapAPI.Constants.Key.AppData] = goTapAPI.ApplicationData.sharedInstance.serializedModel!
-		result[goTapAPI.Constants.Key.RefValue] = goTapAPI.ApplicationData.sharedInstance.phoneNumber ?? String.tap_empty
-		result[goTapAPI.Constants.Key.RefNmbr] = referenceValue
+		result[Constants.Key.AppData] = ApplicationData.sharedInstance.serializedModel!
+		result[Constants.Key.RefValue] = ApplicationData.sharedInstance.phoneNumber ?? String.tap_empty
+		result[Constants.Key.RefNmbr] = referenceValue
 
 		return result as AnyObject
 	}

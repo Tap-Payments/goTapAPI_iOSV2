@@ -7,7 +7,7 @@
 //
 
 /// List ID data model.
-public class ListID: goTapAPI.DataModel {
+public class ListID: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -16,16 +16,16 @@ public class ListID: goTapAPI.DataModel {
 	public private(set) var number: Int64 = 0
 
 	/// ID type.
-	public private(set) var type: goTapAPI.ItemType = goTapAPI.ItemType.Static
+	public private(set) var type: ItemType = ItemType.Static
 
 	internal override var serializedModel: AnyObject? {
 
 		var result: [String: Any] = [
 
-			goTapAPI.Constants.Key.IDNmbr: number
+			Constants.Key.IDNmbr: number
 		]
 
-		result[goTapAPI.Constants.Key.IDType] = self.type.stringRepresentation
+		result[Constants.Key.IDType] = self.type.stringRepresentation
 
 		return result as AnyObject
 	}
@@ -34,7 +34,7 @@ public class ListID: goTapAPI.DataModel {
 
 	public required init() { super.init() }
 
-	internal init(number: Int64, type: goTapAPI.ItemType) {
+	internal init(number: Int64, type: ItemType) {
 
 		super.init()
 
@@ -46,8 +46,8 @@ public class ListID: goTapAPI.DataModel {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
 
-		guard let numberInt = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.IDNmbr) else { return nil }
-		guard let typeString = dictionary.parseString(forKey: goTapAPI.Constants.Key.IDType) else { return nil }
+		guard let numberInt = dictionary.parseInteger(forKey: Constants.Key.IDNmbr) else { return nil }
+		guard let typeString = dictionary.parseString(forKey: Constants.Key.IDType) else { return nil }
 
 		self.number = numberInt
 		self.type = ItemType.with(stringValue: typeString)
@@ -58,7 +58,7 @@ public class ListID: goTapAPI.DataModel {
 
 extension ListID: ListIDRepresentable {
 
-	public var listID: goTapAPI.ListID {
+	public var listID: ListID {
 
 		return self
 	}

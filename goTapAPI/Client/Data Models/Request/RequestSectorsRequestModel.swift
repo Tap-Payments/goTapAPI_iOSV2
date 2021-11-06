@@ -7,17 +7,17 @@
 //
 
 /// Request model for request sectors request.
-internal class RequestSectorsRequestModel: goTapAPI.RequestModel {
+internal class RequestSectorsRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Sectors.
-	internal private(set) var sectors: [goTapAPI.Sector] = []
+	internal private(set) var sectors: [Sector] = []
 	
 	internal override var serializedModel: AnyObject? {
 		
-		return goTapAPI.ParseHelper.serialize(array: sectors) as AnyObject
+		return ParseHelper.serialize(array: sectors) as AnyObject
 	}
 	
 	//MARK: Methods
@@ -29,7 +29,7 @@ internal class RequestSectorsRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPIRequestSectorRequestModel
 	 */
-	internal init(sectors: [goTapAPI.Sector]) {
+	internal init(sectors: [Sector]) {
 		
 		super.init()
 		

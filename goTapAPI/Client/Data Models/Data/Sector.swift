@@ -7,7 +7,7 @@
 //
 
 /// Sector data model.
-public class Sector: goTapAPI.DataModel {
+public class Sector: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -22,8 +22,8 @@ public class Sector: goTapAPI.DataModel {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.ID: identifier,
-			goTapAPI.Constants.Key.Name: name
+			Constants.Key.ID: identifier,
+			Constants.Key.Name: name
 		]
 
 		return result as AnyObject
@@ -50,10 +50,10 @@ public class Sector: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.Sector else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? Sector else { return nil }
 
-		guard let parsedIdentifierNumber = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.ID) else { return nil }
-		guard let parsedName = dictionary.parseString(forKey: goTapAPI.Constants.Key.Name) else { return nil }
+		guard let parsedIdentifierNumber = dictionary.parseInteger(forKey: Constants.Key.ID) else { return nil }
+		guard let parsedName = dictionary.parseString(forKey: Constants.Key.Name) else { return nil }
 
 		model.identifier = parsedIdentifierNumber
 		model.name = parsedName

@@ -7,7 +7,7 @@
 //
 
 /// Payment details data model.
-internal class PaymentDetails: goTapAPI.DataModel {
+internal class PaymentDetails: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -28,12 +28,12 @@ internal class PaymentDetails: goTapAPI.DataModel {
 
 		var result: [String: Any] = [
 
-			goTapAPI.Constants.Key.Amount: self.amount,
-			goTapAPI.Constants.Key.GateWayID: self.gatewayID,
-			goTapAPI.Constants.Key.TxnID: self.transactionID
+			Constants.Key.Amount: self.amount,
+			Constants.Key.GateWayID: self.gatewayID,
+			Constants.Key.TxnID: self.transactionID
 		]
 
-		result[goTapAPI.Constants.Key.CurrencyCode] = currencyCode ?? NSNull()
+		result[Constants.Key.CurrencyCode] = currencyCode ?? NSNull()
 
 		return result as AnyObject
 	}

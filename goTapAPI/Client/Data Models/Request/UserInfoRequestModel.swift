@@ -7,7 +7,7 @@
 //
 
 /// User info request model.
-internal class UserInfoRequestModel: goTapAPI.RequestModel {
+internal class UserInfoRequestModel: RequestModel {
 	
 	//MARK: - Public -
 	//MARK: Properties
@@ -16,17 +16,17 @@ internal class UserInfoRequestModel: goTapAPI.RequestModel {
 	internal private(set) var userData: String?
 	
 	/// Input field.
-	internal private(set) var inputFields: [goTapAPI.BusinessField]?
+	internal private(set) var inputFields: [BusinessField]?
 	
 	internal override var serializedModel: AnyObject? {
 		
-		let serializedInputFields = goTapAPI.ParseHelper.serialize(array: inputFields)
+		let serializedInputFields = ParseHelper.serialize(array: inputFields)
 		let emptyArray: [AnyObject] = []
 		
 		var result: [String: Any] = [:]
 			
-		result[goTapAPI.Constants.Key.UserData] = userData ?? NSNull()
-		result[goTapAPI.Constants.Key.InputFields] = serializedInputFields ?? emptyArray
+		result[Constants.Key.UserData] = userData ?? NSNull()
+		result[Constants.Key.InputFields] = serializedInputFields ?? emptyArray
 		
 		return result as AnyObject
 	}
@@ -41,7 +41,7 @@ internal class UserInfoRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPIUserInfoRequestModel
 	 */
-	internal init(userData: String?, inputFields: [goTapAPI.BusinessField]?) {
+	internal init(userData: String?, inputFields: [BusinessField]?) {
 		
 		super.init()
 		

@@ -7,18 +7,18 @@
 //
 
 /// Country data model.
-public class Country: goTapAPI.DataModel {
+public class Country: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 
 	/// Available add to list screens.
-	public private(set) var availableAddToListScreens: goTapAPI.AddToListScreen = goTapAPI.AddToListScreen.None
+	public private(set) var availableAddToListScreens: AddToListScreen = AddToListScreen.None
 
 	/// Flag URL
 	public var flagURL: URL? {
 
-		return goTapAPI.UrlExtension.with(string: flagURLString)
+		return UrlExtension.with(string: flagURLString)
 	}
 
 	/// Flag local image name. If nil, use flagURL to load the image.
@@ -31,7 +31,7 @@ public class Country: goTapAPI.DataModel {
 	public private(set) var isdNumber: String?
 
 	/// ISO code.
-	public private(set) var isoCode: goTapAPI.ISOCode?
+	public private(set) var isoCode: ISOCode?
 
 	/// Language code.
 	public private(set) var languageCode: String?
@@ -44,7 +44,7 @@ public class Country: goTapAPI.DataModel {
 
 		if let twoLetteredISOCode = isoCode?.twoLetters {
 
-			return goTapAPI.Client.sharedInstance.dataSource!.countryNameFor(twoLetteredISOCode)
+			return Client.sharedInstance.dataSource!.countryNameFor(twoLetteredISOCode)
 		}
 
 		return String.tap_empty
@@ -70,9 +70,9 @@ public class Country: goTapAPI.DataModel {
 
 		var result: [String: Any] = [:]
 
-		result.setNullable(value: self.isoCode?.twoLetters, forKey: goTapAPI.Constants.Key.Code)
-		result.setNullable(value: self.isdNumber, forKey: goTapAPI.Constants.Key.ISDNMbr)
-		result.setNullable(value: self.name, forKey: goTapAPI.Constants.Key.Name)
+		result.setNullable(value: self.isoCode?.twoLetters, forKey: Constants.Key.Code)
+		result.setNullable(value: self.isdNumber, forKey: Constants.Key.ISDNMbr)
+		result.setNullable(value: self.name, forKey: Constants.Key.Name)
 
 		return result as AnyObject
 	}
@@ -81,15 +81,15 @@ public class Country: goTapAPI.DataModel {
 
 		var result: [String: Any] = [:]
 
-		result[goTapAPI.Constants.Key.AddListScreenID] = availableAddToListScreens.rawValue
+		result[Constants.Key.AddListScreenID] = availableAddToListScreens.rawValue
 
-		result.setNullable(value: flagURLString, forKey: goTapAPI.Constants.Key.FlagURL)
-		result.setNullable(value: idPattern, forKey: goTapAPI.Constants.Key.IDPattern)
-		result.setNullable(value: isdNumber, forKey: goTapAPI.Constants.Key.ISDNMbr)
-		result.setNullable(value: isoCode?.serializedModel, forKey: goTapAPI.Constants.Key.ISOCode)
-		result.setNullable(value: languageCode, forKey: goTapAPI.Constants.Key.LangCode)
-		result.setNullable(value: name, forKey: goTapAPI.Constants.Key.Name)
-		result.setNullable(value: numberPattern, forKey: goTapAPI.Constants.Key.NumberPattern)
+		result.setNullable(value: flagURLString, forKey: Constants.Key.FlagURL)
+		result.setNullable(value: idPattern, forKey: Constants.Key.IDPattern)
+		result.setNullable(value: isdNumber, forKey: Constants.Key.ISDNMbr)
+		result.setNullable(value: isoCode?.serializedModel, forKey: Constants.Key.ISOCode)
+		result.setNullable(value: languageCode, forKey: Constants.Key.LangCode)
+		result.setNullable(value: name, forKey: Constants.Key.Name)
+		result.setNullable(value: numberPattern, forKey: Constants.Key.NumberPattern)
 
 		return result as AnyObject
 	}
@@ -99,15 +99,15 @@ public class Country: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.Country else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? Country else { return nil }
 
-		model.availableAddToListScreens = goTapAPI.AddToListScreen(rawValue: dictionary.parseInteger(forKey: goTapAPI.Constants.Key.AddListScreenID) ?? goTapAPI.AddToListScreen.None.rawValue)
-		model.flagURLString = dictionary.parseString(forKey: goTapAPI.Constants.Key.FlagURL)
-		model.idPattern = dictionary.parseString(forKey: goTapAPI.Constants.Key.IDPattern)
-		model.isdNumber = dictionary.parseString(forKey: goTapAPI.Constants.Key.ISDNMbr)
-		model.isoCode = goTapAPI.ISOCode().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.ISOCode) as AnyObject)
-		model.languageCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.LangCode)
-		model.numberPattern = dictionary.parseString(forKey: goTapAPI.Constants.Key.NumberPattern)
+		model.availableAddToListScreens = AddToListScreen(rawValue: dictionary.parseInteger(forKey: Constants.Key.AddListScreenID) ?? AddToListScreen.None.rawValue)
+		model.flagURLString = dictionary.parseString(forKey: Constants.Key.FlagURL)
+		model.idPattern = dictionary.parseString(forKey: Constants.Key.IDPattern)
+		model.isdNumber = dictionary.parseString(forKey: Constants.Key.ISDNMbr)
+		model.isoCode = ISOCode().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.ISOCode) as AnyObject)
+		model.languageCode = dictionary.parseString(forKey: Constants.Key.LangCode)
+		model.numberPattern = dictionary.parseString(forKey: Constants.Key.NumberPattern)
 
 		return model.tap_asSelf()
 	}
@@ -125,7 +125,7 @@ public class Country: goTapAPI.DataModel {
 
 	 - returns: New instance of TPAPICountry.
 	 */
-	public init(isdNumber: String?, isoCode: goTapAPI.ISOCode?, numberPattern: String?, idPattern: String?, availableAddToListScreens: goTapAPI.AddToListScreen, languageCode: String?, flagImageName: String?, supportedForRegistration: Bool) {
+	public init(isdNumber: String?, isoCode: ISOCode?, numberPattern: String?, idPattern: String?, availableAddToListScreens: AddToListScreen, languageCode: String?, flagImageName: String?, supportedForRegistration: Bool) {
 
 		super.init()
 
@@ -139,80 +139,80 @@ public class Country: goTapAPI.DataModel {
 		self.supportedForRegistration = supportedForRegistration
 	}
 
-	public static func withJsonString(jsonString: String?) -> goTapAPI.Country? {
+	public static func withJsonString(jsonString: String?) -> Country? {
 
 		guard let dictionary = Swift.Dictionary<String, AnyObject>.from(jsonString) else { return nil }
 
 		return self.withDictionary(dictionary)
 	}
 
-	public static func withDictionary(_ dictionary: Swift.Dictionary<String, AnyObject>) -> goTapAPI.Country? {
+	public static func withDictionary(_ dictionary: Swift.Dictionary<String, AnyObject>) -> Country? {
 
-		var availableAddToListScreens: goTapAPI.AddToListScreen = goTapAPI.AddToListScreen.None
+		var availableAddToListScreens: AddToListScreen = AddToListScreen.None
 
-		if let availableAddToListScreenID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.AddListScreenID) {
+		if let availableAddToListScreenID = dictionary.parseInteger(forKey: Constants.Key.AddListScreenID) {
 
-			availableAddToListScreens = goTapAPI.AddToListScreen(rawValue: availableAddToListScreenID)
+			availableAddToListScreens = AddToListScreen(rawValue: availableAddToListScreenID)
 		}
 		else {
 
-			if let canAddMobile = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.CountriesJSON.Can_Add_Mobile), canAddMobile == true {
+			if let canAddMobile = dictionary.parseBoolean(forKey: Constants.Key.CountriesJSON.Can_Add_Mobile), canAddMobile == true {
 
-				availableAddToListScreens = goTapAPI.AddToListScreen(rawValue: availableAddToListScreens.rawValue + goTapAPI.AddToListScreen.Mobile.rawValue)
+				availableAddToListScreens = AddToListScreen(rawValue: availableAddToListScreens.rawValue + AddToListScreen.Mobile.rawValue)
 			}
 
-			if let canAddID = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.CountriesJSON.Can_Add_Civil_Id), canAddID == true {
+			if let canAddID = dictionary.parseBoolean(forKey: Constants.Key.CountriesJSON.Can_Add_Civil_Id), canAddID == true {
 
-				availableAddToListScreens = goTapAPI.AddToListScreen(rawValue: availableAddToListScreens.rawValue + goTapAPI.AddToListScreen.ID.rawValue)
+				availableAddToListScreens = AddToListScreen(rawValue: availableAddToListScreens.rawValue + AddToListScreen.ID.rawValue)
 			}
 		}
 
 		var isdNumber: String? = nil
-		if let parsedISDNumber = dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesPlist.ISDNumber) {
+		if let parsedISDNumber = dictionary.parseString(forKey: Constants.Key.CountriesPlist.ISDNumber) {
 
 			isdNumber = parsedISDNumber
 		}
-		else if let parsedISD_Number = dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesJSON.ISD_Number) {
+		else if let parsedISD_Number = dictionary.parseString(forKey: Constants.Key.CountriesJSON.ISD_Number) {
 
 			isdNumber = parsedISD_Number
 		}
-		else if let parsedISDNMbr = dictionary.parseString(forKey: goTapAPI.Constants.Key.ISDNMbr) {
+		else if let parsedISDNMbr = dictionary.parseString(forKey: Constants.Key.ISDNMbr) {
 
 			isdNumber = parsedISDNMbr
 		}
 
 		var numberPattern: String? = nil
-		if let parsedPhoneNumberPattern = dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesPlist.PhoneNumberPattern) {
+		if let parsedPhoneNumberPattern = dictionary.parseString(forKey: Constants.Key.CountriesPlist.PhoneNumberPattern) {
 
 			numberPattern = parsedPhoneNumberPattern
 		}
-		else if let parsedPhone_Number_Validation = dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesJSON.Phone_Number_Validation) {
+		else if let parsedPhone_Number_Validation = dictionary.parseString(forKey: Constants.Key.CountriesJSON.Phone_Number_Validation) {
 
 			numberPattern = parsedPhone_Number_Validation
 		}
-		else if let parsedNumberPattern = dictionary.parseString(forKey: goTapAPI.Constants.Key.NumberPattern) {
+		else if let parsedNumberPattern = dictionary.parseString(forKey: Constants.Key.NumberPattern) {
 
 			numberPattern = parsedNumberPattern
 		}
 
-		var isoCode: goTapAPI.ISOCode? = nil
-		if let dictionary = dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.ISOCode) {
+		var isoCode: ISOCode? = nil
+		if let dictionary = dictionary.parseDictionary(forKey: Constants.Key.ISOCode) {
 
-			isoCode = goTapAPI.ISOCode().dataModelWith(serializedObject: dictionary)
+			isoCode = ISOCode().dataModelWith(serializedObject: dictionary)
 		}
 		else {
 
-			isoCode = goTapAPI.ISOCode.dataModelWith(plist: dictionary)
+			isoCode = ISOCode.dataModelWith(plist: dictionary)
 		}
 
-		return goTapAPI.Country(isdNumber: isdNumber,
+		return Country(isdNumber: isdNumber,
 								isoCode: isoCode,
 								numberPattern: numberPattern,
-								idPattern: dictionary.parseString(forKey: goTapAPI.Constants.Key.IDPattern) ?? dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesJSON.Civil_Id_Validation),
+								idPattern: dictionary.parseString(forKey: Constants.Key.IDPattern) ?? dictionary.parseString(forKey: Constants.Key.CountriesJSON.Civil_Id_Validation),
 								availableAddToListScreens: availableAddToListScreens,
-								languageCode: dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesPlist.LanguageCode),
-								flagImageName: dictionary.parseString(forKey: goTapAPI.Constants.Key.CountriesPlist.FlagImageName),
-								supportedForRegistration: dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.CountriesJSON.Can_Register) ?? false)
+								languageCode: dictionary.parseString(forKey: Constants.Key.CountriesPlist.LanguageCode),
+								flagImageName: dictionary.parseString(forKey: Constants.Key.CountriesPlist.FlagImageName),
+								supportedForRegistration: dictionary.parseBoolean(forKey: Constants.Key.CountriesJSON.Can_Register) ?? false)
 	}
 
 	//MARK: - Private -

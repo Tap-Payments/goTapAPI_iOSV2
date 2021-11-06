@@ -17,17 +17,17 @@ internal class StatusCodesHelper {
     
     internal static func needToHandle(HTTPStatusCode statusCode: Int) -> Bool {
         
-        return !self.actionFor(HTTPStatusCode: statusCode).contains(bit: goTapAPI.TPAction.None)
+        return !self.actionFor(HTTPStatusCode: statusCode).contains(bit: TPAction.None)
     }
     
     internal static func needToHandle(serverStatusCode statusCode: Int) -> Bool {
         
-        return !self.actionFor(serverStatusCode: statusCode).contains(bit: goTapAPI.TPAction.None)
+        return !self.actionFor(serverStatusCode: statusCode).contains(bit: TPAction.None)
     }
     
     internal static func needToHandle(URLConnectionStatusCode statusCode: Int) -> Bool {
         
-        return !actionFor(URLConnectionStatusCode: statusCode).contains(bit: goTapAPI.TPAction.None)
+        return !actionFor(URLConnectionStatusCode: statusCode).contains(bit: TPAction.None)
     }
     
     internal static func handle(HTTPStatusCode statusCode: Int, error: NSError, url: URL, inOperation operation: RequestOperation) {
@@ -45,99 +45,99 @@ internal class StatusCodesHelper {
     internal static func handle(serverStatusCode statusCode: Int, error: NSError, inOperation operation: RequestOperation, responseHeaders: [AnyHashable: Any]) {
         
         var userInfo = error.userInfo
-        userInfo[goTapAPI.Constants.Error.UserInfoKey.URL] = URL(string: operation.requestPath, relativeTo: RequestOperationsHandler.baseURL)!.absoluteString
-        userInfo[goTapAPI.Constants.Error.UserInfoKey.RequestHeaders] = operation.requestHeaders
-        userInfo[goTapAPI.Constants.Error.UserInfoKey.ResponseHeaders] = responseHeaders
+        userInfo[Constants.Error.UserInfoKey.URL] = URL(string: operation.requestPath, relativeTo: RequestOperationsHandler.baseURL)!.absoluteString
+        userInfo[Constants.Error.UserInfoKey.RequestHeaders] = operation.requestHeaders
+        userInfo[Constants.Error.UserInfoKey.ResponseHeaders] = responseHeaders
         userInfo[NSURLErrorDomain] = error.domain
         
         if let requestParameters = operation.bodyModel?.serializedModel {
             
-            userInfo[goTapAPI.Constants.Error.UserInfoKey.RequestParameters] = requestParameters
+            userInfo[Constants.Error.UserInfoKey.RequestParameters] = requestParameters
         }
         
         if let completeResponse = operation.responseObject {
             
-            userInfo[goTapAPI.Constants.Error.UserInfoKey.ResponseParameters] = completeResponse
+            userInfo[Constants.Error.UserInfoKey.ResponseParameters] = completeResponse
         }
         
         let nonnullResponseModel = operation.responseObjectType.dataModelWith(serializedObject: operation.responseObject)
         let response = nonnullResponseModel?.response ?? Response(code: Int64(statusCode))
         
-        let errorToBeSent = goTapAPI.APIError(code: Int64(error.code), userInfo: userInfo)
+        let errorToBeSent = APIError(code: Int64(error.code), userInfo: userInfo)
         errorToBeSent.responseID = response.responseID
         
         let action = Client.sharedInstance.dataSource?.errorDescription(for: Int64(statusCode))?.action ?? self.actionFor(serverStatusCode: statusCode)
         
-        goTapAPI.Client.sharedInstance.delegate?.handleAction(action, responseData: response, error: errorToBeSent)
+        Client.sharedInstance.delegate?.handleAction(action, responseData: response, error: errorToBeSent)
     }
     
     internal static func handle(networkReachabilityStatus status: TapNetworkReachabilityStatus) {
         
-        let action: goTapAPI.TPAction = status == .unreachable ? goTapAPI.TPAction.TopAlert | goTapAPI.TPAction.BlockUI : goTapAPI.TPAction.HideTopAlert
-        let responseData = goTapAPI.Response(code: Int64(ServerStatusCode.noInternetConnection.rawValue))
+        let action: TPAction = status == .unreachable ? TPAction.TopAlert | TPAction.BlockUI : TPAction.HideTopAlert
+        let responseData = Response(code: Int64(ServerStatusCode.noInternetConnection.rawValue))
         
-        goTapAPI.Client.sharedInstance.delegate?.handleAction(action, responseData: responseData, error: nil)
+        Client.sharedInstance.delegate?.handleAction(action, responseData: responseData, error: nil)
     }
     
     //MARK: - Private -
     //MARK: Methods
     
-    private static func handle(systemStatusCode statusCode: Int, error: NSError, inOperation operation: RequestOperation, action: goTapAPI.TPAction) {
+    private static func handle(systemStatusCode statusCode: Int, error: NSError, inOperation operation: RequestOperation, action: TPAction) {
         
         var userInfo = error.userInfo
-        userInfo[goTapAPI.Constants.Error.UserInfoKey.URL] = URL(string: operation.requestPath, relativeTo: RequestOperationsHandler.baseURL)!.absoluteString
-        userInfo[goTapAPI.Constants.Error.UserInfoKey.RequestHeaders] = operation.requestHeaders
+        userInfo[Constants.Error.UserInfoKey.URL] = URL(string: operation.requestPath, relativeTo: RequestOperationsHandler.baseURL)!.absoluteString
+        userInfo[Constants.Error.UserInfoKey.RequestHeaders] = operation.requestHeaders
         
         if let requestParameters = operation.bodyModel?.serializedModel {
             
-            userInfo[goTapAPI.Constants.Error.UserInfoKey.RequestParameters] = requestParameters
+            userInfo[Constants.Error.UserInfoKey.RequestParameters] = requestParameters
         }
         
         if let completeResponse = operation.responseObject {
             
-            userInfo[goTapAPI.Constants.Error.UserInfoKey.ResponseParameters] = completeResponse
+            userInfo[Constants.Error.UserInfoKey.ResponseParameters] = completeResponse
         }
         
         userInfo[NSURLErrorDomain] = error.domain
         
-        let errorToBeSent = goTapAPI.APIError(code: Int64(error.code), userInfo: userInfo)
+        let errorToBeSent = APIError(code: Int64(error.code), userInfo: userInfo)
         
         let responseData = operation.responseModel?.response ?? Response(code: Int64(statusCode))
         
-        goTapAPI.Client.sharedInstance.delegate?.handleAction(action, responseData: responseData, error: errorToBeSent)
+        Client.sharedInstance.delegate?.handleAction(action, responseData: responseData, error: errorToBeSent)
     }
     
-    private static func actionFor(HTTPStatusCode statusCode: Int) -> goTapAPI.TPAction {
+    private static func actionFor(HTTPStatusCode statusCode: Int) -> TPAction {
         
         switch HTTPStatusCode(rawValue: statusCode) ?? .other {
             
         case .ok:
             
-            return goTapAPI.TPAction.None
+            return TPAction.None
             
         case .badRequest:
             
-            return goTapAPI.TPAction.Logout | goTapAPI.TPAction.PopupWithReportButton
+            return TPAction.Logout | TPAction.PopupWithReportButton
             
         case .unatherised:
             
-            return goTapAPI.TPAction.Logout | goTapAPI.TPAction.PopupWithReportButton
+            return TPAction.Logout | TPAction.PopupWithReportButton
             
         case .notFound:
             
-            return goTapAPI.TPAction.PopupWithReportButton
+            return TPAction.PopupWithReportButton
             
         case .internalError:
             
-            return goTapAPI.TPAction.PopupWithReportButton
+            return TPAction.PopupWithReportButton
             
         default:
             
-            return goTapAPI.TPAction.PopupWithReportButton
+            return TPAction.PopupWithReportButton
         }
     }
     
-    private static func actionFor(serverStatusCode statusCode: Int) -> goTapAPI.TPAction {
+    private static func actionFor(serverStatusCode statusCode: Int) -> TPAction {
         
         let serverStatusCode = ServerStatusCode(rawValue: statusCode) ?? .other
         
@@ -226,7 +226,7 @@ internal class StatusCodesHelper {
         }
     }
     
-    private static func actionFor(URLConnectionStatusCode statusCode: Int) -> goTapAPI.TPAction {
+    private static func actionFor(URLConnectionStatusCode statusCode: Int) -> TPAction {
         
         guard let cfError = CFNetworkErrors(rawValue: Int32(statusCode)) else {
             

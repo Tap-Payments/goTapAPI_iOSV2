@@ -7,7 +7,7 @@
 //
 
 /// Image source model.
-public class ImageSource: goTapAPI.DataModel {
+public class ImageSource: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -18,29 +18,29 @@ public class ImageSource: goTapAPI.DataModel {
 	/// Small image URL.
 	public var smallImageURL: URL? {
 	 
-		return goTapAPI.UrlExtension.with(string: smallImageURLString) 
+		return UrlExtension.with(string: smallImageURLString) 
 	}
 	
 	/// Normal image URL.
 	public var normalImageURL: URL? {
 		
-		return goTapAPI.UrlExtension.with(string: normalImageURLString)
+		return UrlExtension.with(string: normalImageURLString)
 	}
 	
 	/// Icon URL.
 	public var iconURL: URL? {
 	 
-		return goTapAPI.UrlExtension.with(string: iconURLString)
+		return UrlExtension.with(string: iconURLString)
 	}
 	
 	internal override var serializedModel: AnyObject? {
 		
 		var result: [String: Any] = [:]
 		
-		result[goTapAPI.Constants.Key.ID] = identifier ?? NSNull()
-		result[goTapAPI.Constants.Key.SmallImg] = smallImageURLString ?? NSNull()
-		result[goTapAPI.Constants.Key.NormalImg] = normalImageURLString ?? NSNull()
-		result[goTapAPI.Constants.Key.Icon] = iconURLString ?? NSNull()
+		result[Constants.Key.ID] = identifier ?? NSNull()
+		result[Constants.Key.SmallImg] = smallImageURLString ?? NSNull()
+		result[Constants.Key.NormalImg] = normalImageURLString ?? NSNull()
+		result[Constants.Key.Icon] = iconURLString ?? NSNull()
 		
 		return result as AnyObject
 	}
@@ -52,12 +52,12 @@ public class ImageSource: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ImageSource else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ImageSource else { return nil }
 		
-		model.identifier = dictionary.parseString(forKey: goTapAPI.Constants.Key.ID)
-		model.smallImageURLString = dictionary.parseString(forKey: goTapAPI.Constants.Key.SmallImg)
-		model.normalImageURLString = dictionary.parseString(forKey: goTapAPI.Constants.Key.NormalImg)
-		model.iconURLString = dictionary.parseString(forKey: goTapAPI.Constants.Key.Icon)
+		model.identifier = dictionary.parseString(forKey: Constants.Key.ID)
+		model.smallImageURLString = dictionary.parseString(forKey: Constants.Key.SmallImg)
+		model.normalImageURLString = dictionary.parseString(forKey: Constants.Key.NormalImg)
+		model.iconURLString = dictionary.parseString(forKey: Constants.Key.Icon)
 		
 		return model.tap_asSelf()
 	}

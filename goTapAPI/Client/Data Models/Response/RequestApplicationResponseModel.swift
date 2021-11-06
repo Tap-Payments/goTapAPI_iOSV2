@@ -7,7 +7,7 @@
 //
 
 /// Response model for application request application.
-public class RequestApplicationResponseModel: goTapAPI.ResponseModel {
+public class RequestApplicationResponseModel: ResponseModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -32,13 +32,13 @@ public class RequestApplicationResponseModel: goTapAPI.ResponseModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.RequestApplicationResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? RequestApplicationResponseModel else { return nil }
 
-		guard let parsedCountryName = dictionary.parseString(forKey: goTapAPI.Constants.Key.CountryName) else { return nil }
-		guard let parsedCountryCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.CountryCode) else { return nil }
-		guard let parsedCountryImageURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.CountryImgUrl) else { return nil }
-		guard let parsedPhoneNumber = dictionary.parseString(forKey: goTapAPI.Constants.Key.PhoneNumber) else { return nil }
-		guard let parsedDescriptionString = dictionary.parseString(forKey: goTapAPI.Constants.Key.Description) else { return nil }
+		guard let parsedCountryName = dictionary.parseString(forKey: Constants.Key.CountryName) else { return nil }
+		guard let parsedCountryCode = dictionary.parseString(forKey: Constants.Key.CountryCode) else { return nil }
+		guard let parsedCountryImageURL = dictionary.parseURL(forKey: Constants.Key.CountryImgUrl) else { return nil }
+		guard let parsedPhoneNumber = dictionary.parseString(forKey: Constants.Key.PhoneNumber) else { return nil }
+		guard let parsedDescriptionString = dictionary.parseString(forKey: Constants.Key.Description) else { return nil }
 
 		model.countryName = parsedCountryName
 		model.countryCode = parsedCountryCode

@@ -7,7 +7,7 @@
 //
 
 /// Response model.
-public class Response: goTapAPI.DataModel {
+public class Response: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -32,7 +32,7 @@ public class Response: goTapAPI.DataModel {
 				return
 			}
 
-			goTapAPI.Client.sharedInstance.dataSource!.saveToUserSettings(sessionID, forKey: goTapAPI.Constants.Key.UserSettings.SessionID)
+			Client.sharedInstance.dataSource!.saveToUserSettings(sessionID, forKey: Constants.Key.UserSettings.SessionID)
 		}
 	}
 
@@ -40,8 +40,8 @@ public class Response: goTapAPI.DataModel {
 
 		var result: [String: Any] = [:]
 
-		result[goTapAPI.Constants.Key.Code] = self.code
-		result[goTapAPI.Constants.Key.ParamList] = self.parameters
+		result[Constants.Key.Code] = self.code
+		result[Constants.Key.ParamList] = self.parameters
 
 		return result as AnyObject
 	}
@@ -51,17 +51,17 @@ public class Response: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.Response else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? Response else { return nil }
 		guard model.setupWith(dictionary) else { return nil }
 
 		return model.tap_asSelf()
 	}
 
-	internal static func dataModelWith(_ dictionaryModel: AnyObject?) -> goTapAPI.Response? {
+	internal static func dataModelWith(_ dictionaryModel: AnyObject?) -> Response? {
 
 		guard let dictionary = dictionaryModel as? [String: AnyObject] else { return nil }
 
-		let model = goTapAPI.Response()
+		let model = Response()
 		guard model.setupWith(dictionary) else { return nil }
 		return model.tap_asSelf()
 	}
@@ -73,7 +73,7 @@ public class Response: goTapAPI.DataModel {
 
 		guard var result = self.serializedModel as? [String: Any] else { return nil }
 
-		result[goTapAPI.Constants.Key.ResponseID] = self.responseID
+		result[Constants.Key.ResponseID] = self.responseID
 
 		return result as AnyObject
 	}
@@ -90,31 +90,31 @@ public class Response: goTapAPI.DataModel {
 
 	private func setupWith(_ dictionary: [String: AnyObject]) -> Swift.Bool {
 
-		guard let codeValue = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.Code) else {
+		guard let codeValue = dictionary.parseInteger(forKey: Constants.Key.Code) else {
 
 			//writeLn("Could not parse response code.")
 			return false
 		}
 
-		guard let responseIDString = dictionary.parseString(forKey: goTapAPI.Constants.Key.ResponseID) else {
+		guard let responseIDString = dictionary.parseString(forKey: Constants.Key.ResponseID) else {
 
 			//writeLn("Could not parse response ID.")
 			return false
 		}
 
 
-		let parameterParsingClosure: (AnyObject) -> goTapAPI.ErrorMessageDetail? = { object in
+		let parameterParsingClosure: (AnyObject) -> ErrorMessageDetail? = { object in
 
-			return goTapAPI.ErrorMessageDetail().dataModelWith(serializedObject: object)
+			return ErrorMessageDetail().dataModelWith(serializedObject: object)
 		}
 
-		let emptyParams: [goTapAPI.ErrorMessageDetail] = []
-		let parsedParams: [goTapAPI.ErrorMessageDetail] = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.ParamList), usingClosure: parameterParsingClosure) ?? emptyParams
+		let emptyParams: [ErrorMessageDetail] = []
+		let parsedParams: [ErrorMessageDetail] = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.ParamList), usingClosure: parameterParsingClosure) ?? emptyParams
 
 		self.code = codeValue
 		self.parameters = parsedParams
 		self.responseID = responseIDString
-		self.sessionID = dictionary.parseString(forKey: goTapAPI.Constants.Key.SessionID)
+		self.sessionID = dictionary.parseString(forKey: Constants.Key.SessionID)
 
 		return true
 	}

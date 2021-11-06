@@ -7,19 +7,19 @@
 //
 
 /// Response model with application updates.
-public class GetUpdatesResponseModel: goTapAPI.ResponseModel {
+public class GetUpdatesResponseModel: ResponseModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 
 	/// Layer image updates.
-	public private(set) var layerImageUpdates: [goTapAPI.LayerImageUpdate] = []
+	public private(set) var layerImageUpdates: [LayerImageUpdate] = []
 
 	/// Active sectors.
-	public private(set) var activeSectors: [goTapAPI.DetailedSector] = []
+	public private(set) var activeSectors: [DetailedSector] = []
 
 	/// Future sectors.
-	public private(set) var futureSectors: [goTapAPI.DetailedSector] = []
+	public private(set) var futureSectors: [DetailedSector] = []
 
 	/// Greeting URL.
 	public private(set) var greetingURL: URL?
@@ -35,32 +35,32 @@ public class GetUpdatesResponseModel: goTapAPI.ResponseModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.GetUpdatesResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? GetUpdatesResponseModel else { return nil }
 
-		let emptyImageUpdatesArray: [goTapAPI.LayerImageUpdate] = []
-		let layerImageUpdateParsingClosure: (AnyObject) -> goTapAPI.LayerImageUpdate? = { object in
+		let emptyImageUpdatesArray: [LayerImageUpdate] = []
+		let layerImageUpdateParsingClosure: (AnyObject) -> LayerImageUpdate? = { object in
 
-			return goTapAPI.LayerImageUpdate().dataModelWith(serializedObject: object)
+			return LayerImageUpdate().dataModelWith(serializedObject: object)
 		}
 
-		let parsedLayerImageUpdates: [goTapAPI.LayerImageUpdate]? = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.LayerImgUpdates) ?? emptyImageUpdatesArray, usingClosure: layerImageUpdateParsingClosure)
+		let parsedLayerImageUpdates: [LayerImageUpdate]? = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.LayerImgUpdates) ?? emptyImageUpdatesArray, usingClosure: layerImageUpdateParsingClosure)
 		model.layerImageUpdates = parsedLayerImageUpdates == nil ? emptyImageUpdatesArray : parsedLayerImageUpdates!
 
-		let emptySectorsArray: [goTapAPI.DetailedSector] = []
-		let sectorParsingClosure: (AnyObject) -> goTapAPI.DetailedSector? = { object in
+		let emptySectorsArray: [DetailedSector] = []
+		let sectorParsingClosure: (AnyObject) -> DetailedSector? = { object in
 
-			return goTapAPI.DetailedSector().dataModelWith(serializedObject: object)
+			return DetailedSector().dataModelWith(serializedObject: object)
 		}
 
-		let parsedActiveSectors: [goTapAPI.DetailedSector]? = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.ActiveSectors) ?? emptySectorsArray, usingClosure: sectorParsingClosure)
+		let parsedActiveSectors: [DetailedSector]? = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.ActiveSectors) ?? emptySectorsArray, usingClosure: sectorParsingClosure)
 		model.activeSectors = parsedActiveSectors == nil ? emptySectorsArray : parsedActiveSectors!
 
-		let parsedFutureSectors: [goTapAPI.DetailedSector]? = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.NewSectors) ?? emptySectorsArray, usingClosure: sectorParsingClosure)
+		let parsedFutureSectors: [DetailedSector]? = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.NewSectors) ?? emptySectorsArray, usingClosure: sectorParsingClosure)
 		model.futureSectors = parsedFutureSectors == nil ? emptySectorsArray : parsedFutureSectors!
 
-		model.greetingURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.GreetingURL)
-		model.showTutorials = dictionary.parseString(forKey: goTapAPI.Constants.Key.ShowTutorials)
-		model.requestGender = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.RequestGender) ?? false
+		model.greetingURL = dictionary.parseURL(forKey: Constants.Key.GreetingURL)
+		model.showTutorials = dictionary.parseString(forKey: Constants.Key.ShowTutorials)
+		model.requestGender = dictionary.parseBoolean(forKey: Constants.Key.RequestGender) ?? false
 
 		return model.tap_asSelf()
 	}

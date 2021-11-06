@@ -1,4 +1,4 @@
-public class Option: goTapAPI.Enum, goTapAPI.OptionType {
+public class Option: Enum, OptionType {
 	
 	@nonobjc public static func |(left: Option, right: Option) -> Self {
 	 

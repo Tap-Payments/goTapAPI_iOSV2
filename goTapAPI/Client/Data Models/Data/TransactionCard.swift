@@ -7,7 +7,7 @@
 //
 
 /// Transaction card data model.
-public class TransactionCard: goTapAPI.DataModel {
+public class TransactionCard: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -31,19 +31,19 @@ public class TransactionCard: goTapAPI.DataModel {
 	public private(set) var nameOnCard: String = String.tap_empty
 
 	/// Card type.
-	public private(set) var cardType: goTapAPI.CardType = goTapAPI.CardType.Debit
+	public private(set) var cardType: CardType = CardType.Debit
 
 	internal override var serializedModel: AnyObject? {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.CardID: cardID,
-			goTapAPI.Constants.Key.CardNmbr: cardNumber,
-			goTapAPI.Constants.Key.GateWayID: gatewayID,
-			goTapAPI.Constants.Key.ExpiryDate: expirationDate,
-			goTapAPI.Constants.Key.CVV: cvv,
-			goTapAPI.Constants.Key.NameonCard: nameOnCard,
-			goTapAPI.Constants.Key.CardType: cardType.stringRepresentation
+			Constants.Key.CardID: cardID,
+			Constants.Key.CardNmbr: cardNumber,
+			Constants.Key.GateWayID: gatewayID,
+			Constants.Key.ExpiryDate: expirationDate,
+			Constants.Key.CVV: cvv,
+			Constants.Key.NameonCard: nameOnCard,
+			Constants.Key.CardType: cardType.stringRepresentation
 		]
 
 		return result as AnyObject
@@ -56,15 +56,15 @@ public class TransactionCard: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.TransactionCard else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? TransactionCard else { return nil }
 
-		guard let parsedCardID = dictionary.parseString(forKey: goTapAPI.Constants.Key.CardID) else { return nil }
-		guard let parsedCardNumber = dictionary.parseString(forKey: goTapAPI.Constants.Key.CardNmbr) else { return nil }
-		guard let parsedGatewayID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.GateWayID) else { return nil }
-		guard let parsedExpirationDate = dictionary.parseString(forKey: goTapAPI.Constants.Key.ExpiryDate) else { return nil }
-		guard let parsedCVV = dictionary.parseString(forKey: goTapAPI.Constants.Key.CVV) else { return nil }
-		guard let parsedNameOnCard = dictionary.parseString(forKey: goTapAPI.Constants.Key.NameonCard) else { return nil }
-		guard let parsedCardType = goTapAPI.CardType.with(stringValue: dictionary.parseString(forKey: goTapAPI.Constants.Key.CardType)) else { return nil }
+		guard let parsedCardID = dictionary.parseString(forKey: Constants.Key.CardID) else { return nil }
+		guard let parsedCardNumber = dictionary.parseString(forKey: Constants.Key.CardNmbr) else { return nil }
+		guard let parsedGatewayID = dictionary.parseInteger(forKey: Constants.Key.GateWayID) else { return nil }
+		guard let parsedExpirationDate = dictionary.parseString(forKey: Constants.Key.ExpiryDate) else { return nil }
+		guard let parsedCVV = dictionary.parseString(forKey: Constants.Key.CVV) else { return nil }
+		guard let parsedNameOnCard = dictionary.parseString(forKey: Constants.Key.NameonCard) else { return nil }
+		guard let parsedCardType = CardType.with(stringValue: dictionary.parseString(forKey: Constants.Key.CardType)) else { return nil }
 
 		model.cardID = parsedCardID
 		model.cardNumber = parsedCardNumber
@@ -90,7 +90,7 @@ public class TransactionCard: goTapAPI.DataModel {
 
 	 - returns: Returns new instance of TPAPITransactionCard.
 	 */
-	internal init(cardID: String, cardNumber: String, gatewayID: Int64, expirationDate: String, cvv: String, nameOnCard: String, cardType: goTapAPI.CardType) {
+	internal init(cardID: String, cardNumber: String, gatewayID: Int64, expirationDate: String, cvv: String, nameOnCard: String, cardType: CardType) {
 
 		super.init()
 

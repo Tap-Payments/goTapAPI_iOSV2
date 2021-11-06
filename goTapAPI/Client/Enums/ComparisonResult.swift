@@ -1,22 +1,22 @@
-public class ComparisonResult: goTapAPI.Enum {
+public class ComparisonResult: Enum {
 
-	public static let OrderedAscending = goTapAPI.ComparisonResult(rawValue: -1)
-	public static let OrderedSame = goTapAPI.ComparisonResult(rawValue: 0)
-	public static let OrderedDescending = goTapAPI.ComparisonResult(rawValue: 1)
+	public static let OrderedAscending = ComparisonResult(rawValue: -1)
+	public static let OrderedSame = ComparisonResult(rawValue: 0)
+	public static let OrderedDescending = ComparisonResult(rawValue: 1)
 
-	internal static func with(intValue value: Int64) -> goTapAPI.ComparisonResult {
+	internal static func with(intValue value: Int64) -> ComparisonResult {
 
 		if value > 0 {
 
-			return goTapAPI.ComparisonResult.OrderedDescending
+			return ComparisonResult.OrderedDescending
 		}
 		else if value < 0 {
 
-			return goTapAPI.ComparisonResult.OrderedAscending
+			return ComparisonResult.OrderedAscending
 		}
 		else {
 
-			return goTapAPI.ComparisonResult.OrderedSame
+			return ComparisonResult.OrderedSame
 		}
 	}
 }

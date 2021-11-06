@@ -1,6 +1,6 @@
-public class SharingStatus: goTapAPI.Enum {
+public class SharingStatus: Enum {
 	
-	public static let Posted = goTapAPI.SharingStatus(rawValue: 1)
-	public static let Cancelled = goTapAPI.SharingStatus(rawValue: 2)
-	public static let Failed = goTapAPI.SharingStatus(rawValue: 3)
+	public static let Posted = SharingStatus(rawValue: 1)
+	public static let Cancelled = SharingStatus(rawValue: 2)
+	public static let Failed = SharingStatus(rawValue: 3)
 }

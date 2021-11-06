@@ -1,20 +1,20 @@
 /// Item Schedule Type.
-public class ScheduleType: goTapAPI.Enum {
+public class ScheduleType: Enum {
 
 	// MARK: - Public -
 	// MARK: Properties
 
 	/// Daily.
-	public static let daily = goTapAPI.ScheduleType(rawValue: 1)
+	public static let daily = ScheduleType(rawValue: 1)
 
 	/// Weekly.
-	public static let weekly = goTapAPI.ScheduleType(rawValue: 2)
+	public static let weekly = ScheduleType(rawValue: 2)
 
 	/// Monthly.
-	public static let monthly = goTapAPI.ScheduleType(rawValue: 3)
+	public static let monthly = ScheduleType(rawValue: 3)
 
 	/// Yearly.
-	public static let yearly = goTapAPI.ScheduleType(rawValue: 4)
+	public static let yearly = ScheduleType(rawValue: 4)
 
 	// MARK: - Internal -
 	// MARK: Properties
@@ -22,45 +22,45 @@ public class ScheduleType: goTapAPI.Enum {
 	/// String representation of the receiver.
 	internal var stringRepresentation: String {
 
-		if self == goTapAPI.ScheduleType.daily {
+		if self == ScheduleType.daily {
 
-			return goTapAPI.Constants.Value.D
+			return Constants.Value.D
 		}
-		else if self == goTapAPI.ScheduleType.weekly {
+		else if self == ScheduleType.weekly {
 
-			return goTapAPI.Constants.Value.W
+			return Constants.Value.W
 		}
-		else if self == goTapAPI.ScheduleType.yearly {
+		else if self == ScheduleType.yearly {
 
-			return goTapAPI.Constants.Value.Y
+			return Constants.Value.Y
 		}
 		else {
 
-			return goTapAPI.Constants.Value.M
+			return Constants.Value.M
 		}
 	}
 
 	// MARK: Methods
 
-	internal static func with(stringValue string: String?) -> goTapAPI.ScheduleType? {
+	internal static func with(stringValue string: String?) -> ScheduleType? {
 
 		guard let value = string else { return nil }
 
-		if value == goTapAPI.Constants.Value.D {
+		if value == Constants.Value.D {
 
-			return goTapAPI.ScheduleType.daily
+			return ScheduleType.daily
 		}
-		else if value == goTapAPI.Constants.Value.W {
+		else if value == Constants.Value.W {
 
-			return goTapAPI.ScheduleType.weekly
+			return ScheduleType.weekly
 		}
-		else if value == goTapAPI.Constants.Value.M {
+		else if value == Constants.Value.M {
 
-			return goTapAPI.ScheduleType.monthly
+			return ScheduleType.monthly
 		}
-		else if value == goTapAPI.Constants.Value.Y {
+		else if value == Constants.Value.Y {
 
-			return goTapAPI.ScheduleType.yearly
+			return ScheduleType.yearly
 		}
 		else {
 

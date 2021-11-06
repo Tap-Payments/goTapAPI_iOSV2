@@ -11,7 +11,7 @@ import TapAdditionsKitV2
 
 private typealias MappingClosure<T, U> = (T) -> U
 
-public extension goTapAPI.AddressBookPerson {
+public extension AddressBookPerson {
     
     //MARK: - Public -
     //MARK: Methods

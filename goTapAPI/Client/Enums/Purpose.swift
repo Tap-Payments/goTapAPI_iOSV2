@@ -12,21 +12,21 @@
  - Share: Share purpose.
  - Video: Video purpose.
  */
-public class Purpose: goTapAPI.Enum {
+public class Purpose: Enum {
 
-	public static let Share = goTapAPI.Purpose(rawValue: 0)
-	public static let Video = goTapAPI.Purpose(rawValue: 1)
+	public static let Share = Purpose(rawValue: 0)
+	public static let Video = Purpose(rawValue: 1)
 
 	/// Returns string representation of the receiver.
 	internal var stringRepresentation: String {
 
 			if self == Purpose.Share {
 
-			return goTapAPI.Constants.Value.Share
+			return Constants.Value.Share
 		}
 		else  if self == Purpose.Video {
 
-			return goTapAPI.Constants.Value.Video
+			return Constants.Value.Video
 		}
 
 		return String.tap_empty
@@ -39,26 +39,26 @@ public class Purpose: goTapAPI.Enum {
 
 	 - returns: TPAPIPurpose
 	 */
-	internal static func with(stringValue: String?) -> goTapAPI.Purpose {
+	internal static func with(stringValue: String?) -> Purpose {
 
 		guard let string = stringValue else {
 
-			return goTapAPI.Purpose.Video
+			return Purpose.Video
 		}
 
 		switch string {
 
-		case goTapAPI.Constants.Value.Video:
+		case Constants.Value.Video:
 
-			return goTapAPI.Purpose.Video
+			return Purpose.Video
 
-		case goTapAPI.Constants.Value.Share:
+		case Constants.Value.Share:
 
-			return goTapAPI.Purpose.Share
+			return Purpose.Share
 
 		default:
 
-			return goTapAPI.Purpose.Video
+			return Purpose.Video
 		}
 	}
 }

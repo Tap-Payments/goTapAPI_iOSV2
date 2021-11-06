@@ -7,7 +7,7 @@
 //
 
 /// Request model for item viewed update request.
-internal class ItemViewedUpdateRequestModel: goTapAPI.IDsRequestModel {
+internal class ItemViewedUpdateRequestModel: IDsRequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -15,7 +15,7 @@ internal class ItemViewedUpdateRequestModel: goTapAPI.IDsRequestModel {
 	internal override var serializedModel: AnyObject? {
 		
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
-		result[goTapAPI.Constants.Key.LstOption] = goTapAPI.Constants.Value.ITM_VIW;
+		result[Constants.Key.LstOption] = Constants.Value.ITM_VIW;
 		
 		return result as AnyObject
 	}

@@ -1,4 +1,4 @@
-public class Enum: NSObject, goTapAPI.EnumType {
+public class Enum: NSObject, EnumType {
 
 	public let rawValue: Int64
 

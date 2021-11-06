@@ -24,91 +24,91 @@ public class AddressBookPerson {
 
 	public var jsonString: String {
 
-		var model: [String: Any] = [goTapAPI.Constants.Key.RecordID: recordID]
+		var model: [String: Any] = [Constants.Key.RecordID: recordID]
 
 		if let nonnullAddresses = self.addresses, nonnullAddresses.count > 0 {
 
-			model[goTapAPI.Constants.Key.Addresses] = nonnullAddresses
+			model[Constants.Key.Addresses] = nonnullAddresses
 		}
 
 		if let nonnullBirthday = self.birthday {
 
-			model[goTapAPI.Constants.Key.Birthday] = nonnullBirthday
+			model[Constants.Key.Birthday] = nonnullBirthday
 		}
 
 		if let nonnullDepartment = self.department {
 
-			model[goTapAPI.Constants.Key.Department] = nonnullDepartment
+			model[Constants.Key.Department] = nonnullDepartment
 		}
 
 		if let nonnullEmailAddresses = self.emailAddresses, nonnullEmailAddresses.count > 0 {
 
-			model[goTapAPI.Constants.Key.EmailAddresses] = nonnullEmailAddresses
+			model[Constants.Key.EmailAddresses] = nonnullEmailAddresses
 		}
 
 		if let nonnullFirstName = self.firstName, !nonnullFirstName.isEmpty {
 
-			model[goTapAPI.Constants.Key.FirstName] = nonnullFirstName
+			model[Constants.Key.FirstName] = nonnullFirstName
 		}
 
 		if let nonnullImageDataString = self.imageDataBase64String, !nonnullImageDataString.isEmpty {
 
-			model[goTapAPI.Constants.Key.ImageData] = nonnullImageDataString
+			model[Constants.Key.ImageData] = nonnullImageDataString
 		}
 
 		if let nonnullInstantMessages = self.instantMessages, nonnullInstantMessages.count > 0 {
 
-			model[goTapAPI.Constants.Key.InstantMessages] = nonnullInstantMessages
+			model[Constants.Key.InstantMessages] = nonnullInstantMessages
 		}
 
 		if let nonnullJobTitle = self.jobTitle, !nonnullJobTitle.isEmpty {
 
-			model[goTapAPI.Constants.Key.JobTitle] = nonnullJobTitle
+			model[Constants.Key.JobTitle] = nonnullJobTitle
 		}
 
 		if let nonnullLastName = self.lastName, !nonnullLastName.isEmpty {
 
-			model[goTapAPI.Constants.Key.LastName] = nonnullLastName
+			model[Constants.Key.LastName] = nonnullLastName
 		}
 
 		if let nonnullMiddleName = self.middleName, !nonnullMiddleName.isEmpty {
 
-			model[goTapAPI.Constants.Key.MiddleName] = nonnullMiddleName
+			model[Constants.Key.MiddleName] = nonnullMiddleName
 		}
 
 		if let nonnullOrganizationName = self.organizationName, !nonnullOrganizationName.isEmpty {
 
-			model[goTapAPI.Constants.Key.OrganizationName] = nonnullOrganizationName
+			model[Constants.Key.OrganizationName] = nonnullOrganizationName
 		}
 
 		if let nonnullPhones = self.phones, nonnullPhones.count > 0 {
 
-			model[goTapAPI.Constants.Key.Phones] = nonnullPhones
+			model[Constants.Key.Phones] = nonnullPhones
 		}
 
 		if let nonnullNamePrefix = self.namePrefix, !nonnullNamePrefix.isEmpty {
 
-			model[goTapAPI.Constants.Key.Prefix] = nonnullNamePrefix
+			model[Constants.Key.Prefix] = nonnullNamePrefix
 		}
 
 		if let nonnullRelatedNames = self.relatedNames, nonnullRelatedNames.count > 0 {
 
-			model[goTapAPI.Constants.Key.RelatedNames] = nonnullRelatedNames
+			model[Constants.Key.RelatedNames] = nonnullRelatedNames
 		}
 
 		if let nonnullSocialProfiles = self.socialProfiles, nonnullSocialProfiles.count > 0 {
 
-			model[goTapAPI.Constants.Key.SocialProfiles] = nonnullSocialProfiles
+			model[Constants.Key.SocialProfiles] = nonnullSocialProfiles
 		}
 
 		if let nonnullNameSuffix = self.nameSuffix, !nonnullNameSuffix.isEmpty {
 
-			model[goTapAPI.Constants.Key.Suffix] = nonnullNameSuffix
+			model[Constants.Key.Suffix] = nonnullNameSuffix
 		}
 
 		if let nonnullURLs = self.urls, nonnullURLs.count > 0 {
 
-			model[goTapAPI.Constants.Key.URLs] = nonnullURLs
+			model[Constants.Key.URLs] = nonnullURLs
 		}
 
 		return model.jsonString

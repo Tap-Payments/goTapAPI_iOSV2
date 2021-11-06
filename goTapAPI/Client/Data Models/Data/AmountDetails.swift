@@ -7,7 +7,7 @@
 //
 
 /// Amount details.
-public class AmountDetails: goTapAPI.DataModel {
+public class AmountDetails: DataModel {
 	
 	//MARK: - Public -
 	//MARK: Properties
@@ -41,16 +41,16 @@ public class AmountDetails: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.AmountDetails else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? AmountDetails else { return nil }
 		
-		model.currencyCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.CurrencyCD)
-		model.currencySymbol = dictionary.parseString(forKey: goTapAPI.Constants.Key.CurrencySymbol)
-		model.paymentCurrencyCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.PayCurrencyCD)
-		model.paymentCurrencySymbol = dictionary.parseString(forKey: goTapAPI.Constants.Key.PayCurrencySymbol)
-		model.paymentTransactionAmount = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.PayTxnAmount) ?? Foundation.Decimal.zero
-		model.tipAmount = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.TipAmount) ?? Foundation.Decimal.zero
-		model.transactionAmount = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.TxnAmount) ?? Foundation.Decimal.zero
-		model.transactionID = dictionary.parseString(forKey: goTapAPI.Constants.Key.TxnID)
+		model.currencyCode = dictionary.parseString(forKey: Constants.Key.CurrencyCD)
+		model.currencySymbol = dictionary.parseString(forKey: Constants.Key.CurrencySymbol)
+		model.paymentCurrencyCode = dictionary.parseString(forKey: Constants.Key.PayCurrencyCD)
+		model.paymentCurrencySymbol = dictionary.parseString(forKey: Constants.Key.PayCurrencySymbol)
+		model.paymentTransactionAmount = dictionary.parseAmount(forKey: Constants.Key.PayTxnAmount) ?? Foundation.Decimal.zero
+		model.tipAmount = dictionary.parseAmount(forKey: Constants.Key.TipAmount) ?? Foundation.Decimal.zero
+		model.transactionAmount = dictionary.parseAmount(forKey: Constants.Key.TxnAmount) ?? Foundation.Decimal.zero
+		model.transactionID = dictionary.parseString(forKey: Constants.Key.TxnID)
 		
 		return model.tap_asSelf()
 	}

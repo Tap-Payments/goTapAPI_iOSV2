@@ -7,19 +7,19 @@ internal class IntExtension {
 	 
 	 - returns: ComparisonResult
 	 */
-	internal static func compare(first: Int64, toOther other: Int64) -> goTapAPI.ComparisonResult {
+	internal static func compare(first: Int64, toOther other: Int64) -> ComparisonResult {
 		
 		if first < other {
 			
-			return goTapAPI.ComparisonResult.OrderedAscending
+			return ComparisonResult.OrderedAscending
 		}
 		else if first > other {
 			
-			return goTapAPI.ComparisonResult.OrderedDescending
+			return ComparisonResult.OrderedDescending
 		}
 		else {
 			
-			return goTapAPI.ComparisonResult.OrderedSame
+			return ComparisonResult.OrderedSame
 		}
 	}
 }

@@ -7,13 +7,13 @@
 //
 
 /// Request model for setting permissions.
-internal class PermissionsRequestModel: goTapAPI.RequestModel {
+internal class PermissionsRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Permissions.
-	internal private(set) var permissions: goTapAPI.Permissions = goTapAPI.Permissions()
+	internal private(set) var permissions: Permissions = Permissions()
 	
 	internal override var serializedModel: AnyObject? {
 		
@@ -29,7 +29,7 @@ internal class PermissionsRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPISetPermissionsRequestModel
 	 */
-	internal init(permissions: goTapAPI.Permissions) {
+	internal init(permissions: Permissions) {
 		
 		super.init()
 		self.permissions = permissions

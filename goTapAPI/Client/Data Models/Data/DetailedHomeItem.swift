@@ -7,7 +7,7 @@
 //
 
 /// Detailed home item data model.
-public class DetailedHomeItem: goTapAPI.HomeItem {
+public class DetailedHomeItem: HomeItem {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -28,13 +28,13 @@ public class DetailedHomeItem: goTapAPI.HomeItem {
 	public private(set) var message: String?
 
 	/// Images.
-	public private(set) var images: [goTapAPI.ImageSource] = []
+	public private(set) var images: [ImageSource] = []
 
 	/// Item headers.
-	public private(set) var itemHeaders: [goTapAPI.ItemHeader] = []
+	public private(set) var itemHeaders: [ItemHeader] = []
 
 	/// Item header details.
-	public private(set) var itemHeaderDetails: [goTapAPI.DetailedItemHeader] = []
+	public private(set) var itemHeaderDetails: [DetailedItemHeader] = []
 
 	/// Business theme URL.
 	public private(set) var businessThemeURL: URL?
@@ -43,10 +43,10 @@ public class DetailedHomeItem: goTapAPI.HomeItem {
 	public private(set) var isPrimaryNumber: Swift.Bool = false
 
 	/// Model with details to get the balance.
-	public private(set) var getBalance: goTapAPI.GetBalance?
+	public private(set) var getBalance: GetBalance?
 
 	/// Schedule settings.
-	public private(set) var scheduleSettings: goTapAPI.ScheduleSettings?
+	public private(set) var scheduleSettings: ScheduleSettings?
 
 	internal override var storesOriginalObject: Swift.Bool { return true }
 
@@ -60,60 +60,60 @@ public class DetailedHomeItem: goTapAPI.HomeItem {
 
 		//writeLn("parsing detailed home item from dict: \n\(dictionary)")
 
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.DetailedHomeItem else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? DetailedHomeItem else { return nil }
 
 		//writeLn("home item parsed successfully ( parent object for detailed home item )")
 
-		if let deserializedItemIdentifier = dictionary.parseString(forKey: goTapAPI.Constants.Key.ItemID) {
+		if let deserializedItemIdentifier = dictionary.parseString(forKey: Constants.Key.ItemID) {
 
 			model.itemIdentifier = deserializedItemIdentifier
 		}
 
-		if let deserializedDetailedTitle = dictionary.parseString(forKey: goTapAPI.Constants.Key.DtlTitle) {
+		if let deserializedDetailedTitle = dictionary.parseString(forKey: Constants.Key.DtlTitle) {
 
 			model.detailedTitle = deserializedDetailedTitle
 		}
 
-		if let deserializedDetailedDescription = dictionary.parseString(forKey: goTapAPI.Constants.Key.DtlDesc) {
+		if let deserializedDetailedDescription = dictionary.parseString(forKey: Constants.Key.DtlDesc) {
 
 			model.detailedDescription = deserializedDetailedDescription
 		}
 
-		model.selectOption = dictionary.parseString(forKey: goTapAPI.Constants.Key.SelectOption)
-		model.message = dictionary.parseString(forKey: goTapAPI.Constants.Key.Msg)
+		model.selectOption = dictionary.parseString(forKey: Constants.Key.SelectOption)
+		model.message = dictionary.parseString(forKey: Constants.Key.Msg)
 
-		let emptyImages: [goTapAPI.ImageSource] = []
-		let imageParsingClosure: (AnyObject) -> goTapAPI.ImageSource? = { object in
+		let emptyImages: [ImageSource] = []
+		let imageParsingClosure: (AnyObject) -> ImageSource? = { object in
 
-			return goTapAPI.ImageSource().dataModelWith(serializedObject: object)
+			return ImageSource().dataModelWith(serializedObject: object)
 		}
-		let parsedImages = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.Images), usingClosure: imageParsingClosure)
+		let parsedImages = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.Images), usingClosure: imageParsingClosure)
 
-		let emptyHeaders: [goTapAPI.ItemHeader] = []
-		let headerParsingClosure: (AnyObject) -> goTapAPI.ItemHeader? = { object in
+		let emptyHeaders: [ItemHeader] = []
+		let headerParsingClosure: (AnyObject) -> ItemHeader? = { object in
 
-			return goTapAPI.ItemHeader().dataModelWith(serializedObject: object)
+			return ItemHeader().dataModelWith(serializedObject: object)
 		}
-		let parsedItemHeaders = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.ItemHdrs), usingClosure: headerParsingClosure)
+		let parsedItemHeaders = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.ItemHdrs), usingClosure: headerParsingClosure)
 
-		let emptyHeaderDetails: [goTapAPI.DetailedItemHeader] = []
-		let headerDetailsParsingClosure: (AnyObject) -> goTapAPI.DetailedItemHeader? = { object in
+		let emptyHeaderDetails: [DetailedItemHeader] = []
+		let headerDetailsParsingClosure: (AnyObject) -> DetailedItemHeader? = { object in
 
-			return goTapAPI.DetailedItemHeader().dataModelWith(serializedObject: object)
+			return DetailedItemHeader().dataModelWith(serializedObject: object)
 		}
-		let parsedItemHeaderDetails = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.IItemHdrDtls), usingClosure: headerDetailsParsingClosure)
+		let parsedItemHeaderDetails = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.IItemHdrDtls), usingClosure: headerDetailsParsingClosure)
 
 		model.images = parsedImages == nil ? emptyImages : parsedImages!
 		model.itemHeaders = parsedItemHeaders == nil ? emptyHeaders : parsedItemHeaders!
 		model.itemHeaderDetails = parsedItemHeaderDetails == nil ? emptyHeaderDetails : parsedItemHeaderDetails!
 
-		model.businessThemeURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.BuiThemeUrl)
+		model.businessThemeURL = dictionary.parseURL(forKey: Constants.Key.BuiThemeUrl)
 
-		model.isPrimaryNumber = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.is_primary_number) ?? false
+		model.isPrimaryNumber = dictionary.parseBoolean(forKey: Constants.Key.is_primary_number) ?? false
 
-		model.getBalance = goTapAPI.GetBalance().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.get_balance) as AnyObject)
+		model.getBalance = GetBalance().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.get_balance) as AnyObject)
 
-		model.scheduleSettings = goTapAPI.ScheduleSettings().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.schedule_setting) as AnyObject)
+		model.scheduleSettings = ScheduleSettings().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.schedule_setting) as AnyObject)
 
 		return model.tap_asSelf()
 	}

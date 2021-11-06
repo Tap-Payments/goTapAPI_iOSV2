@@ -7,7 +7,7 @@
 //
 
 /// Request model to get transaction details.
-internal class GetTransactionDetailsRequestModel: goTapAPI.RequestModel {
+internal class GetTransactionDetailsRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -18,7 +18,7 @@ internal class GetTransactionDetailsRequestModel: goTapAPI.RequestModel {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.TxnID: transactionID
+			Constants.Key.TxnID: transactionID
 		]
 
 		return result as AnyObject

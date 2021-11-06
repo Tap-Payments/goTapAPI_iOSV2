@@ -43,58 +43,58 @@ public class Identification {
 	public private(set) var personalNumber: String
 
 	/// Returns business fields for API.
-	internal var businessFields: [goTapAPI.BusinessField] {
+	internal var businessFields: [BusinessField] {
 
-		var bFields: [goTapAPI.BusinessField] = []
+		var bFields: [BusinessField] = []
 
 		if documentType.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.DOC_TYPE, value: documentType))
+			bFields.append(BusinessField(name: Constants.Value.DOC_TYPE, value: documentType))
 		}
 
 		if documentNumber.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.DOC_NO, value: documentNumber))
+			bFields.append(BusinessField(name: Constants.Value.DOC_NO, value: documentNumber))
 		}
 
 		if surnames.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.SURNAME, value: surnames))
+			bFields.append(BusinessField(name: Constants.Value.SURNAME, value: surnames))
 		}
 
 		if givenNames.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.GIVEN_NAMES, value: givenNames))
+			bFields.append(BusinessField(name: Constants.Value.GIVEN_NAMES, value: givenNames))
 		}
 
 		if issuingCountryCode.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.ISSUE_CNTRY_CD, value: issuingCountryCode))
+			bFields.append(BusinessField(name: Constants.Value.ISSUE_CNTRY_CD, value: issuingCountryCode))
 		}
 
 		if nationalityCountryCode.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.NATIONAL_CNTRY_CD, value: nationalityCountryCode))
+			bFields.append(BusinessField(name: Constants.Value.NATIONAL_CNTRY_CD, value: nationalityCountryCode))
 		}
 
 		if dayOfBirth.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.DOB, value: dayOfBirth))
+			bFields.append(BusinessField(name: Constants.Value.DOB, value: dayOfBirth))
 		}
 
 		if expirationDate.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.EXP_DT, value: expirationDate))
+			bFields.append(BusinessField(name: Constants.Value.EXP_DT, value: expirationDate))
 		}
 
 		if sex.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.SEX, value: sex))
+			bFields.append(BusinessField(name: Constants.Value.SEX, value: sex))
 		}
 
 		if personalNumber.Length > 0 {
 
-			bFields.append(goTapAPI.BusinessField(name: goTapAPI.Constants.Value.ID_NO, value: personalNumber))
+			bFields.append(BusinessField(name: Constants.Value.ID_NO, value: personalNumber))
 		}
 
 		return bFields

@@ -7,17 +7,17 @@
 //
 
 /// Request model for Get Short URL request.
-internal class GetShortURLsRequestModel: goTapAPI.RequestModel {
+internal class GetShortURLsRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Requests to get short URLs for.
-	internal private(set) var requests: [goTapAPI.ShortURLRequest] = []
+	internal private(set) var requests: [ShortURLRequest] = []
 	
 	internal override var serializedModel: AnyObject? {
 		
-		return goTapAPI.ParseHelper.serialize(array: requests) as AnyObject
+		return ParseHelper.serialize(array: requests) as AnyObject
 	}
 	
 	//MARK: Methods
@@ -29,7 +29,7 @@ internal class GetShortURLsRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPIGetShortURLRequestModel
 	 */
-	internal init(requests: [goTapAPI.ShortURLRequest]) {
+	internal init(requests: [ShortURLRequest]) {
 		
 		super.init()
 		self.requests = requests

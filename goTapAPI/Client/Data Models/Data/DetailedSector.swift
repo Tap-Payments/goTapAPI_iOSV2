@@ -7,15 +7,15 @@
 //
 
 /// Detailed sector model.
-public class DetailedSector: goTapAPI.Sector {
+public class DetailedSector: Sector {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Parent model.
-	public var sector: goTapAPI.Sector? {
+	public var sector: Sector? {
 		
-		return goTapAPI.Sector(identifier: identifier, name: name)
+		return Sector(identifier: identifier, name: name)
 	}
 	
 	/// Image URL.
@@ -26,9 +26,9 @@ public class DetailedSector: goTapAPI.Sector {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.DetailedSector else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? DetailedSector else { return nil }
 		
-		model.imageURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.ImageURL)
+		model.imageURL = dictionary.parseURL(forKey: Constants.Key.ImageURL)
 		
 		return model.tap_asSelf()
 	}

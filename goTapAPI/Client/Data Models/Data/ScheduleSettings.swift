@@ -7,7 +7,7 @@
 //
 
 /// Schedule Settings
-public class ScheduleSettings: goTapAPI.DataModel {
+public class ScheduleSettings: DataModel {
 
 	// MARK: - Public -
 	// MARK: Properties
@@ -33,7 +33,7 @@ public class ScheduleSettings: goTapAPI.DataModel {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
 
-		guard let scheduleType = goTapAPI.ScheduleType.with(stringValue: dictionary.parseString(forKey: goTapAPI.Constants.Value.schedule_type)) else { return nil }
+		guard let scheduleType = ScheduleType.with(stringValue: dictionary.parseString(forKey: Constants.Value.schedule_type)) else { return nil }
 
 		let model = ScheduleSettings()
 		model.type = scheduleType
@@ -44,14 +44,14 @@ public class ScheduleSettings: goTapAPI.DataModel {
 		}
 		else if scheduleType == ScheduleType.weekly {
 
-			guard let day = goTapAPI.Day.with(integerValue: dictionary.parseInteger(forKey: goTapAPI.Constants.Value.schedule_value)) else { return nil }
+			guard let day = Day.with(integerValue: dictionary.parseInteger(forKey: Constants.Value.schedule_value)) else { return nil }
 			model.weekday = day
 
 			return model.tap_asSelf()
 		}
 		else if scheduleType == ScheduleType.monthly {
 
-			guard let day = dictionary.parseInteger(forKey: goTapAPI.Constants.Value.schedule_value) else { return nil }
+			guard let day = dictionary.parseInteger(forKey: Constants.Value.schedule_value) else { return nil }
 			guard 0 < day && day < 32 else { return nil }
 
 			model.monthday = day
@@ -60,7 +60,7 @@ public class ScheduleSettings: goTapAPI.DataModel {
 		}
 		else if scheduleType == ScheduleType.yearly {
 
-			guard let monthDay = dictionary.parseInteger(forKey: goTapAPI.Constants.Value.schedule_value) else { return nil }
+			guard let monthDay = dictionary.parseInteger(forKey: Constants.Value.schedule_value) else { return nil }
 			let month: Int64 = monthDay % 100
 			guard (month > 0) && (month < 13) else { return nil }
 

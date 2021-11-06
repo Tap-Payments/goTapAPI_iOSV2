@@ -1,4 +1,4 @@
 public protocol RequestOperationsManager {
 
-	func performRequest<T>(operation op: goTapAPI.RequestOperation, completion: (goTapAPI.RequestCompletionClosure<T>)?) where T: goTapAPI.ResponseHolder
+	func performRequest<T>(operation op: RequestOperation, completion: (RequestCompletionClosure<T>)?) where T: ResponseHolder
 }

@@ -7,16 +7,16 @@
 //
 
 /// Quick add list request model.
-internal class QuickAddListRequestModel: goTapAPI.RequestModel {
+internal class QuickAddListRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Input data.
-	private(set) var inputData: goTapAPI.QuickAddListInputData = goTapAPI.QuickAddListInputData.Mobile
+	private(set) var inputData: QuickAddListInputData = QuickAddListInputData.Mobile
 	
 	/// Business fields.
-	private(set) var businessFields: [goTapAPI.BusinessField] = []
+	private(set) var businessFields: [BusinessField] = []
 	
 	override var serializedModel: AnyObject? {
 		
@@ -24,8 +24,8 @@ internal class QuickAddListRequestModel: goTapAPI.RequestModel {
 		
 		let emptyArray: [AnyObject] = []
 		
-		result[goTapAPI.Constants.Key.InputData] = inputData.stringRepresentation
-		result[goTapAPI.Constants.Key.BizFields] = goTapAPI.ParseHelper.serialize(array: businessFields) ?? emptyArray
+		result[Constants.Key.InputData] = inputData.stringRepresentation
+		result[Constants.Key.BizFields] = ParseHelper.serialize(array: businessFields) ?? emptyArray
 		
 		return result as AnyObject
 	}
@@ -40,7 +40,7 @@ internal class QuickAddListRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPIQuickAddListRequestModel
 	 */
-	init(inputData: goTapAPI.QuickAddListInputData, businessFields: [goTapAPI.BusinessField]) {
+	init(inputData: QuickAddListInputData, businessFields: [BusinessField]) {
 		
 		super.init()
 		

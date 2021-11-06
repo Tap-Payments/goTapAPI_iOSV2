@@ -6,10 +6,10 @@
 /**
  *  Added type enum.
  */
-public class AddedType: goTapAPI.Enum {
+public class AddedType: Enum {
 	
-	public static let Unknown = goTapAPI.AddedType(rawValue: 0)
-	public static let Manual = goTapAPI.AddedType(rawValue: 1)
+	public static let Unknown = AddedType(rawValue: 0)
+	public static let Manual = AddedType(rawValue: 1)
 	
 	/**
 	 Initializes enum from string.
@@ -18,22 +18,22 @@ public class AddedType: goTapAPI.Enum {
 	 
 	 - returns: AddedType.
 	 */
-	internal static func with(stringValue: String?) -> goTapAPI.AddedType {
+	internal static func with(stringValue: String?) -> AddedType {
 	 
 		guard let string = stringValue else {
 		  
-			return goTapAPI.AddedType.Unknown
+			return AddedType.Unknown
 		}
 		 
 		switch string {
 		  
-			case goTapAPI.Constants.Value.MANUAL:
+			case Constants.Value.MANUAL:
 				 
-				return goTapAPI.AddedType.Manual
+				return AddedType.Manual
 				
 			default:
 				
-				return goTapAPI.AddedType.Unknown
+				return AddedType.Unknown
 		}
 	}
 }

@@ -7,7 +7,7 @@
 //
 
 /// Detailed home item changes data model to be posted on the server.
-public class ChangedDetailsHomeItem: goTapAPI.DataModel, goTapAPI.PaymentSerialization {
+public class ChangedDetailsHomeItem: DataModel, PaymentSerialization {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -28,7 +28,7 @@ public class ChangedDetailsHomeItem: goTapAPI.DataModel, goTapAPI.PaymentSeriali
 	private(set) var displayName: String?
 
 	/// Item type.
-	private(set) var itemType: goTapAPI.ItemType = goTapAPI.ItemType.Static
+	private(set) var itemType: ItemType = ItemType.Static
 
 	/// Payment currency code.
 	private(set) var payCurrencyCode: String?
@@ -40,10 +40,10 @@ public class ChangedDetailsHomeItem: goTapAPI.DataModel, goTapAPI.PaymentSeriali
 	private(set) var productCurrencyCode: String?
 
 	/// Item headers.
-	private(set) var itemHeaders: [goTapAPI.ItemHeader] = []
+	private(set) var itemHeaders: [ItemHeader] = []
 
 	/// Item header details.
-	private(set) var itemHeaderDetails: [goTapAPI.DetailedItemHeader] = []
+	private(set) var itemHeaderDetails: [DetailedItemHeader] = []
 
 	/// Product image URL.
 	public private(set) var productImageURL: URL?
@@ -52,21 +52,21 @@ public class ChangedDetailsHomeItem: goTapAPI.DataModel, goTapAPI.PaymentSeriali
 
 		var result: [String: Any] = [
 
-			goTapAPI.Constants.Key.ID: identifier,
-			goTapAPI.Constants.Key.PrdID: productID,
-			goTapAPI.Constants.Key.BizID: businessID,
-			goTapAPI.Constants.Key.TotalAmount: totalAmount
+			Constants.Key.ID: identifier,
+			Constants.Key.PrdID: productID,
+			Constants.Key.BizID: businessID,
+			Constants.Key.TotalAmount: totalAmount
 		]
 
-		result[goTapAPI.Constants.Key.BizAcN] = businessAccount
-		result[goTapAPI.Constants.Key.ItemType] = itemType.stringRepresentation
-		result[goTapAPI.Constants.Key.PayCurrCode] = payCurrencyCode ?? NSNull()
-		result[goTapAPI.Constants.Key.PrdCurrCode] = productCurrencyCode ?? NSNull()
+		result[Constants.Key.BizAcN] = businessAccount
+		result[Constants.Key.ItemType] = itemType.stringRepresentation
+		result[Constants.Key.PayCurrCode] = payCurrencyCode ?? NSNull()
+		result[Constants.Key.PrdCurrCode] = productCurrencyCode ?? NSNull()
 
 		if itemHeaders.count > 0 && itemHeaderDetails.count > 0 {
 
-			result.setNullable(value: goTapAPI.ParseHelper.serialize(array: itemHeaders), forKey: goTapAPI.Constants.Key.ItemHdrs)
-			result.setNullable(value: goTapAPI.ParseHelper.serialize(array: itemHeaderDetails), forKey: goTapAPI.Constants.Key.IItemHdrDtls)
+			result.setNullable(value: ParseHelper.serialize(array: itemHeaders), forKey: Constants.Key.ItemHdrs)
+			result.setNullable(value: ParseHelper.serialize(array: itemHeaderDetails), forKey: Constants.Key.IItemHdrDtls)
 		}
 
 		return result as AnyObject
@@ -91,7 +91,7 @@ public class ChangedDetailsHomeItem: goTapAPI.DataModel, goTapAPI.PaymentSeriali
 
 	 - returns: TPAPIChangedDetailsHomeItem
 	 */
-	public init(identifier: Int64, productID: Int64, businessID: Int64, businessAccount: String, displayName: String?, itemType: goTapAPI.ItemType, paymentCurrencyCode: String?, totalAmount: Foundation.Decimal, productCurrencyCode: String?, itemHeaders: [goTapAPI.ItemHeader], itemHeaderDetails: [goTapAPI.DetailedItemHeader], productImageURL: URL?) {
+	public init(identifier: Int64, productID: Int64, businessID: Int64, businessAccount: String, displayName: String?, itemType: ItemType, paymentCurrencyCode: String?, totalAmount: Foundation.Decimal, productCurrencyCode: String?, itemHeaders: [ItemHeader], itemHeaderDetails: [DetailedItemHeader], productImageURL: URL?) {
 
 		super.init()
 
@@ -143,7 +143,7 @@ public class ChangedDetailsHomeItem: goTapAPI.DataModel, goTapAPI.PaymentSeriali
 
 	public override func isEqual(_ object: Any?) -> Bool {
 
-		guard let changedItem = object as? goTapAPI.ChangedDetailsHomeItem else { return false }
+		guard let changedItem = object as? ChangedDetailsHomeItem else { return false }
 
 		if self.identifier != changedItem.identifier { return false }
 		if self.productID != changedItem.productID { return false }

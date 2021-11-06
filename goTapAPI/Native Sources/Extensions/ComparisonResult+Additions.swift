@@ -11,21 +11,21 @@ import Foundation
 /** Additions Extends ComparisonResult
 
 */
-public extension goTapAPI.ComparisonResult {
+public extension ComparisonResult {
     
     public var foundationValue: Foundation.ComparisonResult {
         
         switch self {
             
-        case goTapAPI.ComparisonResult.OrderedAscending:
+        case ComparisonResult.OrderedAscending:
             
             return .orderedAscending
             
-        case goTapAPI.ComparisonResult.OrderedDescending:
+        case ComparisonResult.OrderedDescending:
             
             return .orderedDescending
             
-        case goTapAPI.ComparisonResult.OrderedSame:
+        case ComparisonResult.OrderedSame:
             
             return .orderedSame
             

@@ -13,11 +13,11 @@
  - Confirmation: Services confirmation screen.
  - Accounts:     Accounts selection screen.
  */
-public class QuickAddListResponseScreen: goTapAPI.Enum {
+public class QuickAddListResponseScreen: Enum {
 
-	public static let Home = goTapAPI.QuickAddListResponseScreen(rawValue: 0)
-	public static let Confirmation = goTapAPI.QuickAddListResponseScreen(rawValue: 1)
-	public static let Accounts = goTapAPI.QuickAddListResponseScreen(rawValue: 2)
+	public static let Home = QuickAddListResponseScreen(rawValue: 0)
+	public static let Confirmation = QuickAddListResponseScreen(rawValue: 1)
+	public static let Accounts = QuickAddListResponseScreen(rawValue: 2)
 
 	/**
 	 Initializes enum value from string.
@@ -26,7 +26,7 @@ public class QuickAddListResponseScreen: goTapAPI.Enum {
 
 	 - returns: IQuickAddListResponseScreen
 	 */
-	internal static func with(stringValue string: String?) -> goTapAPI.QuickAddListResponseScreen {
+	internal static func with(stringValue string: String?) -> QuickAddListResponseScreen {
 
 		guard string != nil else {
 
@@ -35,15 +35,15 @@ public class QuickAddListResponseScreen: goTapAPI.Enum {
 
 		switch string! {
 
-			case goTapAPI.Constants.Value.HOME:
+			case Constants.Value.HOME:
 
 				return Home
 
-			case goTapAPI.Constants.Value.OPERATOR:
+			case Constants.Value.OPERATOR:
 
 				return Confirmation
 
-			case goTapAPI.Constants.Value.ACCOUNTS:
+			case Constants.Value.ACCOUNTS:
 
 				return Accounts
 

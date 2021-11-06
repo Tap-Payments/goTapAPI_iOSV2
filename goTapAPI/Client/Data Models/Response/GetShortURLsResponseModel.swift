@@ -7,28 +7,28 @@
 //
 
 /// Response model for GetShortURL request.
-public class GetShortURLsResponseModel: goTapAPI.ResponseModel {
+public class GetShortURLsResponseModel: ResponseModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Short URLs.
-	public private(set) var shortURLs: [goTapAPI.ShortURLResponse] = []
+	public private(set) var shortURLs: [ShortURLResponse] = []
 	
 	//MARK: Methods
 	
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 	 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.GetShortURLsResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? GetShortURLsResponseModel else { return nil }
 		
-		let emptyURLs: [goTapAPI.ShortURLResponse] = []
-		let shortURLParsingClosure: (AnyObject) -> goTapAPI.ShortURLResponse? = { object in
+		let emptyURLs: [ShortURLResponse] = []
+		let shortURLParsingClosure: (AnyObject) -> ShortURLResponse? = { object in
 		
-			return goTapAPI.ShortURLResponse().dataModelWith(serializedObject: object)
+			return ShortURLResponse().dataModelWith(serializedObject: object)
 		}
 		
-		let parsedShortURLs = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.Shorturls), usingClosure: shortURLParsingClosure)
+		let parsedShortURLs = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.Shorturls), usingClosure: shortURLParsingClosure)
 		model.shortURLs = parsedShortURLs == nil ? emptyURLs : parsedShortURLs!
 		
 		return model.tap_asSelf()

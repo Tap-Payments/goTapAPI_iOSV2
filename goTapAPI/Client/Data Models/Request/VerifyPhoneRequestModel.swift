@@ -7,19 +7,19 @@
 //
 
 /// Request model for phone verification request.
-internal class PhoneVerificationRequestModel: goTapAPI.RequestModel {
+internal class PhoneVerificationRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Phone verification model.
-	internal private(set) var mobileVerify: goTapAPI.MobileVerify = goTapAPI.MobileVerify()
+	internal private(set) var mobileVerify: MobileVerify = MobileVerify()
 	
 	internal override var serializedModel: AnyObject? {
 		
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
 		
-		result[goTapAPI.Constants.Key.MobileVerify] = mobileVerify.serializedModel ?? NSNull()
+		result[Constants.Key.MobileVerify] = mobileVerify.serializedModel ?? NSNull()
 
 		return result as AnyObject
 	}
@@ -33,7 +33,7 @@ internal class PhoneVerificationRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPIVerifyPhoneRequestModel
 	 */
-	internal init(mobileVerify: goTapAPI.MobileVerify!) {
+	internal init(mobileVerify: MobileVerify!) {
 		
 		super.init()
 		self.mobileVerify = mobileVerify

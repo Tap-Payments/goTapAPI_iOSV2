@@ -7,13 +7,13 @@
 //
 
 /// Request model for pay transaction request.
-internal class PayTransactionRequestModel: goTapAPI.RequestModel {
+internal class PayTransactionRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 
 	/// Payment details.
-	internal private(set) var paymentDetails: goTapAPI.PaymentDetails?
+	internal private(set) var paymentDetails: PaymentDetails?
 
 	/// Card info.
 	internal private(set) var cardInfo: String = String.tap_empty
@@ -21,13 +21,13 @@ internal class PayTransactionRequestModel: goTapAPI.RequestModel {
 	internal override var serializedModel: AnyObject? {
 
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
-		guard let appDataDictionary = goTapAPI.ApplicationData.sharedInstance.serializedModel as? [String: AnyObject] else { return nil }
+		guard let appDataDictionary = ApplicationData.sharedInstance.serializedModel as? [String: AnyObject] else { return nil }
 
-		result[goTapAPI.Constants.Key.AuthType] = authType
-		result[goTapAPI.Constants.Key.Password] = password ?? NSNull()
-		result[goTapAPI.Constants.Key.PayDetails] = paymentDetails?.serializedModel ?? NSNull()
-		result[goTapAPI.Constants.Key.CardInfo] = cardInfo
-		result[goTapAPI.Constants.Key.AppData] = appDataDictionary
+		result[Constants.Key.AuthType] = authType
+		result[Constants.Key.Password] = password ?? NSNull()
+		result[Constants.Key.PayDetails] = paymentDetails?.serializedModel ?? NSNull()
+		result[Constants.Key.CardInfo] = cardInfo
+		result[Constants.Key.AppData] = appDataDictionary
 
 		return result as AnyObject
 	}
@@ -44,7 +44,7 @@ internal class PayTransactionRequestModel: goTapAPI.RequestModel {
 
 	 - returns: TPAPIPayTransactionRequestModel
 	 */
-	internal init(paymentDetails: goTapAPI.PaymentDetails?, cardInfo: String) {
+	internal init(paymentDetails: PaymentDetails?, cardInfo: String) {
 
 		super.init()
 
@@ -56,7 +56,7 @@ internal class PayTransactionRequestModel: goTapAPI.RequestModel {
 	//MARK: Properties
 
 	/// Auth type.
-	private var authType: String = goTapAPI.Constants.Default.AuthType
+	private var authType: String = Constants.Default.AuthType
 
 	/// Password.
 	private var password: String?

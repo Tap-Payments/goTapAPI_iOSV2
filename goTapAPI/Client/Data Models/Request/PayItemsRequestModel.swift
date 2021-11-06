@@ -7,28 +7,28 @@
 //
 
 /// Pay items request model.
-internal class PayItemsRequestModel: goTapAPI.RequestModel {
+internal class PayItemsRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Items.
-	private(set) var items: [goTapAPI.PaymentSerialization] = []
+	private(set) var items: [PaymentSerialization] = []
 	
 	internal override var serializedModel: AnyObject? {
 		
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
 		
-		let itemsSerializationClosure: (goTapAPI.PaymentSerialization) -> AnyObject? = { item in
+		let itemsSerializationClosure: (PaymentSerialization) -> AnyObject? = { item in
 		
 			return item.paymentSerializedModel()
 		}
 		
 		let emptyArray: [AnyObject] = []
 		
-		result[goTapAPI.Constants.Key.Items] = goTapAPI.ParseHelper.serialize(array: items, usingClosure: itemsSerializationClosure) ?? emptyArray
+		result[Constants.Key.Items] = ParseHelper.serialize(array: items, usingClosure: itemsSerializationClosure) ?? emptyArray
 		
-		result.setNullable(value: goTapAPI.ApplicationData.sharedInstance.serializedModel, forKey: goTapAPI.Constants.Key.AppData)
+		result.setNullable(value: ApplicationData.sharedInstance.serializedModel, forKey: Constants.Key.AppData)
 		
 		return result as AnyObject
 	}
@@ -42,7 +42,7 @@ internal class PayItemsRequestModel: goTapAPI.RequestModel {
 	 
 	 - returns: TPAPIPayItemsRequestModel.
 	 */
-	internal init(items: [goTapAPI.PaymentSerialization]) {
+	internal init(items: [PaymentSerialization]) {
 		
 		super.init()
 		self.items = items

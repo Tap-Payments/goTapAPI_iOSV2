@@ -7,7 +7,7 @@
 //
 
 /// Business item model.
-public class BusinessItem: goTapAPI.DataModel {
+public class BusinessItem: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -18,7 +18,7 @@ public class BusinessItem: goTapAPI.DataModel {
 	/// Sector image URL.
 	public var sectorImageURL: URL? {
 
-		return goTapAPI.UrlExtension.with(string: sectorImageURLString)
+		return UrlExtension.with(string: sectorImageURLString)
 	}
 
 	/// Vendor ID.
@@ -27,7 +27,7 @@ public class BusinessItem: goTapAPI.DataModel {
 	/// Vendor image URL.
 	public var vendorImageURL: URL? {
 
-		return goTapAPI.UrlExtension.with(string: vendorImageURLString)
+		return UrlExtension.with(string: vendorImageURLString)
 	}
 
 	/// Vendor name.
@@ -40,17 +40,17 @@ public class BusinessItem: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.BusinessItem else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? BusinessItem else { return nil }
 
-		guard let currencyCodeString = dictionary.parseString(forKey: goTapAPI.Constants.Key.CurrencyCD) else { return nil }
-		guard let vendorIDNumber = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.VndID) else { return nil }
-		guard let vendorNameString = dictionary.parseString(forKey: goTapAPI.Constants.Key.VndName) else { return nil }
+		guard let currencyCodeString = dictionary.parseString(forKey: Constants.Key.CurrencyCD) else { return nil }
+		guard let vendorIDNumber = dictionary.parseInteger(forKey: Constants.Key.VndID) else { return nil }
+		guard let vendorNameString = dictionary.parseString(forKey: Constants.Key.VndName) else { return nil }
 
 		model.currencyCode = currencyCodeString
 		model.vendorID = vendorIDNumber
 		model.vendorName = vendorNameString
-		model.sectorImageURLString = dictionary.parseString(forKey: goTapAPI.Constants.Key.SctrImage)
-		model.vendorImageURLString = dictionary.parseString(forKey: goTapAPI.Constants.Key.VndImage)
+		model.sectorImageURLString = dictionary.parseString(forKey: Constants.Key.SctrImage)
+		model.vendorImageURLString = dictionary.parseString(forKey: Constants.Key.VndImage)
 
 		return model.tap_asSelf()
 	}
@@ -77,12 +77,12 @@ public class BusinessItem: goTapAPI.DataModel {
 
 	public override func isEqual(_ object: Any?) -> Bool {
 
-		guard let otherBusiness = object as? goTapAPI.BusinessItem else { return false }
+		guard let otherBusiness = object as? BusinessItem else { return false }
 
 		return ( currencyCode == otherBusiness.currencyCode &&
-				 goTapAPI.StringExtension.equal(string1: sectorImageURLString, string2: otherBusiness.sectorImageURLString) &&
+				 StringExtension.equal(string1: sectorImageURLString, string2: otherBusiness.sectorImageURLString) &&
 				 vendorID == otherBusiness.vendorID &&
-				 goTapAPI.StringExtension.equal(string1: vendorImageURLString, string2: otherBusiness.vendorImageURLString) &&
+				 StringExtension.equal(string1: vendorImageURLString, string2: otherBusiness.vendorImageURLString) &&
 				 vendorName == otherBusiness.vendorName )
 	}
 

@@ -63,7 +63,7 @@ public extension Swift.Dictionary where Key: Swift.CustomStringConvertible, Valu
 
 		if let stringValue = value as? String {
 
-			return goTapAPI.UrlExtension.with(string: stringValue)
+			return UrlExtension.with(string: stringValue)
 		}
 		else if let urlValue = value as? URL {
 
@@ -193,7 +193,7 @@ public extension Swift.Dictionary where Key: Swift.CustomStringConvertible, Valu
 
 		var date: Date? = nil
 
-		for dateFormatter in goTapAPI.ParseHelper.dateFormatters {
+		for dateFormatter in ParseHelper.dateFormatters {
 
 			if let parsedDate = dateFormatter.date(from: value) {
 

@@ -12,17 +12,17 @@
  - None:             None. Default value.
  - Paid:             Paid.
  */
-public class ItemRowType: goTapAPI.Enum {
+public class ItemRowType: Enum {
 
-	public static let None = goTapAPI.ItemRowType(rawValue: 0)
-	public static let Paid = goTapAPI.ItemRowType(rawValue: 1)
+	public static let None = ItemRowType(rawValue: 0)
+	public static let Paid = ItemRowType(rawValue: 1)
 
 	/// Returns string representation of the receiver.
 	internal var stringRepresentation: String {
 
 			if self == ItemRowType.Paid {
 
-			return goTapAPI.Constants.Value.PAID
+			return Constants.Value.PAID
 		}
 		else {
 
@@ -37,22 +37,22 @@ public class ItemRowType: goTapAPI.Enum {
 
 	 - returns: TPAPIItemRowType
 	 */
-	internal static func with(stringValue string: String?) -> goTapAPI.ItemRowType {
+	internal static func with(stringValue string: String?) -> ItemRowType {
 
 		guard string != nil else {
 
-			return goTapAPI.ItemRowType.None
+			return ItemRowType.None
 		}
 
 		switch string! {
 
-		case goTapAPI.Constants.Value.PAID:
+		case Constants.Value.PAID:
 
-			return goTapAPI.ItemRowType.Paid
+			return ItemRowType.Paid
 
 		default:
 
-			return goTapAPI.ItemRowType.None
+			return ItemRowType.None
 		}
 	}
 }

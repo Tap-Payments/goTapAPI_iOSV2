@@ -13,73 +13,73 @@
  - TextField: Text field field type.
  - Dropdown:  Dropdown field type.
  */
-public class HeaderFieldType: goTapAPI.Enum {
+public class HeaderFieldType: Enum {
 
-	public static let label = goTapAPI.HeaderFieldType(rawValue: 0)
-	public static let textField = goTapAPI.HeaderFieldType(rawValue: 1)
-	public static let dropdown = goTapAPI.HeaderFieldType(rawValue: 2)
-	public static let addSchedule = goTapAPI.HeaderFieldType(rawValue: 3)
-	public static let editSchedule = goTapAPI.HeaderFieldType(rawValue: 4)
+	public static let label = HeaderFieldType(rawValue: 0)
+	public static let textField = HeaderFieldType(rawValue: 1)
+	public static let dropdown = HeaderFieldType(rawValue: 2)
+	public static let addSchedule = HeaderFieldType(rawValue: 3)
+	public static let editSchedule = HeaderFieldType(rawValue: 4)
 
 	/// Returns string representation of the receiver.
 	internal var stringRepresentation: String {
 
 			if self == HeaderFieldType.label {
 
-			return goTapAPI.Constants.Value.L
+			return Constants.Value.L
 		}
 		else  if self == HeaderFieldType.textField {
 
-			return goTapAPI.Constants.Value.T
+			return Constants.Value.T
 		}
 		else  if self == HeaderFieldType.dropdown {
 
-			return goTapAPI.Constants.Value.D
+			return Constants.Value.D
 		}
 		else  if self == HeaderFieldType.addSchedule {
 
-			return goTapAPI.Constants.Value.A
+			return Constants.Value.A
 		}
 		else  if self == HeaderFieldType.editSchedule {
 
-			return goTapAPI.Constants.Value.S
+			return Constants.Value.S
 		}
 
-		return goTapAPI.Constants.Value.L
+		return Constants.Value.L
 	}
 
-	internal static func with(stringValue: String?) -> goTapAPI.HeaderFieldType {
+	internal static func with(stringValue: String?) -> HeaderFieldType {
 
 		guard let string = stringValue else {
 
-			return goTapAPI.HeaderFieldType.label
+			return HeaderFieldType.label
 		}
 
 		switch string {
 
-		case goTapAPI.Constants.Value.L:
+		case Constants.Value.L:
 
-			return goTapAPI.HeaderFieldType.label
+			return HeaderFieldType.label
 
-		case goTapAPI.Constants.Value.T:
+		case Constants.Value.T:
 
-			return goTapAPI.HeaderFieldType.textField
+			return HeaderFieldType.textField
 
-		case goTapAPI.Constants.Value.D:
+		case Constants.Value.D:
 
-			return goTapAPI.HeaderFieldType.dropdown
+			return HeaderFieldType.dropdown
 
-		case goTapAPI.Constants.Value.A:
+		case Constants.Value.A:
 
-			return goTapAPI.HeaderFieldType.addSchedule
+			return HeaderFieldType.addSchedule
 
-		case goTapAPI.Constants.Value.S:
+		case Constants.Value.S:
 
-			return goTapAPI.HeaderFieldType.editSchedule
+			return HeaderFieldType.editSchedule
 
 		default:
 
-			return goTapAPI.HeaderFieldType.label
+			return HeaderFieldType.label
 		}
 	}
 }

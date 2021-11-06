@@ -8,7 +8,7 @@
 
 public class VideoQuality: Enum {
     
-    public static let Small = goTapAPI.VideoQuality(rawValue: 0)
-    public static let Medium = goTapAPI.VideoQuality(rawValue: 1)
-    public static let HD720 = goTapAPI.VideoQuality(rawValue: 2)
+    public static let Small = VideoQuality(rawValue: 0)
+    public static let Medium = VideoQuality(rawValue: 1)
+    public static let HD720 = VideoQuality(rawValue: 2)
 }

@@ -15,7 +15,7 @@ public class DoubleExtension: NSObject {
         
         var numberString: String = doubleNumber.description
         
-        var dotLocation: Int64 = Int64((numberString as NSString).range(of: goTapAPI.StringExtension.dotSymbol).location)
+        var dotLocation: Int64 = Int64((numberString as NSString).range(of: StringExtension.dotSymbol).location)
         
         if numberOfDigitsAfterComma == 0 && dotLocation == -1 {
             
@@ -28,13 +28,13 @@ public class DoubleExtension: NSObject {
                 return numberString.Substring(loc: 0, len: dotLocation)
             }
             
-            let nextDigitAfterComma = (numberString.Substring(loc: dotLocation + goTapAPI.StringExtension.dotSymbol.Length, len: 1) as NSString).longLongValue
+            let nextDigitAfterComma = (numberString.Substring(loc: dotLocation + StringExtension.dotSymbol.Length, len: 1) as NSString).longLongValue
             if nextDigitAfterComma > 4 {
                 
                 let number = (numberString.Substring(loc: 0, len: dotLocation) as NSString).longLongValue
                 let replacementString = (number + 1).description
                 
-                numberString = goTapAPI.StringExtension.replace(numberString, startIndex: 0, length: dotLocation, string: replacementString)!
+                numberString = StringExtension.replace(numberString, startIndex: 0, length: dotLocation, string: replacementString)!
             }
             
             return numberString.Substring(loc: 0, len: dotLocation)
@@ -42,11 +42,11 @@ public class DoubleExtension: NSObject {
         
         if dotLocation == -1 {
             
-            numberString += goTapAPI.StringExtension.dotSymbol
-            dotLocation = numberString.Length - goTapAPI.StringExtension.dotSymbol.Length
+            numberString += StringExtension.dotSymbol
+            dotLocation = numberString.Length - StringExtension.dotSymbol.Length
         }
         
-        let currentNumberOfDigitsAfterComma = numberString.Length - dotLocation - goTapAPI.StringExtension.dotSymbol.Length
+        let currentNumberOfDigitsAfterComma = numberString.Length - dotLocation - StringExtension.dotSymbol.Length
         if currentNumberOfDigitsAfterComma < Int64(numberOfDigitsAfterComma) {
             
             for _ in currentNumberOfDigitsAfterComma...(Int64(numberOfDigitsAfterComma) - 1) {
@@ -56,18 +56,18 @@ public class DoubleExtension: NSObject {
         }
         else if currentNumberOfDigitsAfterComma > Int64(numberOfDigitsAfterComma) {
             
-            let nextDigit = (numberString.Substring(loc: dotLocation + Int64(numberOfDigitsAfterComma) + goTapAPI.StringExtension.dotSymbol.Length, len: 1) as NSString).longLongValue
+            let nextDigit = (numberString.Substring(loc: dotLocation + Int64(numberOfDigitsAfterComma) + StringExtension.dotSymbol.Length, len: 1) as NSString).longLongValue
             if nextDigit > 4 {
                 
-                let allDigitsAfterDotString = numberString.Substring(dotLocation + goTapAPI.StringExtension.dotSymbol.Length)
+                let allDigitsAfterDotString = numberString.Substring(dotLocation + StringExtension.dotSymbol.Length)
                 let allDigitsAfterDot = (allDigitsAfterDotString as NSString).longLongValue
                 
                 var afterDotReplacementString: String = (allDigitsAfterDot + 1).description
                 if afterDotReplacementString.Length > allDigitsAfterDotString.Length {
                     
                     let decimalPart = (numberString.Substring(loc: 0, len: dotLocation) as NSString).longLongValue + 1
-                    numberString = goTapAPI.StringExtension.replace(numberString, startIndex: 0, length: dotLocation, string: decimalPart.description)!
-                    dotLocation = Int64((numberString as NSString).range(of: goTapAPI.StringExtension.dotSymbol).location)
+                    numberString = StringExtension.replace(numberString, startIndex: 0, length: dotLocation, string: decimalPart.description)!
+                    dotLocation = Int64((numberString as NSString).range(of: StringExtension.dotSymbol).location)
                     
                     afterDotReplacementString = ""
                     for _ in 0...(numberOfDigitsAfterComma - 1) {
@@ -76,10 +76,10 @@ public class DoubleExtension: NSObject {
                     }
                 }
                 
-                numberString = goTapAPI.StringExtension.replace(numberString, startIndex: dotLocation + goTapAPI.StringExtension.dotSymbol.Length, length: numberString.Length - dotLocation - goTapAPI.StringExtension.dotSymbol.Length, string: afterDotReplacementString)!
+                numberString = StringExtension.replace(numberString, startIndex: dotLocation + StringExtension.dotSymbol.Length, length: numberString.Length - dotLocation - StringExtension.dotSymbol.Length, string: afterDotReplacementString)!
             }
             
-            numberString = numberString.Substring(loc: 0, len: dotLocation + goTapAPI.StringExtension.dotSymbol.Length + Int64(numberOfDigitsAfterComma))
+            numberString = numberString.Substring(loc: 0, len: dotLocation + StringExtension.dotSymbol.Length + Int64(numberOfDigitsAfterComma))
         }
         
         return numberString

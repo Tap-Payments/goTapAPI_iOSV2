@@ -8,7 +8,7 @@
 
 public class DateFormatter : Foundation.DateFormatter {
     
-    internal static func dateFormatterWith(localeIdentifier: String, dateFormat: String) -> goTapAPI.DateFormatter {
+    internal static func dateFormatterWith(localeIdentifier: String, dateFormat: String) -> DateFormatter {
         
         let formatter = DateFormatter()
         formatter.locale = Foundation.NSLocale(localeIdentifier: localeIdentifier) as Locale

@@ -10,7 +10,7 @@ import TapAdditionsKitV2
 import TapNetworkManagerV2
 import TapSwiftFixesV2
 
-internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
+internal class RequestOperationsHandler: RequestOperationsManager {
     
     //MARK: - Internal -
     //MARK: Properties
@@ -18,24 +18,24 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
     
     internal static var baseURL: URL {
         
-        guard let dataSource = goTapAPI.Client.sharedInstance.dataSource else {
+        guard let dataSource = Client.sharedInstance.dataSource else {
             
-            return URL(string: goTapAPI.Constants.ServerURL.Test)!
+            return URL(string: Constants.ServerURL.Test)!
         }
         
         if dataSource.shouldUseProductionServer() {
             
-            return URL(string: goTapAPI.Constants.ServerURL.Production)!
+            return URL(string: Constants.ServerURL.Production)!
         }
         else {
             
-            return URL(string: goTapAPI.Constants.ServerURL.Test)!
+            return URL(string: Constants.ServerURL.Test)!
         }
     }
     
     //MARK: Methods
     
-    func performRequest<T>(operation op: RequestOperation, completion: ((T?, APIError?) -> Void)?) where T : goTapAPI.ResponseHolder {
+    func performRequest<T>(operation op: RequestOperation, completion: ((T?, APIError?) -> Void)?) where T : ResponseHolder {
         
         DispatchQueue.global().async {
             
@@ -77,7 +77,7 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
         
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.allowsCellularAccess = true
-        configuration.timeoutIntervalForRequest = goTapAPI.Constants.Default.TimeoutInterval
+        configuration.timeoutIntervalForRequest = Constants.Default.TimeoutInterval
         configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         
         return configuration
@@ -98,7 +98,7 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
         })
     }
     
-    private func executeOperation<T>(_ operation: goTapAPI.RequestOperation, completion: ((T?, APIError?) -> Void)?) where T : goTapAPI.ResponseHolder {
+    private func executeOperation<T>(_ operation: RequestOperation, completion: ((T?, APIError?) -> Void)?) where T : ResponseHolder {
         
         var method: TapHTTPMethod
         switch operation.httpMethod {
@@ -223,7 +223,7 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
         return nonnullResponseObject
     }
     
-    private func handle<T>(responseObject: Any?, inOperation operation: goTapAPI.RequestOperation, dataTask: URLSessionDataTask?, error: Swift.Error?, completion: ((T?, APIError?) -> Void)?) where T : goTapAPI.ResponseHolder {
+    private func handle<T>(responseObject: Any?, inOperation operation: RequestOperation, dataTask: URLSessionDataTask?, error: Swift.Error?, completion: ((T?, APIError?) -> Void)?) where T : ResponseHolder {
         
         operation.parse(responseObject: responseObject)
         
@@ -245,7 +245,7 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
                 let serverResponseCode = Int(serverResponse?.code ?? Int64(ServerStatusCode.success.rawValue))
                 if serverResponse != nil && StatusCodesHelper.needToHandle(serverStatusCode: serverResponseCode) {
                     
-                    let serverError = goTapAPI.APIError(response: serverResponse!)
+                    let serverError = APIError(response: serverResponse!)
                     self.handle(serverError: serverError, inOperation: operation, responseHeaders: httpResponse?.allHeaderFields ?? [:], completion: completion)
                 }
                 else if error != nil {
@@ -268,7 +268,7 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
         }
     }
     
-    private func handle<T>(systemStatusCode: Int, inOperation operation: RequestOperation, httpError: Swift.Error?, isHTTPCode: Bool, completion: ((T?, APIError?) -> Void)?) where T : goTapAPI.ResponseHolder {
+    private func handle<T>(systemStatusCode: Int, inOperation operation: RequestOperation, httpError: Swift.Error?, isHTTPCode: Bool, completion: ((T?, APIError?) -> Void)?) where T : ResponseHolder {
         
         let url = URL(string: operation.requestPath, relativeTo: type(of: self).baseURL)!
         
@@ -297,7 +297,7 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
         callCompletion(completion, withError: error)
     }
     
-    private func handle<T>(serverError: goTapAPI.APIError, inOperation operation: goTapAPI.RequestOperation, responseHeaders: [AnyHashable: Any], completion: ((T?, APIError?) -> Void)?) where T : goTapAPI.ResponseHolder {
+    private func handle<T>(serverError: APIError, inOperation operation: RequestOperation, responseHeaders: [AnyHashable: Any], completion: ((T?, APIError?) -> Void)?) where T : ResponseHolder {
         
         let error = NSError(domain: Constants.Error.domain, code: Int(serverError.code), userInfo: serverError.userInfo)
         
@@ -309,7 +309,7 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
         callCompletion(completion, withError: error)
     }
     
-    private func handle<T>(error: Swift.Error?, responseObject: Any?, inOperation operation: goTapAPI.RequestOperation, completion: ((T?, APIError?) -> Void)?) where T : goTapAPI.ResponseHolder {
+    private func handle<T>(error: Swift.Error?, responseObject: Any?, inOperation operation: RequestOperation, completion: ((T?, APIError?) -> Void)?) where T : ResponseHolder {
         
         guard let nsError = error as NSError? else {
             
@@ -333,12 +333,12 @@ internal class RequestOperationsHandler: goTapAPI.RequestOperationsManager {
         }
     }
     
-    private func callCompletion<T>(_ completion: ((T?, APIError?) -> Void)?, withError error: Swift.Error?) where T: goTapAPI.ResponseHolder {
+    private func callCompletion<T>(_ completion: ((T?, APIError?) -> Void)?, withError error: Swift.Error?) where T: ResponseHolder {
         
-        var goTapError: goTapAPI.APIError? = nil
+        var goTapError: APIError? = nil
         if let nsError = error as NSError? {
             
-            goTapError = goTapAPI.APIError(code: Int64(nsError.code), userInfo: nsError.userInfo)
+            goTapError = APIError(code: Int64(nsError.code), userInfo: nsError.userInfo)
         }
         
         DispatchQueue.main.async {

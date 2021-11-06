@@ -7,7 +7,7 @@
 //
 
 /// Permissions model
-public class Permissions: goTapAPI.DataModel {
+public class Permissions: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -25,7 +25,7 @@ public class Permissions: goTapAPI.DataModel {
 	public private(set) var photosGranted: Swift.Bool = false
 
 	/// Notifications permission.
-	public private(set) var notifications: goTapAPI.Notifications = goTapAPI.Notifications()
+	public private(set) var notifications: Notifications = Notifications()
 
 	/// SMS permission.
 	public private(set) var smsGranted: Swift.Bool = false
@@ -34,14 +34,14 @@ public class Permissions: goTapAPI.DataModel {
 
 		var result: [String: Any] = [
 
-			goTapAPI.Constants.Key.Camera : self.cameraGranted,
-			goTapAPI.Constants.Key.Contacts : self.contactsGranted,
-			goTapAPI.Constants.Key.Location : self.locationGranted,
-			goTapAPI.Constants.Key.Photos : self.photosGranted,
-			goTapAPI.Constants.Key.SMS: self.smsGranted
+			Constants.Key.Camera : self.cameraGranted,
+			Constants.Key.Contacts : self.contactsGranted,
+			Constants.Key.Location : self.locationGranted,
+			Constants.Key.Photos : self.photosGranted,
+			Constants.Key.SMS: self.smsGranted
 		]
 
-		result[goTapAPI.Constants.Key.Notifications] = self.notifications.serializedModel ?? NSNull()
+		result[Constants.Key.Notifications] = self.notifications.serializedModel ?? NSNull()
 
 		return result as AnyObject
 	}
@@ -54,17 +54,17 @@ public class Permissions: goTapAPI.DataModel {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
 
-		let model = goTapAPI.Permissions()
+		let model = Permissions()
 
-		model.cameraGranted = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.Camera) ?? false
-		model.contactsGranted = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.Contacts) ?? false
-		model.locationGranted = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.Location) ?? false
-		model.photosGranted = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.Photos) ?? false
-		model.smsGranted = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.SMS) ?? false
+		model.cameraGranted = dictionary.parseBoolean(forKey: Constants.Key.Camera) ?? false
+		model.contactsGranted = dictionary.parseBoolean(forKey: Constants.Key.Contacts) ?? false
+		model.locationGranted = dictionary.parseBoolean(forKey: Constants.Key.Location) ?? false
+		model.photosGranted = dictionary.parseBoolean(forKey: Constants.Key.Photos) ?? false
+		model.smsGranted = dictionary.parseBoolean(forKey: Constants.Key.SMS) ?? false
 
-		if let notificationsDict = dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.Notifications) {
+		if let notificationsDict = dictionary.parseDictionary(forKey: Constants.Key.Notifications) {
 
-			if let notif = goTapAPI.Notifications().dataModelWith(serializedObject: notificationsDict) {
+			if let notif = Notifications().dataModelWith(serializedObject: notificationsDict) {
 
 				model.notifications = notif
 			}
@@ -84,7 +84,7 @@ public class Permissions: goTapAPI.DataModel {
 
 	 - returns: Permissions.
 	 */
-	public convenience init(cameraGranted: Swift.Bool, contactsGranted: Swift.Bool, locationGranted: Swift.Bool, photosGranted: Swift.Bool, notifications: goTapAPI.Notifications) {
+	public convenience init(cameraGranted: Swift.Bool, contactsGranted: Swift.Bool, locationGranted: Swift.Bool, photosGranted: Swift.Bool, notifications: Notifications) {
 
 		self.init(cameraGranted: cameraGranted, contactsGranted: contactsGranted, locationGranted: locationGranted, photosGranted: photosGranted, smsGranted: false, notifications: notifications)
 	}
@@ -101,7 +101,7 @@ public class Permissions: goTapAPI.DataModel {
 
 	 - returns: Permissions.
 	 */
-	public convenience init(cameraGranted: Swift.Bool, contactsGranted: Swift.Bool, locationGranted: Swift.Bool, photosGranted: Swift.Bool, smsGranted: Swift.Bool, notifications: goTapAPI.Notifications) {
+	public convenience init(cameraGranted: Swift.Bool, contactsGranted: Swift.Bool, locationGranted: Swift.Bool, photosGranted: Swift.Bool, smsGranted: Swift.Bool, notifications: Notifications) {
 
 		self.init()
 
@@ -115,7 +115,7 @@ public class Permissions: goTapAPI.DataModel {
 
 	public override func isEqual(_ object: Any?) -> Bool {
 
-		guard let permissionsObject = object as? goTapAPI.Permissions else { return false }
+		guard let permissionsObject = object as? Permissions else { return false }
 
 		return ( permissionsObject.cameraGranted == self.cameraGranted &&
 				 permissionsObject.contactsGranted == self.contactsGranted &&

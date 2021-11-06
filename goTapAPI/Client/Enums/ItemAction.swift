@@ -15,12 +15,12 @@
  - Delete: Delete item.
  */
 
-public class ItemAction: goTapAPI.Enum {
+public class ItemAction: Enum {
 
-	public static let None = goTapAPI.ItemAction(rawValue: 0)
-	public static let New = goTapAPI.ItemAction(rawValue: 1)
-	public static let Update = goTapAPI.ItemAction(rawValue: 2)
-	public static let Delete = goTapAPI.ItemAction(rawValue: 3)
+	public static let None = ItemAction(rawValue: 0)
+	public static let New = ItemAction(rawValue: 1)
+	public static let Update = ItemAction(rawValue: 2)
+	public static let Delete = ItemAction(rawValue: 3)
 
 	/// Returns string representation of the receiver.
 	internal var stringRepresentation: String {
@@ -31,44 +31,44 @@ public class ItemAction: goTapAPI.Enum {
 		}
 		else  if self == ItemAction.New {
 
-			return goTapAPI.Constants.Value.NEW
+			return Constants.Value.NEW
 		}
 		else  if self == ItemAction.Update {
 
-			return goTapAPI.Constants.Value.UPDATE
+			return Constants.Value.UPDATE
 		}
 		else  if self == ItemAction.Delete {
 
-			return goTapAPI.Constants.Value.DELETE
+			return Constants.Value.DELETE
 		}
 
 		return String.tap_empty
 	}
 
-	internal static func with(stringValue string: String?) -> goTapAPI.ItemAction {
+	internal static func with(stringValue string: String?) -> ItemAction {
 
 		guard string != nil else {
 
-			return goTapAPI.ItemAction.None
+			return ItemAction.None
 		}
 
 		switch string! {
 
-		case goTapAPI.Constants.Value.NEW:
+		case Constants.Value.NEW:
 
-			return goTapAPI.ItemAction.New
+			return ItemAction.New
 
-		case goTapAPI.Constants.Value.UPDATE:
+		case Constants.Value.UPDATE:
 
-			return goTapAPI.ItemAction.Update
+			return ItemAction.Update
 
-		case goTapAPI.Constants.Value.DELETE:
+		case Constants.Value.DELETE:
 
-			return goTapAPI.ItemAction.Delete
+			return ItemAction.Delete
 
 		default:
 
-			return goTapAPI.ItemAction.None
+			return ItemAction.None
 		}
 	}
 }

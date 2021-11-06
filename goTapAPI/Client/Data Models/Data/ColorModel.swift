@@ -7,13 +7,13 @@
 //
 
 /// Color data model.
-public class ColorModel: goTapAPI.DataModel {
+public class ColorModel: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 
 	/// Clear color.
-	internal static let clearColor = goTapAPI.ColorModel(normalColor: goTapAPI.TPColor.clear, highlightedColor: goTapAPI.TPColor.clear, selectedColor: goTapAPI.TPColor.clear)
+	internal static let clearColor = ColorModel(normalColor: TPColor.clear, highlightedColor: TPColor.clear, selectedColor: TPColor.clear)
 
 	/// Normal color.
 	public private(set) var normalColor: UIColor?
@@ -29,17 +29,17 @@ public class ColorModel: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ColorModel else { return nil }
-		model.normalColor = dictionary.parseColor(forKey: goTapAPI.Constants.Key.NormalColor)
-		model.highlightedColor = dictionary.parseColor(forKey: goTapAPI.Constants.Key.HighlightedColor)
-		model.selectedColor = dictionary.parseColor(forKey: goTapAPI.Constants.Key.SelectedColor)
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ColorModel else { return nil }
+		model.normalColor = dictionary.parseColor(forKey: Constants.Key.NormalColor)
+		model.highlightedColor = dictionary.parseColor(forKey: Constants.Key.HighlightedColor)
+		model.selectedColor = dictionary.parseColor(forKey: Constants.Key.SelectedColor)
 
 		return model.tap_asSelf()
 	}
 
 	public override func isEqual(_ object: Any?) -> Bool {
 
-		guard let color = object as? goTapAPI.ColorModel else { return false }
+		guard let color = object as? ColorModel else { return false }
 
 		return ( MappedTPColorExtension.equal(color1: normalColor, color2: color.normalColor) &&
 				 MappedTPColorExtension.equal(color1: highlightedColor, color2: color.highlightedColor) &&

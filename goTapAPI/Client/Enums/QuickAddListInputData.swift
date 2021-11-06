@@ -13,26 +13,26 @@
  - ID:     ID.
  - ScanID: Scan ID.
  */
-internal class QuickAddListInputData: goTapAPI.Enum {
+internal class QuickAddListInputData: Enum {
 
-	internal static let Mobile = goTapAPI.QuickAddListInputData(rawValue: 0)
-	internal static let ID = goTapAPI.QuickAddListInputData(rawValue: 1)
-	internal static let ScanID = goTapAPI.QuickAddListInputData(rawValue: 2)
+	internal static let Mobile = QuickAddListInputData(rawValue: 0)
+	internal static let ID = QuickAddListInputData(rawValue: 1)
+	internal static let ScanID = QuickAddListInputData(rawValue: 2)
 
 	/// Returns string representation of the receiver.
 	var stringRepresentation: String {
 
-		if self == goTapAPI.QuickAddListInputData.Mobile {
+		if self == QuickAddListInputData.Mobile {
 
-			return goTapAPI.Constants.Value.MOBILE
+			return Constants.Value.MOBILE
 		}
-		else if self == goTapAPI.QuickAddListInputData.ID {
+		else if self == QuickAddListInputData.ID {
 
-			return goTapAPI.Constants.Value.ID
+			return Constants.Value.ID
 		}
-		else if self == goTapAPI.QuickAddListInputData.ScanID {
+		else if self == QuickAddListInputData.ScanID {
 
-			return goTapAPI.Constants.Value.SCAN_ID
+			return Constants.Value.SCAN_ID
 		}
 
 		return String.tap_empty

@@ -7,7 +7,7 @@
 //
 
 /// Notifications model.
-public class Notifications: goTapAPI.DataModel {
+public class Notifications: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -25,11 +25,11 @@ public class Notifications: goTapAPI.DataModel {
 
 		var result: [String: Any] = [
 
-			goTapAPI.Constants.Key.Enabled : enabled,
-			goTapAPI.Constants.Key.Style : style
+			Constants.Key.Enabled : enabled,
+			Constants.Key.Style : style
 		]
 
-		result[goTapAPI.Constants.Key.DeviceToken] = self.deviceToken ?? NSNull()
+		result[Constants.Key.DeviceToken] = self.deviceToken ?? NSNull()
 
 		return result as AnyObject
 	}
@@ -40,11 +40,11 @@ public class Notifications: goTapAPI.DataModel {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
 
-		let model = goTapAPI.Notifications()
+		let model = Notifications()
 
-		model.enabled = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.Enabled) ?? false
-		model.style = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.Style) ?? 0
-		model.deviceToken = dictionary.parseString(forKey: goTapAPI.Constants.Key.DeviceToken)
+		model.enabled = dictionary.parseBoolean(forKey: Constants.Key.Enabled) ?? false
+		model.style = dictionary.parseInteger(forKey: Constants.Key.Style) ?? 0
+		model.deviceToken = dictionary.parseString(forKey: Constants.Key.DeviceToken)
 
 		return model.tap_asSelf()
 	}
@@ -63,7 +63,7 @@ public class Notifications: goTapAPI.DataModel {
 
 	public override func isEqual(_ object: Any?) -> Bool {
 
-		guard let notificationsObject = object as? goTapAPI.Notifications else { return false }
+		guard let notificationsObject = object as? Notifications else { return false }
 
 		return ( self.enabled == notificationsObject.enabled &&
 				 self.style == notificationsObject.style &&

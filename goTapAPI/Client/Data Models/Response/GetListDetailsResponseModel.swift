@@ -7,37 +7,37 @@
 //
 
 /// Get list details response model.
-public class GetListDetailsResponseModel: goTapAPI.BadgedResponseModel {
+public class GetListDetailsResponseModel: BadgedResponseModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Businesses.
-	public private(set) var businesses: [goTapAPI.BusinessItem] = []
+	public private(set) var businesses: [BusinessItem] = []
 	
 	/// Detailed home items.
-	public private(set) var detailedHomeItems: [goTapAPI.DetailedHomeItem] = []
+	public private(set) var detailedHomeItems: [DetailedHomeItem] = []
 	
 	//MARK: Methods
 	
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 	 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.GetListDetailsResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? GetListDetailsResponseModel else { return nil }
 		
-		let businessParsingClosure: (AnyObject) -> goTapAPI.BusinessItem? = { object in
+		let businessParsingClosure: (AnyObject) -> BusinessItem? = { object in
 		
-			return goTapAPI.BusinessItem().dataModelWith(serializedObject: object)
+			return BusinessItem().dataModelWith(serializedObject: object)
 		}
-		let emptyBusinesses: [goTapAPI.BusinessItem] = []
-		let parsedBusinesses = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.Businesses), usingClosure: businessParsingClosure)
+		let emptyBusinesses: [BusinessItem] = []
+		let parsedBusinesses = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.Businesses), usingClosure: businessParsingClosure)
 		
-		let itemParsingClosure: (AnyObject) -> goTapAPI.DetailedHomeItem? = { object in
+		let itemParsingClosure: (AnyObject) -> DetailedHomeItem? = { object in
 		
-			return goTapAPI.DetailedHomeItem().dataModelWith(serializedObject: object)
+			return DetailedHomeItem().dataModelWith(serializedObject: object)
 		}
-		let emptyItems: [goTapAPI.DetailedHomeItem] = []
-		let parsedItems = goTapAPI.ParseHelper.parse(array: dictionary.parseArray(forKey: goTapAPI.Constants.Key.HomeItemDtls), usingClosure: itemParsingClosure)
+		let emptyItems: [DetailedHomeItem] = []
+		let parsedItems = ParseHelper.parse(array: dictionary.parseArray(forKey: Constants.Key.HomeItemDtls), usingClosure: itemParsingClosure)
 		
 		model.businesses = parsedBusinesses == nil ? emptyBusinesses : parsedBusinesses!
 		model.detailedHomeItems = parsedItems == nil ? emptyItems : parsedItems!

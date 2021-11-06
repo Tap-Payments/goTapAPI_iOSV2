@@ -12,21 +12,21 @@
 public extension UserInterfaceIdiom {
     
     /// Returns current user interface idiom.
-    public static var current: goTapAPI.UserInterfaceIdiom {
+    public static var current: UserInterfaceIdiom {
         
         switch UIDevice.current.userInterfaceIdiom {
             
             case .phone:
             
-                return goTapAPI.UserInterfaceIdiom.Phone
+                return UserInterfaceIdiom.Phone
             
             case .pad:
             
-                return goTapAPI.UserInterfaceIdiom.Tablet
+                return UserInterfaceIdiom.Tablet
             
             default:
             
-                return goTapAPI.UserInterfaceIdiom.Other
+                return UserInterfaceIdiom.Other
         }
     }
 }

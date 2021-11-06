@@ -7,7 +7,7 @@
 //
 
 /// Request model for link email request.
-internal class LinkEmailRequestModel: goTapAPI.RequestModel {
+internal class LinkEmailRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -19,16 +19,16 @@ internal class LinkEmailRequestModel: goTapAPI.RequestModel {
 	internal private(set) var transactionID: String?
 
 	/// Requirement.
-	internal private(set) var requirement: goTapAPI.LinkEmailRequirement = goTapAPI.LinkEmailRequirement.SendReceiptAndLinkEmail
+	internal private(set) var requirement: LinkEmailRequirement = LinkEmailRequirement.SendReceiptAndLinkEmail
 
 	internal override var serializedModel: AnyObject? {
 
 		let emptyDict: [String: AnyObject] = [:]
 		var result: [String: Any] = super.serializedModel as? [String: AnyObject] ?? emptyDict
 
-		result[goTapAPI.Constants.Key.ID] = identifier
-		result[goTapAPI.Constants.Key.TxnID] = transactionID ?? String.tap_empty
-		result[goTapAPI.Constants.Key.ReqType] = requirement.stringRepresentation
+		result[Constants.Key.ID] = identifier
+		result[Constants.Key.TxnID] = transactionID ?? String.tap_empty
+		result[Constants.Key.ReqType] = requirement.stringRepresentation
 
 		return result as AnyObject
 	}
@@ -38,14 +38,14 @@ internal class LinkEmailRequestModel: goTapAPI.RequestModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.LinkEmailRequestModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? LinkEmailRequestModel else { return nil }
 
-		guard let parsedIdentifier = dictionary.parseString(forKey: goTapAPI.Constants.Key.ID) else { return nil }
-		guard let parsedTransactionID = dictionary.parseString(forKey: goTapAPI.Constants.Key.TxnID) else { return nil }
+		guard let parsedIdentifier = dictionary.parseString(forKey: Constants.Key.ID) else { return nil }
+		guard let parsedTransactionID = dictionary.parseString(forKey: Constants.Key.TxnID) else { return nil }
 
 		model.identifier = parsedIdentifier
 		model.transactionID = parsedTransactionID
-		model.requirement = goTapAPI.LinkEmailRequirement.with(stringValue: dictionary.parseString(forKey: goTapAPI.Constants.Key.ReqType))
+		model.requirement = LinkEmailRequirement.with(stringValue: dictionary.parseString(forKey: Constants.Key.ReqType))
 
 		return model.tap_asSelf()
 	}
@@ -59,7 +59,7 @@ internal class LinkEmailRequestModel: goTapAPI.RequestModel {
 
 	 - returns: TPAPILinkEmailRequestModel.
 	 */
-	internal init(identifier: String, transactionID: String?, requirement: goTapAPI.LinkEmailRequirement) {
+	internal init(identifier: String, transactionID: String?, requirement: LinkEmailRequirement) {
 
 		super.init()
 

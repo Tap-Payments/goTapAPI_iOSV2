@@ -3,12 +3,12 @@ public protocol ClientDataSource {
 
 	func applicationBuildString() -> String
 	func countryNameFor(_ isoCountryCode: String) -> String?
-	func countryWith(_ isdNumber: String) -> goTapAPI.Country?
+	func countryWith(_ isdNumber: String) -> Country?
 	func deviceModel() -> String
 	func deviceName() -> String
 	func deviceValue() -> String
 	func encryptDictionary(_ dictionary: [String: String]) -> String
-	func encryptError(_ error: goTapAPI.APIError) -> String
+	func encryptError(_ error: APIError) -> String
 	func encryptString(_ string: String?) -> String
 	func languageCode() -> String
 	func localizedDeviceModel() -> String
@@ -24,8 +24,8 @@ public protocol ClientDataSource {
 	func shouldUseProductionServer() -> Bool
 	func stringFromKeychain(forKey key: String) -> String?
 	func stringFromUserSettings(forKey key: String) -> String?
-	func userInterfaceIdiom() -> goTapAPI.UserInterfaceIdiom
-	func isSharingOptionAvailable(_ sharingOption: goTapAPI.SharingOption) -> Bool
+	func userInterfaceIdiom() -> UserInterfaceIdiom
+	func isSharingOptionAvailable(_ sharingOption: SharingOption) -> Bool
 
 	
 	func decryptDictionary(_ string: String) -> [String: String]

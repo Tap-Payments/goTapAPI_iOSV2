@@ -7,7 +7,7 @@
 //
 
 /// Response model to verify phone.
-public class PhoneVerificationResponseModel: goTapAPI.ResponseModel {
+public class PhoneVerificationResponseModel: ResponseModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -23,18 +23,18 @@ public class PhoneVerificationResponseModel: goTapAPI.ResponseModel {
 				return
 			}
 
-			goTapAPI.Client.sharedInstance.dataSource!.saveToUserSettings(self.appLicenseCode, forKey: goTapAPI.Constants.Key.UserSettings.AppLicenseCode)
+			Client.sharedInstance.dataSource!.saveToUserSettings(self.appLicenseCode, forKey: Constants.Key.UserSettings.AppLicenseCode)
 		}
 	}
 
 	/// Active sectors.
-	public private(set) var activeSectors: [goTapAPI.DetailedSector] = []
+	public private(set) var activeSectors: [DetailedSector] = []
 
 	/// Future sectors.
-	public private(set) var futureSectors: [goTapAPI.DetailedSector] = []
+	public private(set) var futureSectors: [DetailedSector] = []
 
 	/// Primary number List ID.
-	public private(set) var primaryNumber: goTapAPI.ListID?
+	public private(set) var primaryNumber: ListID?
 
 	/// Minimal schedule amount.
 	public private(set) var minimalAmount: Foundation.Decimal = Foundation.Decimal.zero
@@ -50,8 +50,8 @@ public class PhoneVerificationResponseModel: goTapAPI.ResponseModel {
 		let emptyArray: [AnyObject] = []
 
 		var result: [String: Any] = [:]
-		result[goTapAPI.Constants.Key.ActiveSectors] = goTapAPI.ParseHelper.serialize(array: activeSectors) ?? emptyArray
-		result[goTapAPI.Constants.Key.NewSectors] = goTapAPI.ParseHelper.serialize(array: futureSectors) ?? emptyArray
+		result[Constants.Key.ActiveSectors] = ParseHelper.serialize(array: activeSectors) ?? emptyArray
+		result[Constants.Key.NewSectors] = ParseHelper.serialize(array: futureSectors) ?? emptyArray
 
 		return result as AnyObject
 	}
@@ -61,29 +61,29 @@ public class PhoneVerificationResponseModel: goTapAPI.ResponseModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.PhoneVerificationResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? PhoneVerificationResponseModel else { return nil }
 
-		let closure: (AnyObject) -> goTapAPI.DetailedSector? = { object in
+		let closure: (AnyObject) -> DetailedSector? = { object in
 
-			return goTapAPI.DetailedSector().dataModelWith(serializedObject: object)
+			return DetailedSector().dataModelWith(serializedObject: object)
 		}
 
-		let emptyArray: [goTapAPI.DetailedSector] = []
-		let serializedActiveSectors = dictionary.parseArray(forKey: goTapAPI.Constants.Key.ActiveSectors) ?? emptyArray
-		let serializedFutureSectors = dictionary.parseArray(forKey: goTapAPI.Constants.Key.NewSectors) ?? emptyArray
+		let emptyArray: [DetailedSector] = []
+		let serializedActiveSectors = dictionary.parseArray(forKey: Constants.Key.ActiveSectors) ?? emptyArray
+		let serializedFutureSectors = dictionary.parseArray(forKey: Constants.Key.NewSectors) ?? emptyArray
 
-		let parsedActiveSectors: [goTapAPI.DetailedSector]? = goTapAPI.ParseHelper.parse(array: serializedActiveSectors, usingClosure: closure)
-		let parsedFutureSectors: [goTapAPI.DetailedSector]? = goTapAPI.ParseHelper.parse(array: serializedFutureSectors, usingClosure: closure)
+		let parsedActiveSectors: [DetailedSector]? = ParseHelper.parse(array: serializedActiveSectors, usingClosure: closure)
+		let parsedFutureSectors: [DetailedSector]? = ParseHelper.parse(array: serializedFutureSectors, usingClosure: closure)
 
 		model.activeSectors = parsedActiveSectors == nil ? emptyArray : parsedActiveSectors!
 		model.futureSectors = parsedFutureSectors == nil ? emptyArray : parsedFutureSectors!
 
-		model.appLicenseCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.APPLicenseCD)
-		model.primaryNumber = goTapAPI.ListID().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.LstID) as AnyObject)
+		model.appLicenseCode = dictionary.parseString(forKey: Constants.Key.APPLicenseCD)
+		model.primaryNumber = ListID().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.LstID) as AnyObject)
 
-		model.minimalAmount = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.MinAmount) ?? Foundation.Decimal.zero
-		model.maximalAmount = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.MaxAmount) ?? Foundation.Decimal.zero
-		model.scheduleDay = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.schedule_day) ?? 1
+		model.minimalAmount = dictionary.parseAmount(forKey: Constants.Key.MinAmount) ?? Foundation.Decimal.zero
+		model.maximalAmount = dictionary.parseAmount(forKey: Constants.Key.MaxAmount) ?? Foundation.Decimal.zero
+		model.scheduleDay = dictionary.parseInteger(forKey: Constants.Key.schedule_day) ?? 1
 
 		return model.tap_asSelf()
 	}

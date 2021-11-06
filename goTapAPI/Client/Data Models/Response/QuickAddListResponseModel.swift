@@ -7,22 +7,22 @@
 //
 
 /// Quick add list response model.
-public class QuickAddListResponseModel: goTapAPI.GetListResponseModel {
+public class QuickAddListResponseModel: GetListResponseModel {
 	
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Screen.
-	public var screen: goTapAPI.QuickAddListResponseScreen = goTapAPI.QuickAddListResponseScreen.Home
+	public var screen: QuickAddListResponseScreen = QuickAddListResponseScreen.Home
 	
 	//MARK: Methods
 	
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.QuickAddListResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? QuickAddListResponseModel else { return nil }
 		
-		model.screen = goTapAPI.QuickAddListResponseScreen.with(stringValue: dictionary.parseString(forKey: goTapAPI.Constants.Key.Screen))
+		model.screen = QuickAddListResponseScreen.with(stringValue: dictionary.parseString(forKey: Constants.Key.Screen))
 		
 		return model.tap_asSelf()
 	}

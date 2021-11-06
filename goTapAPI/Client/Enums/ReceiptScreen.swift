@@ -9,11 +9,11 @@
 /**
  *  Receipt screen enum.
  */
-public class ReceiptScreen: goTapAPI.Option {
+public class ReceiptScreen: Option {
 	
-	public static let None = goTapAPI.ReceiptScreen(rawValue: 0)
-	public static let Email = goTapAPI.ReceiptScreen(rawValue: 1 << 0)
-	public static let ShareApp = goTapAPI.ReceiptScreen(rawValue: 1 << 1)
-	public static let GetRating = goTapAPI.ReceiptScreen(rawValue: 1 << 2)
-	public static let ShowName = goTapAPI.ReceiptScreen(rawValue: 1 << 3)
+	public static let None = ReceiptScreen(rawValue: 0)
+	public static let Email = ReceiptScreen(rawValue: 1 << 0)
+	public static let ShareApp = ReceiptScreen(rawValue: 1 << 1)
+	public static let GetRating = ReceiptScreen(rawValue: 1 << 2)
+	public static let ShowName = ReceiptScreen(rawValue: 1 << 3)
 }

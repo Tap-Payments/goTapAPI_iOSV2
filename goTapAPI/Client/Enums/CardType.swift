@@ -9,26 +9,26 @@
 /**
  *  Card type enum.
  */
- public class CardType: goTapAPI.Enum {
+ public class CardType: Enum {
 
-	 public static let Debit = goTapAPI.CardType(rawValue: 0)
-	 public static let Credit = goTapAPI.CardType(rawValue: 1)
-	 public static let Telecom = goTapAPI.CardType(rawValue: 2)
+	 public static let Debit = CardType(rawValue: 0)
+	 public static let Credit = CardType(rawValue: 1)
+	 public static let Telecom = CardType(rawValue: 2)
 
 	 /// Returns string representation of the receiver.
 	 internal var stringRepresentation: String {
 
-		 if self == goTapAPI.CardType.Debit {
+		 if self == CardType.Debit {
 
-			 return goTapAPI.Constants.Value.DEBIT
+			 return Constants.Value.DEBIT
 		 }
-		 else if self == goTapAPI.CardType.Credit {
+		 else if self == CardType.Credit {
 
-			 return goTapAPI.Constants.Value.CREDIT
+			 return Constants.Value.CREDIT
 		 }
-		 else if self == goTapAPI.CardType.Telecom {
+		 else if self == CardType.Telecom {
 
-			 return goTapAPI.Constants.Value.TELECOM
+			 return Constants.Value.TELECOM
 		 }
 		 else {
 
@@ -43,7 +43,7 @@
 
 	 - returns: CardType.
 	 */
-	 internal static func with(stringValue: String?) -> goTapAPI.CardType? {
+	 internal static func with(stringValue: String?) -> CardType? {
 
 		 guard let string = stringValue else {
 
@@ -52,17 +52,17 @@
 
 		 switch string {
 
-			case goTapAPI.Constants.Value.DEBIT:
+			case Constants.Value.DEBIT:
 
-				return goTapAPI.CardType.Debit
+				return CardType.Debit
 
-			case goTapAPI.Constants.Value.CREDIT:
+			case Constants.Value.CREDIT:
 
-				return goTapAPI.CardType.Credit
+				return CardType.Credit
 
-			case goTapAPI.Constants.Value.TELECOM:
+			case Constants.Value.TELECOM:
 
-				return goTapAPI.CardType.Telecom
+				return CardType.Telecom
 
 			default:
 

@@ -14,12 +14,12 @@ private var imageLoadingQueueAssociationKey: UInt8 = 0
 
 
 /// Useful extension to Client.
-public extension goTapAPI.Client {
+public extension Client {
     
     //MARK: - Public -
     //MARK: Methods
     
-    public func loadYoutubeVideoDetails(with youtubeURL: URL, completion: ((goTapAPI.YoutubeVideo?, goTapAPI.APIError?) -> Void)?) {
+    public func loadYoutubeVideoDetails(with youtubeURL: URL, completion: ((YoutubeVideo?, APIError?) -> Void)?) {
         
         let emptyString = ""
         
@@ -36,7 +36,7 @@ public extension goTapAPI.Client {
         }
     }
     
-    public func loadYoutubeVideoDetails(from youtubeURLs: [String: URL], completion: (([String: goTapAPI.YoutubeVideo]?, goTapAPI.APIError?) -> Void)?) {
+    public func loadYoutubeVideoDetails(from youtubeURLs: [String: URL], completion: (([String: YoutubeVideo]?, APIError?) -> Void)?) {
         
         guard youtubeURLs.keys.count > 0 else {
             
@@ -50,7 +50,7 @@ public extension goTapAPI.Client {
         
         DispatchQueue.global().async {
             
-            var response: [String: goTapAPI.YoutubeVideo] = [:]
+            var response: [String: YoutubeVideo] = [:]
             var processedURLsCount: Int = 0
             var stop: Bool = false
             
@@ -78,14 +78,14 @@ public extension goTapAPI.Client {
                         
                         DispatchQueue.main.async {
                             
-                            completion?(nil, goTapAPI.APIError(code: Int64(nsError.code), userInfo: nsError.userInfo))
+                            completion?(nil, APIError(code: Int64(nsError.code), userInfo: nsError.userInfo))
                         }
                         
                         stop = true
                         return
                     }
                     
-                    let youtubeVideo = goTapAPI.YoutubeVideo().dataModelWith(serializedObject: videoDictionary)
+                    let youtubeVideo = YoutubeVideo().dataModelWith(serializedObject: videoDictionary)
                     response[key] = youtubeVideo
                     
                     processedURLsCount += 1
@@ -104,12 +104,12 @@ public extension goTapAPI.Client {
         }
     }
     
-    public func downloadImage(from url: URL, completion: ((UIImage?, goTapAPI.APIError?) -> Void)?) {
+    public func downloadImage(from url: URL, completion: ((UIImage?, APIError?) -> Void)?) {
         
         downloadImage(from: url, progress: nil, completion: completion)
     }
     
-    public func downloadImage(from url: URL, progress: ((CGFloat) -> Void)?, completion: ((UIImage?, goTapAPI.APIError?) -> Void)?) {
+    public func downloadImage(from url: URL, progress: ((CGFloat) -> Void)?, completion: ((UIImage?, APIError?) -> Void)?) {
         
         let progressClosure: (URL, CGFloat) -> Void = { (url, theProgress) in
             
@@ -124,7 +124,7 @@ public extension goTapAPI.Client {
         downloadImage(from: url, loadCacheSynchronously: false, loadImageSynchronously: false, progress: progressClosure, completion: completionClosure)
     }
     
-    public func downloadImage(from url: URL, loadCacheSynchronously: Bool, loadImageSynchronously: Bool, completion: ((UIImage?, goTapAPI.APIError?) -> Void)?) {
+    public func downloadImage(from url: URL, loadCacheSynchronously: Bool, loadImageSynchronously: Bool, completion: ((UIImage?, APIError?) -> Void)?) {
         
         let completionClosure: (URL, UIImage?, APIError?) -> Void = { (url, image, error) in
             
@@ -134,7 +134,7 @@ public extension goTapAPI.Client {
         downloadImage(from: url, loadCacheSynchronously: loadCacheSynchronously, loadImageSynchronously: loadImageSynchronously, progress: nil, completion: completionClosure)
     }
     
-    public func downloadImages(from urls: [URL], loadCacheSynchronously: Bool, completion: (([UIImage]?, goTapAPI.APIError?) -> Void)?) {
+    public func downloadImages(from urls: [URL], loadCacheSynchronously: Bool, completion: (([UIImage]?, APIError?) -> Void)?) {
         
         downloadImages(from: urls, loadCacheSynchronously: loadCacheSynchronously, loadImagesSynchronously: false, completion: completion)
     }
@@ -143,8 +143,8 @@ public extension goTapAPI.Client {
         
         if url.isFileURL { return nil }
         
-        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: goTapAPI.Constants.Default.TimeoutInterval)
-        request.httpMethod = goTapAPI.HttpMethod.Head.stringRepresentation
+        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: Constants.Default.TimeoutInterval)
+        request.httpMethod = HttpMethod.Head.stringRepresentation
         
         RequestOperationsHandler.shared.increaseNetworkActivityCounter()
         
@@ -157,7 +157,7 @@ public extension goTapAPI.Client {
             return nil
         }
         
-        guard let lastModifiedString = (response as? HTTPURLResponse)?.allHeaderFields[goTapAPI.Constants.Key.Last_Modified] as? String else {
+        guard let lastModifiedString = (response as? HTTPURLResponse)?.allHeaderFields[Constants.Key.Last_Modified] as? String else {
             
             return nil
         }
@@ -211,8 +211,8 @@ public extension goTapAPI.Client {
                     return formatter
                 }
                 
-                let dateFormatter = DateFormatter.dateFormatterWith(localeIdentifier: goTapAPI.Constants.Default.LocaleIdentifier,
-                                                                    dateFormat: goTapAPI.Constants.DateFormat.Format4)
+                let dateFormatter = DateFormatter.dateFormatterWith(localeIdentifier: Constants.Default.LocaleIdentifier,
+                                                                    dateFormat: Constants.DateFormat.Format4)
                 dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
                 
                 self.lastModifiedDateFormatter = dateFormatter
@@ -260,7 +260,7 @@ public extension goTapAPI.Client {
     
     //MARK: Methods
     
-    private func downloadImages(from urls: [URL], loadCacheSynchronously: Bool, loadImagesSynchronously: Bool, completion: (([UIImage]?, goTapAPI.APIError?) -> Void)?) {
+    private func downloadImages(from urls: [URL], loadCacheSynchronously: Bool, loadImagesSynchronously: Bool, completion: (([UIImage]?, APIError?) -> Void)?) {
         
         autoreleasepool {
             
@@ -277,7 +277,7 @@ public extension goTapAPI.Client {
             var numberOfLoadedImages = 0
             var downloadFailed = false
             
-            let imageCompletionClosure: (URL, UIImage?, goTapAPI.APIError?) -> Void = { (url, image, error) in
+            let imageCompletionClosure: (URL, UIImage?, APIError?) -> Void = { (url, image, error) in
              
                 if downloadFailed { return }
                 
@@ -331,7 +331,7 @@ public extension goTapAPI.Client {
         }
     }
     
-    private func downloadImage(from url: URL, loadCacheSynchronously: Bool, loadImageSynchronously: Bool, progress: ((URL, CGFloat) -> Void)?, completion: ((URL, UIImage?, goTapAPI.APIError?) -> Void)?) {
+    private func downloadImage(from url: URL, loadCacheSynchronously: Bool, loadImageSynchronously: Bool, progress: ((URL, CGFloat) -> Void)?, completion: ((URL, UIImage?, APIError?) -> Void)?) {
         
         self.loadImageFromCache(with: url, synchronously: loadCacheSynchronously) { (image) in
             
@@ -377,10 +377,10 @@ public extension goTapAPI.Client {
                     self.save(image!, toCacheWith: url)
                 }
                 
-                var tapError: goTapAPI.APIError? = nil
+                var tapError: APIError? = nil
                 if let nsError = error as NSError? {
                     
-                    tapError = goTapAPI.APIError(code: Int64(nsError.code), userInfo: nsError.userInfo)
+                    tapError = APIError(code: Int64(nsError.code), userInfo: nsError.userInfo)
                 }
                 
                 if loadImageSynchronously {
@@ -398,9 +398,10 @@ public extension goTapAPI.Client {
             
             RequestOperationsHandler.shared.increaseNetworkActivityCounter()
             
-            let imageDownloader = SDWebImageDownloader.shared()
-            imageDownloader.downloadTimeout = Constants.Default.TimeoutInterval
-            imageDownloader.maxConcurrentDownloads = 10
+            SDWebImageDownloader.shared.config.downloadTimeout = Constants.Default.TimeoutInterval
+            SDWebImageDownloader.shared.config.maxConcurrentDownloads = 10
+            
+            let imageDownloader:SDWebImageDownloader = SDWebImageDownloader.shared
             
             _ = imageDownloader.downloadImage(with: url, options: SDWebImageDownloaderOptions.useNSURLCache, progress: progressClosure, completed: completionClosure)
         }
@@ -408,11 +409,11 @@ public extension goTapAPI.Client {
     
     private func save(_ image: UIImage, toCacheWith url: URL) {
         
-        let key = SDWebImageManager.shared().cacheKey(for: url)
+        let key = SDWebImageManager.shared.cacheKey(for: url)
         
-        SDImageCache.shared().store(image, forKey: key)
+        SDImageCache.shared.store(image, forKey: key)
         
-        guard let imagePath = SDImageCache.shared().defaultCachePath(forKey: key) else {
+        guard let imagePath = SDImageCache.shared.cachePath(forKey: key) else {
             
             return
         }
@@ -437,14 +438,14 @@ public extension goTapAPI.Client {
     
     private func loadImageFromCache(with url: URL) -> UIImage? {
         
-        let key = SDWebImageManager.shared().cacheKey(for: url)
-        let sharedCache = SDImageCache.shared()
+        let key = SDWebImageManager.shared.cacheKey(for: url)
+        let sharedCache = SDImageCache.shared
 
         var shouldLoadFromCache = false
         
         if sharedCache.diskImageDataExists(withKey: key) {
             
-            shouldLoadFromCache = !self.shouldDownloadFile(from: url, withExistingFilePath: sharedCache.defaultCachePath(forKey: key))
+            shouldLoadFromCache = !self.shouldDownloadFile(from: url, withExistingFilePath: sharedCache.cachePath(forKey: key))
         }
         
         return shouldLoadFromCache ? sharedCache.imageFromDiskCache(forKey: key) : nil

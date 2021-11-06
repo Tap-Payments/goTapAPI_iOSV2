@@ -7,7 +7,7 @@
 //
 
 /// Delete list response model.
-public class BadgedResponseModel: goTapAPI.ResponseModel {
+public class BadgedResponseModel: ResponseModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -20,9 +20,9 @@ public class BadgedResponseModel: goTapAPI.ResponseModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 	 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.BadgedResponseModel else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? BadgedResponseModel else { return nil }
 		
-		model.badge = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.Badge) ?? 0
+		model.badge = dictionary.parseInteger(forKey: Constants.Key.Badge) ?? 0
 		
 		return model.tap_asSelf()
 	}

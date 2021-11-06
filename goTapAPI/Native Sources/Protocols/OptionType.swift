@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tap Payments. All rights reserved.
 //
 
-public protocol OptionType: goTapAPI.EnumType {
+public protocol OptionType: EnumType {
     
     static func |(left: Self, right: Self) -> Self
     

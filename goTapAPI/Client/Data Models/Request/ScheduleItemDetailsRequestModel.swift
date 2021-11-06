@@ -7,33 +7,33 @@
 //
 
 /// Request model to schedule item.
-internal class ScheduleItemDetailsRequestModel: goTapAPI.RequestModel {
+internal class ScheduleItemDetailsRequestModel: RequestModel {
 
 	// MARK: - Internal -
 	// MARK: Properties
 
 	/// Item's list ID to schedule the amount.
-	internal private(set) var item: goTapAPI.ChangedDetailsHomeItem?
+	internal private(set) var item: ChangedDetailsHomeItem?
 
 	/// Input fields ( schedule options ).
-	internal private(set) var inputFields: [goTapAPI.BusinessField] = []
+	internal private(set) var inputFields: [BusinessField] = []
 
 	internal override var serializedModel: AnyObject? {
 
-		let serializedInputFields = goTapAPI.ParseHelper.serialize(array: self.inputFields)
+		let serializedInputFields = ParseHelper.serialize(array: self.inputFields)
 		let emptyArray: [AnyObject] = []
 
 		var result: [String: Any] = [:]
 
-		result[goTapAPI.Constants.Key.Item] = self.item?.serializedModel ?? NSNull()
-		result[goTapAPI.Constants.Key.InputFields] = serializedInputFields ?? emptyArray
+		result[Constants.Key.Item] = self.item?.serializedModel ?? NSNull()
+		result[Constants.Key.InputFields] = serializedInputFields ?? emptyArray
 
 		return result as AnyObject
 	}
 
 	// MARK: Methods
 
-	internal init(item: goTapAPI.ChangedDetailsHomeItem, inputFields: [goTapAPI.BusinessField]) {
+	internal init(item: ChangedDetailsHomeItem, inputFields: [BusinessField]) {
 
 		self.item = item
 		self.inputFields = inputFields

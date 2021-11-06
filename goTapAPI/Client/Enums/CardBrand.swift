@@ -6,149 +6,149 @@
 /**
  *  Card brand enum.
  */
-public class CardBrand: goTapAPI.Enum {
+public class CardBrand: Enum {
 
-	public static let Unknown           = goTapAPI.CardBrand(rawValue:  0)
+	public static let Unknown           = CardBrand(rawValue:  0)
 
-	public static let AiywaLoyalty      = goTapAPI.CardBrand(rawValue:  1)
-	public static let AmericanExpress   = goTapAPI.CardBrand(rawValue:  2)
-	public static let BENEFIT           = goTapAPI.CardBrand(rawValue:  3)
-	public static let CardGuard         = goTapAPI.CardBrand(rawValue:  4)
-	public static let CBK               = goTapAPI.CardBrand(rawValue:  5)
-	public static let Dankort           = goTapAPI.CardBrand(rawValue:  6)
-	public static let DinersClub        = goTapAPI.CardBrand(rawValue:  7)
-	public static let Discover          = goTapAPI.CardBrand(rawValue:  8)
-	public static let FAWRY             = goTapAPI.CardBrand(rawValue:  9)
-	public static let InstaPayment      = goTapAPI.CardBrand(rawValue: 10)
-	public static let InterPayment      = goTapAPI.CardBrand(rawValue: 11)
-	public static let JCB               = goTapAPI.CardBrand(rawValue: 12)
-	public static let KNET              = goTapAPI.CardBrand(rawValue: 13)
-	public static let MADA              = goTapAPI.CardBrand(rawValue: 14)
-	public static let Maestro           = goTapAPI.CardBrand(rawValue: 15)
-	public static let MasterCard        = goTapAPI.CardBrand(rawValue: 16)
-	public static let NAPS              = goTapAPI.CardBrand(rawValue: 17)
-	public static let NSPKMIR           = goTapAPI.CardBrand(rawValue: 18)
-	public static let SADAD             = goTapAPI.CardBrand(rawValue: 19)
-	public static let Tap               = goTapAPI.CardBrand(rawValue: 20)
-	public static let UATP              = goTapAPI.CardBrand(rawValue: 21)
-	public static let UnionPay          = goTapAPI.CardBrand(rawValue: 22)
-	public static let Verve             = goTapAPI.CardBrand(rawValue: 23)
-	public static let Visa              = goTapAPI.CardBrand(rawValue: 24)
-	public static let Viva              = goTapAPI.CardBrand(rawValue: 25)
-	public static let Wataniya          = goTapAPI.CardBrand(rawValue: 26)
-	public static let Zain              = goTapAPI.CardBrand(rawValue: 27)
+	public static let AiywaLoyalty      = CardBrand(rawValue:  1)
+	public static let AmericanExpress   = CardBrand(rawValue:  2)
+	public static let BENEFIT           = CardBrand(rawValue:  3)
+	public static let CardGuard         = CardBrand(rawValue:  4)
+	public static let CBK               = CardBrand(rawValue:  5)
+	public static let Dankort           = CardBrand(rawValue:  6)
+	public static let DinersClub        = CardBrand(rawValue:  7)
+	public static let Discover          = CardBrand(rawValue:  8)
+	public static let FAWRY             = CardBrand(rawValue:  9)
+	public static let InstaPayment      = CardBrand(rawValue: 10)
+	public static let InterPayment      = CardBrand(rawValue: 11)
+	public static let JCB               = CardBrand(rawValue: 12)
+	public static let KNET              = CardBrand(rawValue: 13)
+	public static let MADA              = CardBrand(rawValue: 14)
+	public static let Maestro           = CardBrand(rawValue: 15)
+	public static let MasterCard        = CardBrand(rawValue: 16)
+	public static let NAPS              = CardBrand(rawValue: 17)
+	public static let NSPKMIR           = CardBrand(rawValue: 18)
+	public static let SADAD             = CardBrand(rawValue: 19)
+	public static let Tap               = CardBrand(rawValue: 20)
+	public static let UATP              = CardBrand(rawValue: 21)
+	public static let UnionPay          = CardBrand(rawValue: 22)
+	public static let Verve             = CardBrand(rawValue: 23)
+	public static let Visa              = CardBrand(rawValue: 24)
+	public static let Viva              = CardBrand(rawValue: 25)
+	public static let Wataniya          = CardBrand(rawValue: 26)
+	public static let Zain              = CardBrand(rawValue: 27)
 
 	public var localizedTitle: String {
 
-		guard let datasource = goTapAPI.Client.sharedInstance.dataSource else { return String.tap_empty }
+		guard let datasource = Client.sharedInstance.dataSource else { return String.tap_empty }
 
-		if self == goTapAPI.CardBrand.AiywaLoyalty {
+		if self == CardBrand.AiywaLoyalty {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.AiywaLoyalty)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.AiywaLoyalty)
 		}
-		else if self == goTapAPI.CardBrand.AmericanExpress {
+		else if self == CardBrand.AmericanExpress {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.AmericanExpress)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.AmericanExpress)
 		}
-		else if self == goTapAPI.CardBrand.BENEFIT {
+		else if self == CardBrand.BENEFIT {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.BENEFIT)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.BENEFIT)
 		}
-		else if self == goTapAPI.CardBrand.CardGuard {
+		else if self == CardBrand.CardGuard {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.CardGuard)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.CardGuard)
 		}
-		else if self == goTapAPI.CardBrand.CBK {
+		else if self == CardBrand.CBK {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.CBK)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.CBK)
 		}
-		else if self == goTapAPI.CardBrand.Dankort {
+		else if self == CardBrand.Dankort {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Dankort)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Dankort)
 		}
-		else if self == goTapAPI.CardBrand.DinersClub {
+		else if self == CardBrand.DinersClub {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.DinersClub)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.DinersClub)
 		}
-		else if self == goTapAPI.CardBrand.Discover {
+		else if self == CardBrand.Discover {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Discover)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Discover)
 		}
-		else if self == goTapAPI.CardBrand.FAWRY {
+		else if self == CardBrand.FAWRY {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.FAWRY)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.FAWRY)
 		}
-		else if self == goTapAPI.CardBrand.InstaPayment {
+		else if self == CardBrand.InstaPayment {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.InstaPayment)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.InstaPayment)
 		}
-		else if self == goTapAPI.CardBrand.InterPayment {
+		else if self == CardBrand.InterPayment {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.InterPayment)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.InterPayment)
 		}
-		else if self == goTapAPI.CardBrand.JCB {
+		else if self == CardBrand.JCB {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.JCB)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.JCB)
 		}
-		else if self == goTapAPI.CardBrand.KNET {
+		else if self == CardBrand.KNET {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.KNET)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.KNET)
 		}
-		else if self == goTapAPI.CardBrand.MADA {
+		else if self == CardBrand.MADA {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.MADA)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.MADA)
 		}
-		else if self == goTapAPI.CardBrand.Maestro {
+		else if self == CardBrand.Maestro {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Maestro)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Maestro)
 		}
-		else if self == goTapAPI.CardBrand.MasterCard {
+		else if self == CardBrand.MasterCard {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.MasterCard)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.MasterCard)
 		}
-		else if self == goTapAPI.CardBrand.NAPS {
+		else if self == CardBrand.NAPS {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.NAPS)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.NAPS)
 		}
-		else if self == goTapAPI.CardBrand.NSPKMIR {
+		else if self == CardBrand.NSPKMIR {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.NSPKMIR)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.NSPKMIR)
 		}
-		else if self == goTapAPI.CardBrand.SADAD {
+		else if self == CardBrand.SADAD {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.SADAD)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.SADAD)
 		}
-		else if self == goTapAPI.CardBrand.Tap {
+		else if self == CardBrand.Tap {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Tap)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Tap)
 		}
-		else if self == goTapAPI.CardBrand.UATP {
+		else if self == CardBrand.UATP {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.UATP)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.UATP)
 		}
-		else if self == goTapAPI.CardBrand.UnionPay {
+		else if self == CardBrand.UnionPay {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.UnionPay)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.UnionPay)
 		}
-		else if self == goTapAPI.CardBrand.Verve {
+		else if self == CardBrand.Verve {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Verve)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Verve)
 		}
-		else if self == goTapAPI.CardBrand.Visa {
+		else if self == CardBrand.Visa {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Visa)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Visa)
 		}
-		else if self == goTapAPI.CardBrand.Viva {
+		else if self == CardBrand.Viva {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Viva)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Viva)
 		}
-		else if self == goTapAPI.CardBrand.Wataniya {
+		else if self == CardBrand.Wataniya {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Wataniya)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Wataniya)
 		}
-		else if self == goTapAPI.CardBrand.Zain {
+		else if self == CardBrand.Zain {
 
-			return datasource.localizedString(forKey: goTapAPI.Constants.Key.Localization.CardBrand.Zain)
+			return datasource.localizedString(forKey: Constants.Key.Localization.CardBrand.Zain)
 		}
 		else {
 
@@ -163,7 +163,7 @@ public class CardBrand: goTapAPI.Enum {
 
 	 - returns: CardBrand.
 	 */
-	internal static func with(stringValue: String?) -> goTapAPI.CardBrand? {
+	internal static func with(stringValue: String?) -> CardBrand? {
 
 		guard let string = stringValue else {
 
@@ -172,113 +172,113 @@ public class CardBrand: goTapAPI.Enum {
 
 		switch string {
 
-			case goTapAPI.Constants.Value.Aiywa_Loyalty:
+			case Constants.Value.Aiywa_Loyalty:
 
-				return goTapAPI.CardBrand.AiywaLoyalty
+				return CardBrand.AiywaLoyalty
 
-			case goTapAPI.Constants.Value.AMEX:
+			case Constants.Value.AMEX:
 
-				return goTapAPI.CardBrand.AmericanExpress
+				return CardBrand.AmericanExpress
 
-			case goTapAPI.Constants.Value.BENEFIT:
+			case Constants.Value.BENEFIT:
 
-				return goTapAPI.CardBrand.BENEFIT
+				return CardBrand.BENEFIT
 
-			case goTapAPI.Constants.Value.CARDGUARD:
+			case Constants.Value.CARDGUARD:
 
-				return goTapAPI.CardBrand.CardGuard
+				return CardBrand.CardGuard
 
-			case goTapAPI.Constants.Value.CBK:
+			case Constants.Value.CBK:
 
-				return goTapAPI.CardBrand.CBK
+				return CardBrand.CBK
 
-			case goTapAPI.Constants.Value.DANKORT:
+			case Constants.Value.DANKORT:
 
-				return goTapAPI.CardBrand.Dankort
+				return CardBrand.Dankort
 
-			case goTapAPI.Constants.Value.DINERS:
+			case Constants.Value.DINERS:
 
-				return goTapAPI.CardBrand.DinersClub
+				return CardBrand.DinersClub
 
-			case goTapAPI.Constants.Value.DISCOVER:
+			case Constants.Value.DISCOVER:
 
-				return goTapAPI.CardBrand.Discover
+				return CardBrand.Discover
 
-			case goTapAPI.Constants.Value.FAWRY:
+			case Constants.Value.FAWRY:
 
-				return goTapAPI.CardBrand.FAWRY
+				return CardBrand.FAWRY
 
-			case goTapAPI.Constants.Value.INSTAPAY:
+			case Constants.Value.INSTAPAY:
 
-				return goTapAPI.CardBrand.InstaPayment
+				return CardBrand.InstaPayment
 
-			case goTapAPI.Constants.Value.INTERPAY:
+			case Constants.Value.INTERPAY:
 
-				return goTapAPI.CardBrand.InterPayment
+				return CardBrand.InterPayment
 
-			case goTapAPI.Constants.Value.JCB:
+			case Constants.Value.JCB:
 
-				return goTapAPI.CardBrand.JCB
+				return CardBrand.JCB
 
-			case goTapAPI.Constants.Value.KNET:
+			case Constants.Value.KNET:
 
-				return goTapAPI.CardBrand.KNET
+				return CardBrand.KNET
 
-			case goTapAPI.Constants.Value.MADA:
+			case Constants.Value.MADA:
 
-				return goTapAPI.CardBrand.MADA
+				return CardBrand.MADA
 
-			case goTapAPI.Constants.Value.MAESTRO:
+			case Constants.Value.MAESTRO:
 
-				return goTapAPI.CardBrand.Maestro
+				return CardBrand.Maestro
 
-			case goTapAPI.Constants.Value.MASTERCARD:
+			case Constants.Value.MASTERCARD:
 
-				return goTapAPI.CardBrand.MasterCard
+				return CardBrand.MasterCard
 
-			case goTapAPI.Constants.Value.NAPS:
+			case Constants.Value.NAPS:
 
-				return goTapAPI.CardBrand.NAPS
+				return CardBrand.NAPS
 
-			case goTapAPI.Constants.Value.NSPK:
+			case Constants.Value.NSPK:
 
-				return goTapAPI.CardBrand.NSPKMIR
+				return CardBrand.NSPKMIR
 
-			case goTapAPI.Constants.Value.SADAD:
+			case Constants.Value.SADAD:
 
-				return goTapAPI.CardBrand.SADAD
+				return CardBrand.SADAD
 
-			case goTapAPI.Constants.Value.TAP:
+			case Constants.Value.TAP:
 
-				return goTapAPI.CardBrand.Tap
+				return CardBrand.Tap
 
-			case goTapAPI.Constants.Value.UATP:
+			case Constants.Value.UATP:
 
-				return goTapAPI.CardBrand.UATP
+				return CardBrand.UATP
 
-			case goTapAPI.Constants.Value.UNIONPAY:
+			case Constants.Value.UNIONPAY:
 
-				return goTapAPI.CardBrand.UnionPay
+				return CardBrand.UnionPay
 
-			case goTapAPI.Constants.Value.VERVE:
+			case Constants.Value.VERVE:
 
-				return goTapAPI.CardBrand.Verve
+				return CardBrand.Verve
 
-			case goTapAPI.Constants.Value.VISA:
+			case Constants.Value.VISA:
 
-				return goTapAPI.CardBrand.Visa
+				return CardBrand.Visa
 
-			case goTapAPI.Constants.Value.Viva_PAY:
+			case Constants.Value.Viva_PAY:
 
-				return goTapAPI.CardBrand.Viva
+				return CardBrand.Viva
 
-			case goTapAPI.Constants.Value.Wataniya_PAY:
+			case Constants.Value.Wataniya_PAY:
 
-				return goTapAPI.CardBrand.Wataniya
+				return CardBrand.Wataniya
 
-			case goTapAPI.Constants.Value.Zain_PAY:
+			case Constants.Value.Zain_PAY:
 
-				return goTapAPI.CardBrand.Zain
+				return CardBrand.Zain
 
 			default:
 

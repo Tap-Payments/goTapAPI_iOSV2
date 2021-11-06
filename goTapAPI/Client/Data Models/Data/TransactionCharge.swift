@@ -7,7 +7,7 @@
 //
 
 /// Transaction charge data model.
-public class TransactionCharge: goTapAPI.DataModel {
+public class TransactionCharge: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -44,21 +44,21 @@ public class TransactionCharge: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.TransactionCharge else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? TransactionCharge else { return nil }
 
-		guard let parsedGatewayID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.GateWayID) else { return nil }
-		guard let parsedVendorID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.VndID) else { return nil }
-		guard let parsedVendorName = dictionary.parseString(forKey: goTapAPI.Constants.Key.VndName) else { return nil }
-		guard let parsedCurrencyCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.CurrencyCD) else { return nil }
-		guard let parsedExtraCharge = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.ExtraCharge) else { return nil }
-		guard let parsedPaymentCurrencyCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.PayCurrencyCD) else { return nil }
-		guard let parsedPaymentExtraCharge = dictionary.parseAmount(forKey: goTapAPI.Constants.Key.PayExtraCharge) else { return nil }
-		guard let parsedPaymentCurrencySymbol = dictionary.parseString(forKey: goTapAPI.Constants.Key.PayCurrencySymbol) else { return nil }
+		guard let parsedGatewayID = dictionary.parseInteger(forKey: Constants.Key.GateWayID) else { return nil }
+		guard let parsedVendorID = dictionary.parseInteger(forKey: Constants.Key.VndID) else { return nil }
+		guard let parsedVendorName = dictionary.parseString(forKey: Constants.Key.VndName) else { return nil }
+		guard let parsedCurrencyCode = dictionary.parseString(forKey: Constants.Key.CurrencyCD) else { return nil }
+		guard let parsedExtraCharge = dictionary.parseAmount(forKey: Constants.Key.ExtraCharge) else { return nil }
+		guard let parsedPaymentCurrencyCode = dictionary.parseString(forKey: Constants.Key.PayCurrencyCD) else { return nil }
+		guard let parsedPaymentExtraCharge = dictionary.parseAmount(forKey: Constants.Key.PayExtraCharge) else { return nil }
+		guard let parsedPaymentCurrencySymbol = dictionary.parseString(forKey: Constants.Key.PayCurrencySymbol) else { return nil }
 
 		model.gatewayID = parsedGatewayID
 		model.vendorID = parsedVendorID
 		model.vendorName = parsedVendorName
-		model.vendorImageURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.VndImage)
+		model.vendorImageURL = dictionary.parseURL(forKey: Constants.Key.VndImage)
 		model.currencyCode = parsedCurrencyCode
 		model.extraCharge = parsedExtraCharge
 		model.paymentCurrencyCode = parsedPaymentCurrencyCode

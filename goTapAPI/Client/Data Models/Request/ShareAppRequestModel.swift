@@ -7,7 +7,7 @@
 //
 
 /// Request model for share app request.
-internal class ShareAppRequestModel: goTapAPI.RequestModel {
+internal class ShareAppRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -16,18 +16,18 @@ internal class ShareAppRequestModel: goTapAPI.RequestModel {
 	internal private(set) var transactionID: String = String.tap_empty
 
 	/// Medium.
-	internal private(set) var medium: goTapAPI.SharingOption = goTapAPI.SharingOption.Mail
+	internal private(set) var medium: SharingOption = SharingOption.Mail
 
 	/// Share action.
-	internal private(set) var shareAction: goTapAPI.SharingStatus = goTapAPI.SharingStatus.Failed
+	internal private(set) var shareAction: SharingStatus = SharingStatus.Failed
 
 	internal override var serializedModel: AnyObject? {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.TxnID: transactionID,
-			goTapAPI.Constants.Key.Medium: medium.stringRepresentation,
-			goTapAPI.Constants.Key.ShareAction: shareAction.rawValue
+			Constants.Key.TxnID: transactionID,
+			Constants.Key.Medium: medium.stringRepresentation,
+			Constants.Key.ShareAction: shareAction.rawValue
 		]
 
 		return result as AnyObject
@@ -44,7 +44,7 @@ internal class ShareAppRequestModel: goTapAPI.RequestModel {
 
 	 - returns: TPAPIShareAppRequestModel
 	 */
-	internal init(transactionID: String, medium: goTapAPI.SharingOption, shareAction: goTapAPI.SharingStatus) {
+	internal init(transactionID: String, medium: SharingOption, shareAction: SharingStatus) {
 
 		super.init()
 

@@ -7,7 +7,7 @@
 //
 
 /// Request URL model for delete list request.
-internal class DeleteListRequestURLModel: goTapAPI.RequestModel {
+internal class DeleteListRequestURLModel: RequestModel {
 
 	//MARK: - Internal -
 	//MARK: Properties
@@ -19,7 +19,7 @@ internal class DeleteListRequestURLModel: goTapAPI.RequestModel {
 		
 		let result: [String: Any] = [
 			
-			goTapAPI.Constants.Key.Option: self.deletePermanently ? goTapAPI.Constants.Value.DP : goTapAPI.Constants.Value.D
+			Constants.Key.Option: self.deletePermanently ? Constants.Value.DP : Constants.Value.D
 		]
 		
 		return result as AnyObject

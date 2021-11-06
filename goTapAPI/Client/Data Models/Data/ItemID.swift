@@ -1,4 +1,4 @@
-public class ItemID: goTapAPI.DataModel {
+public class ItemID: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -13,9 +13,9 @@ public class ItemID: goTapAPI.DataModel {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.BizID: self.businessID,
-			goTapAPI.Constants.Key.ID: self.identifier,
-			goTapAPI.Constants.Key.ItemType: self.itemType
+			Constants.Key.BizID: self.businessID,
+			Constants.Key.ID: self.identifier,
+			Constants.Key.ItemType: self.itemType
 		]
 
 		return result as AnyObject

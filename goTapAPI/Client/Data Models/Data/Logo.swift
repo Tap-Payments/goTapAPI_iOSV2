@@ -7,7 +7,7 @@
 //
 
 /// Logo model.
-public class Logo: goTapAPI.DataModel {
+public class Logo: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -34,13 +34,13 @@ public class Logo: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.Logo else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? Logo else { return nil }
 	 
-		guard let screenIDNumber = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.ScreenID) else { return nil }
-		guard let businessIDNumber = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.BusinessID) else { return nil }
-		guard let isdNumberNumber = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.ISDNmbr) else { return nil }
-		guard let logoIDNumber = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.LogoID) else { return nil }
-		guard let logoURL = dictionary.parseURL(forKey: goTapAPI.Constants.Key.LogoURL) else { return nil }
+		guard let screenIDNumber = dictionary.parseInteger(forKey: Constants.Key.ScreenID) else { return nil }
+		guard let businessIDNumber = dictionary.parseInteger(forKey: Constants.Key.BusinessID) else { return nil }
+		guard let isdNumberNumber = dictionary.parseInteger(forKey: Constants.Key.ISDNmbr) else { return nil }
+		guard let logoIDNumber = dictionary.parseInteger(forKey: Constants.Key.LogoID) else { return nil }
+		guard let logoURL = dictionary.parseURL(forKey: Constants.Key.LogoURL) else { return nil }
 		
 		model.screenID = screenIDNumber
 		model.businessID = businessIDNumber
@@ -58,8 +58,8 @@ public class Logo: goTapAPI.DataModel {
 	 
 	 - returns: NSComparisonResult value.
 	 */
-	public func compareByLogoID(other: goTapAPI.Logo) -> goTapAPI.ComparisonResult {
+	public func compareByLogoID(other: Logo) -> ComparisonResult {
 		
-		return goTapAPI.IntExtension.compare(first: logoID, toOther: other.logoID)
+		return IntExtension.compare(first: logoID, toOther: other.logoID)
 	}
 }

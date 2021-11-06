@@ -7,7 +7,7 @@
 //
 
 /// Data model with layer image updates.
-public class LayerImageUpdate: goTapAPI.DataModel {
+public class LayerImageUpdate: DataModel {
 	
 	//MARK: - Public -
 	//MARK: Properties
@@ -16,7 +16,7 @@ public class LayerImageUpdate: goTapAPI.DataModel {
 	public internal(set) var layerIndex: Int64 = 0
 	
 	/// Image URLs.
-	public internal(set) var imageURLs: [goTapAPI.ImageURL] = []
+	public internal(set) var imageURLs: [ImageURL] = []
 	
 	/// Defines if layer is visible in registration.
 	public internal(set) var visibleInRegistration: Swift.Bool = false
@@ -36,23 +36,23 @@ public class LayerImageUpdate: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.LayerImageUpdate else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? LayerImageUpdate else { return nil }
 	 
-		model.layerIndex = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.LayerIndex) ?? 0
+		model.layerIndex = dictionary.parseInteger(forKey: Constants.Key.LayerIndex) ?? 0
 		
-		let imageURLParsingClosure: (AnyObject) -> goTapAPI.ImageURL? = { object in
+		let imageURLParsingClosure: (AnyObject) -> ImageURL? = { object in
 		
-			return goTapAPI.ImageURL().dataModelWith(serializedObject: object)
+			return ImageURL().dataModelWith(serializedObject: object)
 		}
 		
-		let emptyImageURLs: [goTapAPI.ImageURL] = []
-		let serializedImageURLs = dictionary.parseArray(forKey: goTapAPI.Constants.Key.ImageUrls) ?? emptyImageURLs
-		let parsedImageURLs: [goTapAPI.ImageURL]? = goTapAPI.ParseHelper.parse(array: serializedImageURLs, usingClosure: imageURLParsingClosure)
+		let emptyImageURLs: [ImageURL] = []
+		let serializedImageURLs = dictionary.parseArray(forKey: Constants.Key.ImageUrls) ?? emptyImageURLs
+		let parsedImageURLs: [ImageURL]? = ParseHelper.parse(array: serializedImageURLs, usingClosure: imageURLParsingClosure)
 		model.imageURLs = parsedImageURLs == nil ? emptyImageURLs : parsedImageURLs!
 	 
-		model.visibleInRegistration = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.VisibleInRegistration) ?? false
-		model.visibleInMyList = dictionary.parseBoolean(forKey: goTapAPI.Constants.Key.VisibleInMyList) ?? false
-		model.updatedDate = dictionary.parseDate(forKey: goTapAPI.Constants.Key.UpdatedDate)
+		model.visibleInRegistration = dictionary.parseBoolean(forKey: Constants.Key.VisibleInRegistration) ?? false
+		model.visibleInMyList = dictionary.parseBoolean(forKey: Constants.Key.VisibleInMyList) ?? false
+		model.updatedDate = dictionary.parseDate(forKey: Constants.Key.UpdatedDate)
 		
 		return model.tap_asSelf()
 	}

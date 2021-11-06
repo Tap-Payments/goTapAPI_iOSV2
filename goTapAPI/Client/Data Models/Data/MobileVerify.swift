@@ -7,7 +7,7 @@
 //
 
 /// Data model to verify phone.
-internal class MobileVerify: goTapAPI.DataModel {
+internal class MobileVerify: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -25,17 +25,17 @@ internal class MobileVerify: goTapAPI.DataModel {
 	private(set) var deviceID: String?
 
 	/// Country.
-	private(set) var country: goTapAPI.Country?
+	private(set) var country: Country?
 
 	internal override var serializedModel: AnyObject? {
 
 		var result: [String: Any] = [:]
 
-		result[goTapAPI.Constants.Key.PhoneNmbr] = phoneNumber ?? NSNull()
-		result[goTapAPI.Constants.Key.CnfrmCode] = confirmationCode ?? NSNull()
-		result[goTapAPI.Constants.Key.SIMCardCode] = simCardCode ?? "123"
-		result[goTapAPI.Constants.Key.DeviceID] = deviceID ?? String.tap_empty
-		result[goTapAPI.Constants.Key.Cntry] = country?.applicationDataSerializedModel ?? NSNull()
+		result[Constants.Key.PhoneNmbr] = phoneNumber ?? NSNull()
+		result[Constants.Key.CnfrmCode] = confirmationCode ?? NSNull()
+		result[Constants.Key.SIMCardCode] = simCardCode ?? "123"
+		result[Constants.Key.DeviceID] = deviceID ?? String.tap_empty
+		result[Constants.Key.Cntry] = country?.applicationDataSerializedModel ?? NSNull()
 
 		return result as AnyObject
 	}
@@ -55,7 +55,7 @@ internal class MobileVerify: goTapAPI.DataModel {
 
 	 - returns: New instance of TPAPIMobileVerify.
 	 */
-	init(phoneNumber: String?, confirmationCode: String?, simCardCode: String?, deviceID: String?, country: goTapAPI.Country?) {
+	init(phoneNumber: String?, confirmationCode: String?, simCardCode: String?, deviceID: String?, country: Country?) {
 
 		super.init()
 

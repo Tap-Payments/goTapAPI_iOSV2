@@ -7,7 +7,7 @@
 //
 
 /// Request model for application request operation.
-internal class RequestApplicationRequestModel: goTapAPI.RequestModel {
+internal class RequestApplicationRequestModel: RequestModel {
 	
 	//MARK: - Public -
 	//MARK: Properties
@@ -16,7 +16,7 @@ internal class RequestApplicationRequestModel: goTapAPI.RequestModel {
 		
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
 		
-		result[goTapAPI.Constants.Key.AppData] = goTapAPI.ApplicationData.sharedInstance.serializedModel ?? NSNull()
+		result[Constants.Key.AppData] = ApplicationData.sharedInstance.serializedModel ?? NSNull()
 		
 		return result as AnyObject
 	}

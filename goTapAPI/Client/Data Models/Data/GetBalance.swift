@@ -1,4 +1,4 @@
-public class GetBalance: goTapAPI.DataModel {
+public class GetBalance: DataModel {
 
 	// MARK: - Public -
 	// MARK: Properties
@@ -24,13 +24,13 @@ public class GetBalance: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.GetBalance else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? GetBalance else { return nil }
 
-		model.gsmNumber = dictionary.parseString(forKey: goTapAPI.Constants.Key.gsm_number)
-		model.smsToSender = dictionary.parseString(forKey: goTapAPI.Constants.Key.sms_to_sender)
-		model.smsContent = dictionary.parseString(forKey: goTapAPI.Constants.Key.sms_content)
-		model.dialNumber = dictionary.parseString(forKey: goTapAPI.Constants.Key.dial_number)
-		model.ussdCode = dictionary.parseString(forKey: goTapAPI.Constants.Key.ussd_code)
+		model.gsmNumber = dictionary.parseString(forKey: Constants.Key.gsm_number)
+		model.smsToSender = dictionary.parseString(forKey: Constants.Key.sms_to_sender)
+		model.smsContent = dictionary.parseString(forKey: Constants.Key.sms_content)
+		model.dialNumber = dictionary.parseString(forKey: Constants.Key.dial_number)
+		model.ussdCode = dictionary.parseString(forKey: Constants.Key.ussd_code)
 
 		return model.tap_asSelf()
 	}

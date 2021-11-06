@@ -13,7 +13,7 @@ public class RequestOperation: NSObject {
 	//MARK: Properties
 
 	/// HTTP method.
-	public private(set) var httpMethod: goTapAPI.HttpMethod
+	public private(set) var httpMethod: HttpMethod
 
 	/// Request path.
 	public var requestPath: String {
@@ -46,64 +46,64 @@ public class RequestOperation: NSObject {
 	/// Additional request headers.
 	public var requestHeaders: [String: String] {
 
-		let apiClient = goTapAPI.Client.sharedInstance
+		let apiClient = Client.sharedInstance
 		let apiClientDataSource = apiClient.dataSource!
 
 		var headers: [String: String] = [:]
 
-		headers[goTapAPI.Constants.Key.APP_Mode] = apiClientDataSource.shouldUseProductionServer() ? goTapAPI.Constants.Value.PRD : goTapAPI.Constants.Value.DEV
-		headers[goTapAPI.Constants.Key.APP_Version] = apiClientDataSource.applicationBuildString()
-		headers[goTapAPI.Constants.Key.LangCode] = apiClientDataSource.languageCode()
+		headers[Constants.Key.APP_Mode] = apiClientDataSource.shouldUseProductionServer() ? Constants.Value.PRD : Constants.Value.DEV
+		headers[Constants.Key.APP_Version] = apiClientDataSource.applicationBuildString()
+		headers[Constants.Key.LangCode] = apiClientDataSource.languageCode()
 
-		if let deviceID = apiClientDataSource.stringFromKeychain(forKey: goTapAPI.Constants.Key.UserSettings.DeviceID) {
+		if let deviceID = apiClientDataSource.stringFromKeychain(forKey: Constants.Key.UserSettings.DeviceID) {
 
-			headers[goTapAPI.Constants.Key.DeviceID] = deviceID
+			headers[Constants.Key.DeviceID] = deviceID
 		}
 
-		let sessionID: String = apiClientDataSource.stringFromUserSettings(forKey: goTapAPI.Constants.Key.UserSettings.SessionID) ?? String.tap_empty
-		headers[goTapAPI.Constants.Key.SessionID] = sessionID
+		let sessionID: String = apiClientDataSource.stringFromUserSettings(forKey: Constants.Key.UserSettings.SessionID) ?? String.tap_empty
+		headers[Constants.Key.SessionID] = sessionID
 
 		let hsCode = apiClientDataSource.encryptString(sessionID)
 		if hsCode.Length > 0 {
 
-			headers[goTapAPI.Constants.Key.HsCode] = hsCode
+			headers[Constants.Key.HsCode] = hsCode
 		}
 
-		let appLicenseCode: String = apiClientDataSource.stringFromUserSettings(forKey: goTapAPI.Constants.Key.UserSettings.AppLicenseCode) ?? String.tap_empty
+		let appLicenseCode: String = apiClientDataSource.stringFromUserSettings(forKey: Constants.Key.UserSettings.AppLicenseCode) ?? String.tap_empty
 		if appLicenseCode.Length > 0 {
 
-			headers[goTapAPI.Constants.Key.APPLicenseCD] = appLicenseCode
+			headers[Constants.Key.APPLicenseCD] = appLicenseCode
 		}
 
 		if let mobileCountryCode = apiClientDataSource.mobileCountryCode(), let mobileNetworkCode = apiClientDataSource.mobileNetworkCode() {
 
-			headers[goTapAPI.Constants.Key.CarrierCode] = "\(mobileCountryCode)_\(mobileNetworkCode)"
+			headers[Constants.Key.CarrierCode] = "\(mobileCountryCode)_\(mobileNetworkCode)"
 		}
 		else {
 
-			headers[goTapAPI.Constants.Key.CarrierCode] = String.tap_empty
+			headers[Constants.Key.CarrierCode] = String.tap_empty
 		}
 
 		return headers
 	}
 
 	/// URL model.
-	public private(set) var urlModel: goTapAPI.RequestModel?
+	public private(set) var urlModel: RequestModel?
 
 	/// Body model.
-	public private(set) var bodyModel: goTapAPI.RequestModel?
+	public private(set) var bodyModel: RequestModel?
 
 	/// Response model.
-	public private(set) var responseModel: goTapAPI.ResponseModel?
+	public private(set) var responseModel: ResponseModel?
 
 	/// Response error.
-	public private(set) var responseError: goTapAPI.APIError?
+	public private(set) var responseError: APIError?
 
 	/// Response object.
 	public private(set) var responseObjectString: String?
 	public private(set) var responseObject: Any?
 
-	internal private(set) var responseObjectType: goTapAPI.ResponseModel
+	internal private(set) var responseObjectType: ResponseModel
 
 	/// Defines if operation can be performed simultaneously with such others request operations.
 	public private(set) var forbidsSameSimultaneousOperations: Swift.Bool
@@ -122,11 +122,11 @@ public class RequestOperation: NSObject {
 
 	 - returns: TPAPIRequestOperation
 	 */
-	internal init(httpMethod: goTapAPI.HttpMethod,
+	internal init(httpMethod: HttpMethod,
 				  requestPath: String,
-				  requestURLModel: goTapAPI.RequestModel? = nil,
-				  requestBodyModel: goTapAPI.RequestModel? = nil,
-				  responseObjectType: goTapAPI.ResponseModel,
+				  requestURLModel: RequestModel? = nil,
+				  requestBodyModel: RequestModel? = nil,
+				  responseObjectType: ResponseModel,
 				  allowSameSimultaneousOperations: Swift.Bool = true) {
 
 		self.httpMethod = httpMethod
@@ -165,7 +165,7 @@ public class RequestOperation: NSObject {
 
 		self.responseObject = object
 
-		let parsedResponse: goTapAPI.ResponseModel? = self.responseObjectType.dataModelWith(serializedObject: object)
+		let parsedResponse: ResponseModel? = self.responseObjectType.dataModelWith(serializedObject: object)
 
 		var response: Response?
 		if parsedResponse != nil {
@@ -174,19 +174,19 @@ public class RequestOperation: NSObject {
 		}
 		else {
 
-			response = (goTapAPI.ResponseModel().dataModelWith(serializedObject: object))?.response
+			response = (ResponseModel().dataModelWith(serializedObject: object))?.response
 		}
 
 		let responseCode =  response?.code ?? 0
 		var isError: Swift.Bool = responseCode != 0
-		if isError && (parsedResponse is goTapAPI.PayTransactionResponseModel) && responseCode == 1 {
+		if isError && (parsedResponse is PayTransactionResponseModel) && responseCode == 1 {
 
 			isError = false
 		}
 
 		if isError {
 
-			self.responseError = goTapAPI.APIError(response: response!)
+			self.responseError = APIError(response: response!)
 		}
 		else {
 

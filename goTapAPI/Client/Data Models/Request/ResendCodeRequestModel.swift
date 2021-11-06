@@ -7,7 +7,7 @@
 //
 
 /// Request model to resend code.
-internal class ResendCodeRequestModel: goTapAPI.RequestModel {
+internal class ResendCodeRequestModel: RequestModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -16,7 +16,7 @@ internal class ResendCodeRequestModel: goTapAPI.RequestModel {
 		
 		guard var result = super.serializedModel as? [String: Any] else { return nil }
 		
-		result[goTapAPI.Constants.Key.AppData] = goTapAPI.ApplicationData.sharedInstance.serializedModel ?? NSNull()
+		result[Constants.Key.AppData] = ApplicationData.sharedInstance.serializedModel ?? NSNull()
 		
 		return result as AnyObject
 	}

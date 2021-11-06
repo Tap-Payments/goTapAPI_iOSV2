@@ -7,7 +7,7 @@
 //
 
 /// Address format details model.
-public class AddressFormatHeader: goTapAPI.DataModel {
+public class AddressFormatHeader: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -36,14 +36,14 @@ public class AddressFormatHeader: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.AddressFormatHeader else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? AddressFormatHeader else { return nil }
 
-		model.countryID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.CntryID) ?? 0
-		model.fieldID = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.FldID) ?? 0
-		model.fieldName = dictionary.parseString(forKey: goTapAPI.Constants.Key.FldName) ?? String.tap_empty
-		model.fieldDataType = dictionary.parseString(forKey: goTapAPI.Constants.Key.FldDataTyp) ?? String.tap_empty
-		model.maximalLength = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.MaxLngth) ?? 0
-		model.displayOrder = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.DispOrder) ?? 0
+		model.countryID = dictionary.parseInteger(forKey: Constants.Key.CntryID) ?? 0
+		model.fieldID = dictionary.parseInteger(forKey: Constants.Key.FldID) ?? 0
+		model.fieldName = dictionary.parseString(forKey: Constants.Key.FldName) ?? String.tap_empty
+		model.fieldDataType = dictionary.parseString(forKey: Constants.Key.FldDataTyp) ?? String.tap_empty
+		model.maximalLength = dictionary.parseInteger(forKey: Constants.Key.MaxLngth) ?? 0
+		model.displayOrder = dictionary.parseInteger(forKey: Constants.Key.DispOrder) ?? 0
 
 		return model.tap_asSelf()
 	}

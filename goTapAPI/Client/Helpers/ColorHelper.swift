@@ -1,7 +1,7 @@
 class ColorHelper {
 
 	private static let hexSymbol: String = "#"
-	private static let clearHexString: String = goTapAPI.ColorHelper.hexSymbol + "00000000"
+	private static let clearHexString: String = ColorHelper.hexSymbol + "00000000"
 
 	static func argbHexStringFrom(RGB_RGBAHexString rgbaHexString: String?) -> String {
 	
@@ -10,9 +10,9 @@ class ColorHelper {
 			return clearHexString
 		}
 		
-		if rgbaString.StartsWith(goTapAPI.ColorHelper.hexSymbol) {
+		if rgbaString.StartsWith(ColorHelper.hexSymbol) {
 			
-			rgbaString = rgbaString.Substring(Int64(goTapAPI.ColorHelper.hexSymbol.Length))
+			rgbaString = rgbaString.Substring(Int64(ColorHelper.hexSymbol.Length))
 		}
 		
 		let stringLength = rgbaString.Length
@@ -44,6 +44,6 @@ class ColorHelper {
 			b += b
 		}
 		
-		return "\(goTapAPI.ColorHelper.hexSymbol)\(a)\(r)\(g)\(b)"
+		return "\(ColorHelper.hexSymbol)\(a)\(r)\(g)\(b)"
 	}
 }

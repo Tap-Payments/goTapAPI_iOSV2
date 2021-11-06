@@ -12,21 +12,21 @@
  - Active:			 Active item.
  - Failed:			 Failed item.
  */
-public class ItemStatus: goTapAPI.Enum {
+public class ItemStatus: Enum {
 	
-	public static let Active = goTapAPI.ItemStatus(rawValue: 0)
-	public static let Failed = goTapAPI.ItemStatus(rawValue: 1)
+	public static let Active = ItemStatus(rawValue: 0)
+	public static let Failed = ItemStatus(rawValue: 1)
 	
 	/// Returns string representation of the receiver.
 	internal var stringRepresentation: String {
 		
 			if self == ItemStatus.Active {
 			
-			return goTapAPI.Constants.Value.ACTIVE
+			return Constants.Value.ACTIVE
 		}
 		else {
 			
-			return goTapAPI.Constants.Value.FAILED
+			return Constants.Value.FAILED
 		}
 	}
 	
@@ -37,26 +37,26 @@ public class ItemStatus: goTapAPI.Enum {
 	 
 	 - returns: TPAPIItemStatus.
 	 */
-	internal static func with(stringValue string: String?) -> goTapAPI.ItemStatus {
+	internal static func with(stringValue string: String?) -> ItemStatus {
 		
 		guard string != nil else {
 			
-			return goTapAPI.ItemStatus.Failed
+			return ItemStatus.Failed
 		}
 		
 		switch string! {
 			
-		case goTapAPI.Constants.Value.ACTIVE:
+		case Constants.Value.ACTIVE:
 			
-			return goTapAPI.ItemStatus.Active
+			return ItemStatus.Active
 			
-		case goTapAPI.Constants.Value.FAILED:
+		case Constants.Value.FAILED:
 			
-			return goTapAPI.ItemStatus.Failed
+			return ItemStatus.Failed
 			
 		default:
 			
-			return goTapAPI.ItemStatus.Failed
+			return ItemStatus.Failed
 		}
 	}
 }

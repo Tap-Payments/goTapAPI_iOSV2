@@ -22,28 +22,28 @@ public class APIError: NSObject {
 		self.userInfo = aUserInfo
 	}
 
-	internal init(response: goTapAPI.Response) {
+	internal init(response: Response) {
 
 		self.code = response.code
 		self.responseID = response.responseID
-		self.userInfo[goTapAPI.Constants.Key.ParamList] = response.parameters
+		self.userInfo[Constants.Key.ParamList] = response.parameters
 	}
 
-	public func encoded() -> goTapAPI.EncodedError {
+	public func encoded() -> EncodedError {
 
-		return goTapAPI.EncodedError(fileName: self.suggestedFileName, errorData: goTapAPI.Client.sharedInstance.dataSource!.encryptError(self))
+		return EncodedError(fileName: self.suggestedFileName, errorData: Client.sharedInstance.dataSource!.encryptError(self))
 	}
 
 	//MARK: - Private -
 	//MARK: Properties
 
 	private var date: Date = Date()
-	private static var dateFormatter: goTapAPI.DateFormatter = goTapAPI.DateFormatter.dateFormatterWith(localeIdentifier: goTapAPI.Constants.Default.LocaleIdentifier, dateFormat: goTapAPI.Constants.DateFormat.Format3)
+	private static var dateFormatter: DateFormatter = DateFormatter.dateFormatterWith(localeIdentifier: Constants.Default.LocaleIdentifier, dateFormat: Constants.DateFormat.Format3)
 
 	private var suggestedFileName : String {
 
-		let dateString = goTapAPI.APIError.dateFormatter.string(from: self.date)
-		let deviceID = goTapAPI.ApplicationData.sharedInstance.deviceID ?? String.tap_empty
+		let dateString = APIError.dateFormatter.string(from: self.date)
+		let deviceID = ApplicationData.sharedInstance.deviceID ?? String.tap_empty
 
 		return "\(dateString)-\(self.code)-\(deviceID)"
 	}

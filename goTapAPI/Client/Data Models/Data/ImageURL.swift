@@ -7,7 +7,7 @@
 //
 
 /// Image URL data model.
-public class ImageURL: goTapAPI.DataModel {
+public class ImageURL: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -20,8 +20,8 @@ public class ImageURL: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ImageURL else { return nil }
-		guard let parsedUrl = dictionary.parseURL(forKey: goTapAPI.Constants.Key.Url) else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ImageURL else { return nil }
+		guard let parsedUrl = dictionary.parseURL(forKey: Constants.Key.Url) else { return nil }
 		
 		model.url = parsedUrl
 		

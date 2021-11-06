@@ -15,13 +15,13 @@
  - SendSMS:   Send SMS action.
  - PhoneCall: Phone call action.
  */
-public class ActionType: goTapAPI.Enum {
+public class ActionType: Enum {
 	 
-	public static let None = goTapAPI.ActionType(rawValue: 0)
-	public static let Refresh = goTapAPI.ActionType(rawValue: 1)
-	public static let OpenURL = goTapAPI.ActionType(rawValue: 2)
-	public static let SendSMS = goTapAPI.ActionType(rawValue: 3)
-	public static let PhoneCall = goTapAPI.ActionType(rawValue: 4)
+	public static let None = ActionType(rawValue: 0)
+	public static let Refresh = ActionType(rawValue: 1)
+	public static let OpenURL = ActionType(rawValue: 2)
+	public static let SendSMS = ActionType(rawValue: 3)
+	public static let PhoneCall = ActionType(rawValue: 4)
 	
 	/**
 	 Initializes enum from string.
@@ -30,38 +30,38 @@ public class ActionType: goTapAPI.Enum {
 	 
 	 - returns: ActionType
 	 */
-	internal static func with(stringValue: String?) -> goTapAPI.ActionType {
+	internal static func with(stringValue: String?) -> ActionType {
 		
 		guard let string = stringValue else {
 			
-			return goTapAPI.ActionType.None
+			return ActionType.None
 		}
 		
 		switch string {
 			
-			case goTapAPI.Constants.Value.NONE:
+			case Constants.Value.NONE:
 			
-				return goTapAPI.ActionType.None
+				return ActionType.None
 			
-			case goTapAPI.Constants.Value.REFRESH:
+			case Constants.Value.REFRESH:
 			
-				return goTapAPI.ActionType.Refresh
+				return ActionType.Refresh
 			
-			case goTapAPI.Constants.Value.URL:
+			case Constants.Value.URL:
 			
-				return goTapAPI.ActionType.OpenURL
+				return ActionType.OpenURL
 			
-			case goTapAPI.Constants.Value.MSG:
+			case Constants.Value.MSG:
 			
-				return goTapAPI.ActionType.SendSMS
+				return ActionType.SendSMS
 			
-			case goTapAPI.Constants.Value.CALL:
+			case Constants.Value.CALL:
 			
-				return goTapAPI.ActionType.PhoneCall
+				return ActionType.PhoneCall
 			
 			default:
 			
-				return goTapAPI.ActionType.None
+				return ActionType.None
 		}
 	}
 }

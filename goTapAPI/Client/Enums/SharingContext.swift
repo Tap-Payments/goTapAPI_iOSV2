@@ -1,5 +1,5 @@
-public class SharingContext: goTapAPI.Enum {
+public class SharingContext: Enum {
 
-	public static let Menu = goTapAPI.SharingContext(rawValue: 1)
-	public static let SuccessfulPayment = goTapAPI.SharingContext(rawValue: 2)
+	public static let Menu = SharingContext(rawValue: 1)
+	public static let SuccessfulPayment = SharingContext(rawValue: 2)
 }

@@ -13,32 +13,32 @@
  - Pending: Pending.
  - Other:   Other.
  */
-public class TransactionResponseType: goTapAPI.Enum {
+public class TransactionResponseType: Enum {
 	
 	public static let Success = TransactionResponseType(rawValue: 0)
 	public static let Pending = TransactionResponseType(rawValue: 1)
 	public static let Other = TransactionResponseType(rawValue: 2)
 	
-	internal static func with(intValue: Int64?) -> goTapAPI.TransactionResponseType {
+	internal static func with(intValue: Int64?) -> TransactionResponseType {
 		
 		guard let value = intValue else {
 		 
-			return goTapAPI.TransactionResponseType.Other
+			return TransactionResponseType.Other
 		}
 		
 		switch value {
 		 
 			case 0:
 				
-				return goTapAPI.TransactionResponseType.Success
+				return TransactionResponseType.Success
 				
 			case 1:
 				
-				return goTapAPI.TransactionResponseType.Pending
+				return TransactionResponseType.Pending
 				
 			default:
 				
-				return goTapAPI.TransactionResponseType.Other
+				return TransactionResponseType.Other
 		}
 	}
 }

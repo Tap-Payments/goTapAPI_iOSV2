@@ -19,56 +19,56 @@
  - Linkedin:          LinkedIn.
  - GooglePlus:        Google Plus.
  */
-public class SharingOption: goTapAPI.Enum {
+public class SharingOption: Enum {
 
-	public static let SMS = goTapAPI.SharingOption(rawValue: 1)
-	public static let Mail = goTapAPI.SharingOption(rawValue: 2)
-	public static let Facebook = goTapAPI.SharingOption(rawValue: 3)
-	public static let FacebookMessenger = goTapAPI.SharingOption(rawValue: 4)
-	public static let Twitter = goTapAPI.SharingOption(rawValue: 5)
-	public static let WhatsApp = goTapAPI.SharingOption(rawValue: 6)
-	public static let Instagram = goTapAPI.SharingOption(rawValue: 7)
-	public static let Linkedin = goTapAPI.SharingOption(rawValue: 8)
-	public static let GooglePlus = goTapAPI.SharingOption(rawValue: 9)
+	public static let SMS = SharingOption(rawValue: 1)
+	public static let Mail = SharingOption(rawValue: 2)
+	public static let Facebook = SharingOption(rawValue: 3)
+	public static let FacebookMessenger = SharingOption(rawValue: 4)
+	public static let Twitter = SharingOption(rawValue: 5)
+	public static let WhatsApp = SharingOption(rawValue: 6)
+	public static let Instagram = SharingOption(rawValue: 7)
+	public static let Linkedin = SharingOption(rawValue: 8)
+	public static let GooglePlus = SharingOption(rawValue: 9)
 
 	/// Returns string representation of the receiver.
 	public var stringRepresentation: String {
 
 			if self == SharingOption.SMS {
 
-			return goTapAPI.Constants.Value.SMS
+			return Constants.Value.SMS
 		}
 		else  if self == SharingOption.Mail {
 
-			return goTapAPI.Constants.Value.Mail
+			return Constants.Value.Mail
 		}
 		else  if self == SharingOption.Facebook {
 
-			return goTapAPI.Constants.Value.Facebook
+			return Constants.Value.Facebook
 		}
 		else  if self == SharingOption.FacebookMessenger {
 
-			return goTapAPI.Constants.Value.FacebookMessenger
+			return Constants.Value.FacebookMessenger
 		}
 		else  if self == SharingOption.Twitter {
 
-			return goTapAPI.Constants.Value.Twitter
+			return Constants.Value.Twitter
 		}
 		else  if self == SharingOption.WhatsApp {
 
-			return goTapAPI.Constants.Value.Whatsapp
+			return Constants.Value.Whatsapp
 		}
 		else  if self == SharingOption.Instagram {
 
-			return goTapAPI.Constants.Value.Instagram
+			return Constants.Value.Instagram
 		}
 		else  if self == SharingOption.Linkedin {
 
-			return goTapAPI.Constants.Value.Linkedin
+			return Constants.Value.Linkedin
 		}
 		else  if self == SharingOption.GooglePlus {
 
-			return goTapAPI.Constants.Value.GooglePlus
+			return Constants.Value.GooglePlus
 		}
 		else {
 
@@ -83,54 +83,54 @@ public class SharingOption: goTapAPI.Enum {
 
 	 - returns: Sharing option created with a medium string.
 	 */
-	internal static func with(stringValue: String?) -> goTapAPI.SharingOption {
+	internal static func with(stringValue: String?) -> SharingOption {
 
 		guard let string = stringValue else {
 
-			return goTapAPI.SharingOption.Mail
+			return SharingOption.Mail
 		}
 
 		switch string {
 
-			case goTapAPI.Constants.Value.SMS:
+			case Constants.Value.SMS:
 
-				return goTapAPI.SharingOption.SMS
+				return SharingOption.SMS
 
-			case goTapAPI.Constants.Value.Mail:
+			case Constants.Value.Mail:
 
-				return goTapAPI.SharingOption.Mail
+				return SharingOption.Mail
 
-			case goTapAPI.Constants.Value.Facebook:
+			case Constants.Value.Facebook:
 
-				return goTapAPI.SharingOption.Facebook
+				return SharingOption.Facebook
 
-			case goTapAPI.Constants.Value.FacebookMessenger:
+			case Constants.Value.FacebookMessenger:
 
-				return goTapAPI.SharingOption.FacebookMessenger
+				return SharingOption.FacebookMessenger
 
-			case goTapAPI.Constants.Value.Twitter:
+			case Constants.Value.Twitter:
 
-				return goTapAPI.SharingOption.Twitter
+				return SharingOption.Twitter
 
-			case goTapAPI.Constants.Value.Whatsapp:
+			case Constants.Value.Whatsapp:
 
-				return goTapAPI.SharingOption.WhatsApp
+				return SharingOption.WhatsApp
 
-			case goTapAPI.Constants.Value.Instagram:
+			case Constants.Value.Instagram:
 
-				return goTapAPI.SharingOption.Instagram
+				return SharingOption.Instagram
 
-			case goTapAPI.Constants.Value.Linkedin:
+			case Constants.Value.Linkedin:
 
-				return goTapAPI.SharingOption.Linkedin
+				return SharingOption.Linkedin
 
-			case goTapAPI.Constants.Value.GooglePlus:
+			case Constants.Value.GooglePlus:
 
-				return goTapAPI.SharingOption.GooglePlus
+				return SharingOption.GooglePlus
 
 			default:
 
-				return goTapAPI.SharingOption.Mail
+				return SharingOption.Mail
 		}
 	}
 }

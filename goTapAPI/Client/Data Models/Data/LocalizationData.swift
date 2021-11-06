@@ -7,7 +7,7 @@
 //
 
 /// Localization data model.
-public class LocalizationData: goTapAPI.DataModel {
+public class LocalizationData: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -15,11 +15,11 @@ public class LocalizationData: goTapAPI.DataModel {
 	/// Icon URL.
 	public var iconURL: URL? {
 
-		return goTapAPI.UrlExtension.with(string: iconURLString)
+		return UrlExtension.with(string: iconURLString)
 	}
 
 	/// Icon image. If nil. use @c iconURL property to load
-	public var iconImage: goTapAPI.TPImage?
+	public var iconImage: TPImage?
 
 	/// Locale identifier.
 	public private(set) var localeIdentifier: String = String.tap_empty
@@ -28,30 +28,30 @@ public class LocalizationData: goTapAPI.DataModel {
 	public private(set) var localeName: String = String.tap_empty
 
 	/// Language font that should be used for this language.
-	public private(set) var languageFont: goTapAPI.LanguageFont = goTapAPI.LanguageFont.Default
+	public private(set) var languageFont: LanguageFont = LanguageFont.Default
 
 	/// Translation file URL.
 	public var translationFileURL: URL? {
 
-		return goTapAPI.UrlExtension.with(string: translationFileURLString)
+		return UrlExtension.with(string: translationFileURLString)
 	}
 
 	/// Sharing file URL.
 	public var sharingFileURL: URL? {
 
-		return goTapAPI.UrlExtension.with(string: sharingFileURLString)
+		return UrlExtension.with(string: sharingFileURLString)
 	}
 
 	internal override var serializedModel: AnyObject? {
 
 		var result: [String: Any] = [:]
 
-			result[goTapAPI.Constants.Key.icon] = iconURLString
-			result[goTapAPI.Constants.Key.localeIdentifier] = localeIdentifier
-			result[goTapAPI.Constants.Key.localeName] = localeName
-			result[goTapAPI.Constants.Key.LanguageFont] = languageFont
-			result[goTapAPI.Constants.Key.translationFileURL] = translationFileURLString
-			result[goTapAPI.Constants.Key.shareFileURL] = sharingFileURLString
+			result[Constants.Key.icon] = iconURLString
+			result[Constants.Key.localeIdentifier] = localeIdentifier
+			result[Constants.Key.localeName] = localeName
+			result[Constants.Key.LanguageFont] = languageFont
+			result[Constants.Key.translationFileURL] = translationFileURLString
+			result[Constants.Key.shareFileURL] = sharingFileURLString
 
 		return result as AnyObject
 	}
@@ -61,20 +61,20 @@ public class LocalizationData: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.LocalizationData else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? LocalizationData else { return nil }
 
-		guard let parsedIconURL = dictionary.parseString(forKey: goTapAPI.Constants.Key.icon) else { return nil }
-		guard let parsedLocaleIdentifier = dictionary.parseString(forKey: goTapAPI.Constants.Key.localeIdentifier) else { return nil }
-		guard let parsedLocaleName = dictionary.parseString(forKey: goTapAPI.Constants.Key.localeName) else { return nil }
-		guard let parsedTranslationFileURL = dictionary.parseString(forKey: goTapAPI.Constants.Key.translationFileURL) else { return nil }
-		guard let parsedSharingFileURL = dictionary.parseString(forKey: goTapAPI.Constants.Key.shareFileURL) else { return nil }
+		guard let parsedIconURL = dictionary.parseString(forKey: Constants.Key.icon) else { return nil }
+		guard let parsedLocaleIdentifier = dictionary.parseString(forKey: Constants.Key.localeIdentifier) else { return nil }
+		guard let parsedLocaleName = dictionary.parseString(forKey: Constants.Key.localeName) else { return nil }
+		guard let parsedTranslationFileURL = dictionary.parseString(forKey: Constants.Key.translationFileURL) else { return nil }
+		guard let parsedSharingFileURL = dictionary.parseString(forKey: Constants.Key.shareFileURL) else { return nil }
 
 		model.iconURLString = parsedIconURL
 		model.localeIdentifier = parsedLocaleIdentifier
 		model.localeName = parsedLocaleName
 		model.translationFileURLString = parsedTranslationFileURL
 		model.sharingFileURLString = parsedSharingFileURL
-		model.languageFont = goTapAPI.LanguageFont.with(intValue: dictionary.parseInteger(forKey: goTapAPI.Constants.Key.LanguageFont))
+		model.languageFont = LanguageFont.with(intValue: dictionary.parseInteger(forKey: Constants.Key.LanguageFont))
 
 		return model.tap_asSelf()
 	}
@@ -91,7 +91,7 @@ public class LocalizationData: goTapAPI.DataModel {
 
 	 - returns: New instance of TPAPILocalizationData.
 	 */
-	public init(iconImage: goTapAPI.TPImage, localeIdentifier: String, localeName: String!, languageFont: goTapAPI.LanguageFont, translationFileURL: String, sharingFileURL: String) {
+	public init(iconImage: TPImage, localeIdentifier: String, localeName: String!, languageFont: LanguageFont, translationFileURL: String, sharingFileURL: String) {
 
 		super.init()
 

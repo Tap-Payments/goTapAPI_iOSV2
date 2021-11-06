@@ -7,7 +7,7 @@
 //
 
 /// Group data model.
-public class TPGroup: goTapAPI.DataModel {
+public class TPGroup: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -19,7 +19,7 @@ public class TPGroup: goTapAPI.DataModel {
 	public private(set) var groupName: String = String.tap_empty
 
 	/// Header attributes.
-	public private(set) var headerAttributes: goTapAPI.HeaderAttributes = goTapAPI.HeaderAttributes()
+	public private(set) var headerAttributes: HeaderAttributes = HeaderAttributes()
 
 	internal override var storesOriginalObject: Swift.Bool { return true }
 
@@ -27,7 +27,7 @@ public class TPGroup: goTapAPI.DataModel {
 	public var selectedItemsCount: Int64 = 0
 
 	/// Items in a group.
-	public var items: [goTapAPI.HomeItem]?
+	public var items: [HomeItem]?
 
 	//MARK: Methods
 
@@ -36,11 +36,11 @@ public class TPGroup: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.TPGroup else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? TPGroup else { return nil }
 
-		guard let groupIDNumber = dictionary.parseInteger(forKey: goTapAPI.Constants.Key.GroupID) else { return nil }
-		guard let groupNameString = dictionary.parseString(forKey: goTapAPI.Constants.Key.GroupName) else { return nil }
-		guard let headerAttributesModel = goTapAPI.HeaderAttributes().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: goTapAPI.Constants.Key.HeaderAttributes) as AnyObject) else { return nil }
+		guard let groupIDNumber = dictionary.parseInteger(forKey: Constants.Key.GroupID) else { return nil }
+		guard let groupNameString = dictionary.parseString(forKey: Constants.Key.GroupName) else { return nil }
+		guard let headerAttributesModel = HeaderAttributes().dataModelWith(serializedObject: dictionary.parseDictionary(forKey: Constants.Key.HeaderAttributes) as AnyObject) else { return nil }
 
 		model.groupID = groupIDNumber
 		model.groupName = groupNameString
@@ -66,16 +66,16 @@ public class TPGroup: goTapAPI.DataModel {
 
 	public override func isEqual(_ object: Any?) -> Bool {
 
-		guard let otherGroup = object as? goTapAPI.TPGroup else { return false }
+		guard let otherGroup = object as? TPGroup else { return false }
 
 		return ( otherGroup.groupID == groupID &&
 				 otherGroup.groupName == groupName &&
 				 otherGroup.headerAttributes.isEqual(headerAttributes) )
 	}
 
-	func compare(other: goTapAPI.TPGroup) -> goTapAPI.ComparisonResult {
+	func compare(other: TPGroup) -> ComparisonResult {
 
-		return goTapAPI.IntExtension.compare(first: groupID, toOther: other.groupID)
+		return IntExtension.compare(first: groupID, toOther: other.groupID)
 	}
 
 	//func copyWithZone(zone: NSZone) -> AnyObject {
@@ -84,7 +84,7 @@ public class TPGroup: goTapAPI.DataModel {
 		//return newGroup
 	//}
 
-	internal init(identifier: Int64, name: String, attributes: goTapAPI.HeaderAttributes) {
+	internal init(identifier: Int64, name: String, attributes: HeaderAttributes) {
 
 		super.init()
 

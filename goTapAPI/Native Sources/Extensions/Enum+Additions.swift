@@ -6,7 +6,7 @@
 //
 //
 
-extension goTapAPI.Enum {
+extension Enum {
     
     public override var hash: Int {
         

@@ -7,7 +7,7 @@ public  class TPColor : UIKit.UIColor {
 	
 	public static func colorWith(_ hexString: String?) -> TPColor {
 		
-		let processedHexString = goTapAPI.ColorHelper.argbHexStringFrom(RGB_RGBAHexString: hexString) as Foundation.NSString
+		let processedHexString = ColorHelper.argbHexStringFrom(RGB_RGBAHexString: hexString) as Foundation.NSString
 		
 		var scanLocation = 1
 		var componentIndex = 0

@@ -13,26 +13,26 @@
  - SendReceiptAndLinkEmail: Send receipt and link email.
  - VerifyEmail:             Verify email.
  */
-public class LinkEmailRequirement: goTapAPI.Enum {
+public class LinkEmailRequirement: Enum {
 
-	public static let SendOnlyReceiptByMail = goTapAPI.LinkEmailRequirement(rawValue: 0)
-	public static let SendReceiptAndLinkEmail = goTapAPI.LinkEmailRequirement(rawValue: 1)
-	public static let VerifyEmail = goTapAPI.LinkEmailRequirement(rawValue: 2)
+	public static let SendOnlyReceiptByMail = LinkEmailRequirement(rawValue: 0)
+	public static let SendReceiptAndLinkEmail = LinkEmailRequirement(rawValue: 1)
+	public static let VerifyEmail = LinkEmailRequirement(rawValue: 2)
 
 	/// Returns string representation of the receiver.
 	internal var stringRepresentation: String {
 
 			if self == LinkEmailRequirement.SendOnlyReceiptByMail {
 
-			return goTapAPI.Constants.Value.R
+			return Constants.Value.R
 		}
 		else  if self == LinkEmailRequirement.SendReceiptAndLinkEmail {
 
-			return goTapAPI.Constants.Value.L
+			return Constants.Value.L
 		}
 		else  if self == LinkEmailRequirement.VerifyEmail {
 
-			return goTapAPI.Constants.Value.V
+			return Constants.Value.V
 		}
 
 		return String.tap_empty
@@ -45,30 +45,30 @@ public class LinkEmailRequirement: goTapAPI.Enum {
 
 	 - returns: Enum value.
 	 */
-	internal static func with(stringValue: String?) -> goTapAPI.LinkEmailRequirement {
+	internal static func with(stringValue: String?) -> LinkEmailRequirement {
 
 		guard let string = stringValue else {
 
-			return goTapAPI.LinkEmailRequirement.SendOnlyReceiptByMail
+			return LinkEmailRequirement.SendOnlyReceiptByMail
 		}
 
 		switch string {
 
-			case goTapAPI.Constants.Value.R:
+			case Constants.Value.R:
 
-				return goTapAPI.LinkEmailRequirement.SendOnlyReceiptByMail
+				return LinkEmailRequirement.SendOnlyReceiptByMail
 
-			case goTapAPI.Constants.Value.L:
+			case Constants.Value.L:
 
-				return goTapAPI.LinkEmailRequirement.SendReceiptAndLinkEmail
+				return LinkEmailRequirement.SendReceiptAndLinkEmail
 
-			case goTapAPI.Constants.Value.V:
+			case Constants.Value.V:
 
-				return goTapAPI.LinkEmailRequirement.VerifyEmail
+				return LinkEmailRequirement.VerifyEmail
 
 			default:
 
-				return goTapAPI.LinkEmailRequirement.SendOnlyReceiptByMail
+				return LinkEmailRequirement.SendOnlyReceiptByMail
 		}
 	}
 }

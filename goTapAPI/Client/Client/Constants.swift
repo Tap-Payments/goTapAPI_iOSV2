@@ -55,6 +55,15 @@ public class Constants {
 
 	internal struct Error {
 
+        internal struct UserInfoKey {
+            
+            internal static let RequestHeaders: String = "RequestHeaders"
+            internal static let RequestParameters: String = "RequestParameters"
+            internal static let ResponseHeaders: String = "ResponseHeaders"
+            internal static let ResponseParameters: String = "ResponseParameters"
+            internal static let URL: String = "URL"
+        }
+        
 		internal static let domain = "company.tap.goTap.goTapAPI"
 
 		internal struct Code {
@@ -83,6 +92,15 @@ public class Constants {
 
 	internal class Key {
 
+        internal static let hd720: String = "hd720"
+        internal static let thumbnail_url: String = "thumbnail_url"
+        internal static let Last_Modified: String = "Last-Modified"
+        internal static let length_seconds: String = "length_seconds"
+        internal static let medium: String = "medium"
+        internal static let moreInfo: String = "moreInfo"
+        internal static let small: String = "small"
+        internal static let string: String = "string"
+        internal static let title: String = "title"
 		internal static let Action: String = "Action"
 		internal static let ActionType: String = "ActionType"
 		internal static let ActiveSectors: String = "ActiveSectors"

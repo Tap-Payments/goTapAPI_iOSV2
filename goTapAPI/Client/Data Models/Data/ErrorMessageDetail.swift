@@ -6,7 +6,7 @@
 //
 
 /// Error message details model.
-public class ErrorMessageDetail: goTapAPI.DataModel {
+public class ErrorMessageDetail: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -24,8 +24,8 @@ public class ErrorMessageDetail: goTapAPI.DataModel {
 			
 		var result: [String: Any] = [:]
 			
-		result[goTapAPI.Constants.Key.ParamName] = self.parameterName
-		result[goTapAPI.Constants.Key.ParamValue] = self.parameterValue
+		result[Constants.Key.ParamName] = self.parameterName
+		result[Constants.Key.ParamValue] = self.parameterValue
 			
 		return result as AnyObject
 	}
@@ -35,10 +35,10 @@ public class ErrorMessageDetail: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 	
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ErrorMessageDetail else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ErrorMessageDetail else { return nil }
 		
-		guard let nonnullParameterName = dictionary.parseString(forKey: goTapAPI.Constants.Key.ParamName) else { return nil }
-		guard let nonnullParameterValue = dictionary.parseString(forKey: goTapAPI.Constants.Key.ParamValue) else { return nil }
+		guard let nonnullParameterName = dictionary.parseString(forKey: Constants.Key.ParamName) else { return nil }
+		guard let nonnullParameterValue = dictionary.parseString(forKey: Constants.Key.ParamValue) else { return nil }
 		
 		model.parameterName = nonnullParameterName
 		model.parameterValue = nonnullParameterValue

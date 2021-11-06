@@ -17,7 +17,7 @@ extension TPGroup: NSCopying {
         return newGroup
     }
     
-    public func compare(_ other: goTapAPI.TPGroup) -> Foundation.ComparisonResult {
+    public func compare(_ other: TPGroup) -> Foundation.ComparisonResult {
         
         return self.compare(other: other).foundationValue
     }

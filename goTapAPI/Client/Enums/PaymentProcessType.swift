@@ -12,25 +12,25 @@
  - WebPage:  Web page payment.
  - CardInfo: Card info payment.
  */
-public class PaymentProcessType: goTapAPI.Enum {
+public class PaymentProcessType: Enum {
 	
-	public static let WebPage = goTapAPI.PaymentProcessType(rawValue: 1)
-	public static let CardInfo = goTapAPI.PaymentProcessType(rawValue: 2)
+	public static let WebPage = PaymentProcessType(rawValue: 1)
+	public static let CardInfo = PaymentProcessType(rawValue: 2)
 	
-	internal static func with(intValue: Int64?) -> goTapAPI.PaymentProcessType {
+	internal static func with(intValue: Int64?) -> PaymentProcessType {
 		
 		guard let value = intValue else {
 		
-			return goTapAPI.PaymentProcessType.CardInfo
+			return PaymentProcessType.CardInfo
 		}
 		
 		if value == 1 {
 		 
-			return goTapAPI.PaymentProcessType.WebPage
+			return PaymentProcessType.WebPage
 		}
 		else {
 		 
-			return goTapAPI.PaymentProcessType.CardInfo
+			return PaymentProcessType.CardInfo
 		}
 	}
 }

@@ -7,7 +7,7 @@
 //
 
 /// Short URL response model.
-public class ShortURLResponse: goTapAPI.ShortURLRequest {
+public class ShortURLResponse: ShortURLRequest {
 
 	//MARK: - Public -
 	//MARK: Properties
@@ -15,14 +15,14 @@ public class ShortURLResponse: goTapAPI.ShortURLRequest {
 	/// Short URL.
 	public var shortURL: URL? {
 
-		return goTapAPI.UrlExtension.with(string: shortURLString)
+		return UrlExtension.with(string: shortURLString)
 	}
 
 	internal override var serializedModel: AnyObject? {
 
 		let result: [String: Any] = [
 
-			goTapAPI.Constants.Key.ShortUrl: shortURLString
+			Constants.Key.ShortUrl: shortURLString
 		]
 
 		return result as AnyObject
@@ -35,8 +35,8 @@ public class ShortURLResponse: goTapAPI.ShortURLRequest {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ShortURLResponse else { return nil }
-		guard let parsedShortURL = dictionary.parseString(forKey: goTapAPI.Constants.Key.ShortUrl) else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ShortURLResponse else { return nil }
+		guard let parsedShortURL = dictionary.parseString(forKey: Constants.Key.ShortUrl) else { return nil }
 
 		model.shortURLString = parsedShortURL
 

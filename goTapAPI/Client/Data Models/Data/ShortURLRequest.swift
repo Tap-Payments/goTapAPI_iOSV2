@@ -7,16 +7,16 @@
 //
 
 /// Short URL request model.
-public class ShortURLRequest: goTapAPI.DataModel {
+public class ShortURLRequest: DataModel {
 
 	//MARK: - Public -
 	//MARK: Properties
 	
 	/// Medium.
-	public private(set) var medium: goTapAPI.SharingOption = goTapAPI.SharingOption.Mail
+	public private(set) var medium: SharingOption = SharingOption.Mail
 	
 	/// Request purpose.
-	public private(set) var purpose: goTapAPI.Purpose = goTapAPI.Purpose.Video
+	public private(set) var purpose: Purpose = Purpose.Video
 	
 	/// Parameters.
 	public private(set) var params: String?
@@ -25,11 +25,11 @@ public class ShortURLRequest: goTapAPI.DataModel {
 		
 		var result: [String: Any] = [
 		
-			goTapAPI.Constants.Key.Medium: medium.stringRepresentation,
-			goTapAPI.Constants.Key.Purpose: purpose.stringRepresentation
+			Constants.Key.Medium: medium.stringRepresentation,
+			Constants.Key.Purpose: purpose.stringRepresentation
 		]
 		
-		result.setNullable(value: params, forKey: goTapAPI.Constants.Key.Params)
+		result.setNullable(value: params, forKey: Constants.Key.Params)
 		
 		return result as AnyObject
 	}
@@ -41,11 +41,11 @@ public class ShortURLRequest: goTapAPI.DataModel {
 	internal override func dataModelWith(serializedObject: Any?) -> Self? {
 		
 		guard let dictionary = serializedObject as? [String: AnyObject] else { return nil }
-		guard let model = super.dataModelWith(serializedObject: serializedObject) as? goTapAPI.ShortURLRequest else { return nil }
+		guard let model = super.dataModelWith(serializedObject: serializedObject) as? ShortURLRequest else { return nil }
 		
-		model.medium = goTapAPI.SharingOption.with(stringValue: dictionary.parseString(forKey: goTapAPI.Constants.Key.Medium))
-		model.purpose = goTapAPI.Purpose.with(stringValue: dictionary.parseString(forKey: goTapAPI.Constants.Key.Purpose))
-		model.params = dictionary.parseString(forKey: goTapAPI.Constants.Key.Params)
+		model.medium = SharingOption.with(stringValue: dictionary.parseString(forKey: Constants.Key.Medium))
+		model.purpose = Purpose.with(stringValue: dictionary.parseString(forKey: Constants.Key.Purpose))
+		model.params = dictionary.parseString(forKey: Constants.Key.Params)
 		
 		return model.tap_asSelf()
 	}
@@ -59,7 +59,7 @@ public class ShortURLRequest: goTapAPI.DataModel {
 	 
 	 - returns: TPAPIShortURLRequest.
 	 */
-	internal init(medium: goTapAPI.SharingOption, purpose: goTapAPI.Purpose, params: String?) {
+	internal init(medium: SharingOption, purpose: Purpose, params: String?) {
 	
 		super.init()
 	
