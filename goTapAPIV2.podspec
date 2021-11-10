@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = 'goTapAPIV2'
-  s.version               = '1.0.2'
+  s.version               = '1.0.3'
   s.summary               = 'goTapAPI'
   s.description           = 'API Client for goTap'
   s.homepage              = 'https://github.com/Tap-Payments/goTapAPI_iOSV2'
