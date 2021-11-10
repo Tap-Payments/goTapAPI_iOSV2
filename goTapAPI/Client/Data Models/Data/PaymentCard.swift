@@ -28,7 +28,7 @@ public class PaymentCard: TransactionCard {
 	public private(set) var canPay: Swift.Bool = false
 
 	/// Card brand.
-	public private(set) var cardBrand: CardBrand = CardBrand.Tap
+	public private(set) var cardBrand: TapApiCardBrand = TapApiCardBrand.Tap
 
 	/// Card category.
 	public private(set) var cardCategory: String = String.tap_empty
@@ -93,7 +93,7 @@ public class PaymentCard: TransactionCard {
 
 		guard let parsedBankID = dictionary.parseInteger(forKey: Constants.Key.BankID) else { return nil }
 		guard let parsedBankName = dictionary.parseString(forKey: Constants.Key.BankName) else { return nil }
-		guard let parsedCardBrand = CardBrand.with(stringValue: dictionary.parseString(forKey: Constants.Key.CardBrand)) else { return nil }
+		guard let parsedCardBrand = TapApiCardBrand.with(stringValue: dictionary.parseString(forKey: Constants.Key.CardBrand)) else { return nil }
 		guard let parsedCurrencyCode = dictionary.parseString(forKey: Constants.Key.CurrencyCode) else { return nil }
 		guard let parsedCurrencySymbol = dictionary.parseString(forKey: Constants.Key.CurrencySymbol) else { return nil }
 

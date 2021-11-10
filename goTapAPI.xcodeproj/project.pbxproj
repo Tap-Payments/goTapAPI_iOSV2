@@ -183,7 +183,7 @@
 		A4B9D7DE1F8773D000F6083D /* ScheduleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B9D7DC1F8773CF00F6083D /* ScheduleDate.swift */; };
 		A4B9D7DF1F8773D000F6083D /* ScheduleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B9D7DD1F8773D000F6083D /* ScheduleSettings.swift */; };
 		A4C5E9571DF064E900CAB364 /* AddedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C5E9541DF064E900CAB364 /* AddedType.swift */; };
-		A4C5E9581DF064E900CAB364 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C5E9551DF064E900CAB364 /* CardBrand.swift */; };
+		A4C5E9581DF064E900CAB364 /* TapApiCardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C5E9551DF064E900CAB364 /* TapApiCardBrand.swift */; };
 		A4C5E9591DF064E900CAB364 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C5E9561DF064E900CAB364 /* CardType.swift */; };
 		A4D5B66C1F1CF86B00CD12E5 /* goTapAPIV2.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A4D5B66B1F1CF86B00CD12E5 /* goTapAPIV2.podspec */; };
 		A4D9FD091E60730C000A7483 /* AddressFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D9FD061E60730C000A7483 /* AddressFormat.swift */; };
@@ -378,7 +378,7 @@
 		A4B9D7DC1F8773CF00F6083D /* ScheduleDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDate.swift; sourceTree = "<group>"; };
 		A4B9D7DD1F8773D000F6083D /* ScheduleSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSettings.swift; sourceTree = "<group>"; };
 		A4C5E9541DF064E900CAB364 /* AddedType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedType.swift; sourceTree = "<group>"; };
-		A4C5E9551DF064E900CAB364 /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
+		A4C5E9551DF064E900CAB364 /* TapApiCardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapApiCardBrand.swift; sourceTree = "<group>"; };
 		A4C5E9561DF064E900CAB364 /* CardType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		A4D5B66B1F1CF86B00CD12E5 /* goTapAPIV2.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = goTapAPIV2.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A4D9FD061E60730C000A7483 /* AddressFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFormat.swift; sourceTree = "<group>"; };
@@ -645,7 +645,7 @@
 				A4AF1DF51D9EBA67001DDA65 /* ActionType.swift */,
 				A4C5E9541DF064E900CAB364 /* AddedType.swift */,
 				A4AF1DF61D9EBA67001DDA65 /* AddToListScreen.swift */,
-				A4C5E9551DF064E900CAB364 /* CardBrand.swift */,
+				A4C5E9551DF064E900CAB364 /* TapApiCardBrand.swift */,
 				A4C5E9561DF064E900CAB364 /* CardType.swift */,
 				A4AF1DF71D9EBA67001DDA65 /* ComparisonResult.swift */,
 				A477E1C61F8290E000F7229E /* Day.swift */,
@@ -900,7 +900,7 @@
 				A4AF1E471D9EBA67001DDA65 /* Logo.swift in Sources */,
 				A4AF1EC51D9EBA91001DDA65 /* Date+Additions.swift in Sources */,
 				A4AF1E8A1D9EBA67001DDA65 /* VideoResponseModel.swift in Sources */,
-				A4C5E9581DF064E900CAB364 /* CardBrand.swift in Sources */,
+				A4C5E9581DF064E900CAB364 /* TapApiCardBrand.swift in Sources */,
 				A4967B0E1F3A1E19006FC8C4 /* Response.swift in Sources */,
 				A40FD67B1DEC6C9E001659C3 /* Notifications.swift in Sources */,
 				A4AF1E801D9EBA67001DDA65 /* GetUpdatesResponseModel.swift in Sources */,
